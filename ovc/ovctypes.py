@@ -109,13 +109,14 @@ class OvcSubscription(int):
 			0x00b1: 'kortweek09', #could also be vrijweek09
 			0x00c9: 'Reizen op saldo (1e klas)',
 			0x00ca: 'Reizen op saldo (2e klas)',
+			    25: '2-jaar Voordeelurenabonnement',
 			0x00ce: 'Voordeelurenabonnement',
 		},
 		12: {
 			#0x09c9: 'studwkvrij', #could also be studwkkort
 			#0x09cb: 'studwkkort', #could also be studwkvrij
 			2502: "Student, weekend-vrij",
-			2503: "Student, week-discount"
+			2503: "Student, week-discount",
 			2505: "Student, week-vrij",
 			2506: "Student, weekend-discount",
 		}
