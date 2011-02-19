@@ -71,7 +71,10 @@ class OvcCardType(int):
 		except KeyError: return 'cardtype %d'%self
 
 class OvcTransfer(int):
-	_strs = { 0: 'purchase', 1: 'check-in', 2: 'check-out', 6: 'transfer' }
+	_strs = {
+		  0: 'purchase', 1: 'check-in', 2: 'check-out', 6: 'transfer',
+		 -2: 'credit',   -3: 'no-data',
+		}
 	def __new__(cls, x, **kwargs):
 		return int.__new__(cls, x)
 	def __str__(self):
@@ -88,6 +91,7 @@ class OvcCompany(int):
 		 0: 'TLS',         1: 'Connexxion',  2: 'GVB',        3: 'HTM',
 		 4: 'NS',          5: 'RET',                          7: 'Veolia',
 		 8: 'Arriva',      9: 'Syntus',
+		12: 'DUO',
 	}
 	def __new__(cls, x, **kwargs):
 		return int.__new__(cls, x)
@@ -103,12 +107,17 @@ class OvcSubscription(int):
 		 4: {
 			0x00af: 'vrijweek09', #could also be kortweek09
 			0x00b1: 'kortweek09', #could also be vrijweek09
+			0x00c9: 'Reizen op saldo (1e klas)',
 			0x00ca: 'Reizen op saldo (2e klas)',
 			0x00ce: 'Voordeelurenabonnement',
 		},
 		12: {
-			0x09c9: 'studwkvrij', #could also be studwkkort
-			0x09ca: 'studwkkort', #could also be studwkvrij
+			#0x09c9: 'studwkvrij', #could also be studwkkort
+			#0x09cb: 'studwkkort', #could also be studwkvrij
+			2502: "Student, weekend-vrij",
+			2503: "Student, week-discount"
+			2505: "Student, week-vrij",
+			2506: "Student, weekend-discount",
 		}
 	}
 	def __new__(cls, x, obj, **kwargs):
