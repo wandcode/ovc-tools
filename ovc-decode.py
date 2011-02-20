@@ -20,7 +20,7 @@ import sys
 
 from ovc import *
 from ovc.ovctypes import *
-from ovc.util import mfclassic_getsector, getbits
+from ovc.util import mfclassic_getsector, getbits, mfclassic_getoffset
 
 
 if __name__ == '__main__':
@@ -47,16 +47,36 @@ if __name__ == '__main__':
 				s += ', birthdate %s'%birthdate
 			print s
 
-			# transactions
+			# subscriptions
+			print "Subscriptions:"
 			for sector in range(32, 35):
 				sdata = mfclassic_getsector(data, sector)[:-0x10]
+				offset,size = mfclassic_getoffset(sector)
 				for chunk in range(0, len(sdata), 0x30):
 					if ord(sdata[chunk]) == 0: continue
+					sys.stdout.write(('%03x: ' % (offset + chunk)))
 					print OvcClassicTransaction(sdata[chunk:chunk+0x30])
+			# transactions
+			print "Transaction logs:"
+			# Entries  0-10: for User, chronologic, may be erased?
+			# Entries 11-23: for Conductor, not chronologic, only one check-in
+			# Entries 24-27: add Credit transactions
+			start_log_0 = 0
+			start_log_1 = 11
+			start_log_2 = 24
+			log_entry = 0
 			for sector in range(35, 39):
 				sdata = mfclassic_getsector(data, sector)[:-0x10]
+				offset,size = mfclassic_getoffset(sector)
 				for chunk in range(0, len(sdata), 0x20):
+					if (chunk + 0x20) > len(sdata): continue	# last few bytes, not big enough
+					l = log_entry
+					log_entry += 1
+					if l == start_log_1 or l == start_log_2: print "--"
 					if ord(sdata[chunk]) == 0: continue
+					if   l >= start_log_2: l = l - start_log_2
+					elif l >= start_log_1: l = l - start_log_1
+					sys.stdout.write(('#%x=%03x: ' % (l, offset + chunk)))
 					print OvcClassicTransaction(sdata[chunk:chunk+0x20])
 
 			# saldo
@@ -75,9 +95,12 @@ if __name__ == '__main__':
 					s = '[saldo_%02x__] '%(ord(self.data[0]))
 					return s + OvcRecord.__str__(self)
 				
+			print "Credit:"
 			sdata = mfclassic_getsector(data, 39)[:-0x10]
+			offset,size = mfclassic_getoffset(39)
 			for chunk in [0x90, 0xa0]:
 				if ord(sdata[chunk]) == 0: continue
+				sys.stdout.write(('%03x: ' % (offset + chunk)))
 				print OvcSaldoTransaction(sdata[chunk:chunk+0x10])
 			# indexes at FB0, FD0
 			class OvcIndex(OvcRecord):
@@ -100,10 +123,12 @@ if __name__ == '__main__':
 				def __str__(self):
 					s = '[index_____] '
 					return s + OvcRecord.__str__(self)
+			print "Main index (current and previous):"
 			# FB0, FD0
-			sdata = mfclassic_getsector(data, 39)[:-0x10]
+			#sdata = mfclassic_getsector(data, 39)[:-0x10]
+			#offset,size = mfclassic_getoffset(39)
 			for chunk in [0xb0, 0xd0]:
-				#if ord(sdata[chunk]) == 0: continue
+				sys.stdout.write(('%03x: ' % (offset + chunk)))
 				print OvcIndex(sdata[chunk:chunk+0x20])
 
 		elif len(data) == 64:	# mifare ultralight GVB

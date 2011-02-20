@@ -29,14 +29,19 @@ def getbits(data, start, end):
 		val = (val << bits) + ((ord(data[byte])>>(8-bits)) & mask)
 	return val
 
-def mfclassic_getsector(data, sector):
-	'''Retrieve sector from mifare classic dump'''
+def mfclassic_getoffset(sector):
+	'''Calculate sector offset and size for mifare classic'''
 	if sector < 32:
 		length = 0x40
 		addr = sector*length
 	else:
 		length = 0x100
 		addr = 0x800 + (sector-32)*length
+	return addr, length
+
+def mfclassic_getsector(data, sector):
+	'''Retrieve sector from mifare classic dump'''
+	addr, length = mfclassic_getoffset(sector)
 	return data[addr:addr+length]
 
 def bcd2int(x):
