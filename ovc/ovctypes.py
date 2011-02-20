@@ -104,14 +104,18 @@ class OvcSubscription(int):
 		 2: {
  			0x0bbd: 'Supplement fiets',
 		}, 
-		 4: {
+		 4: {	# NS
 			0x00af: 'vrijweek09', #could also be kortweek09
 			0x00b1: 'kortweek09', #could also be vrijweek09
 			0x00c9: 'Reizen op saldo (1e klas)',
 			0x00ca: 'Reizen op saldo (2e klas)',
 			    25: '2-jaar Voordeelurenabonnement',
 			0x00ce: 'Voordeelurenabonnement',
+			0x0019: '2-jaar Voordeelurenabonnement?',
 		},
+		 7: {   # Veolia
+		        0x0626: 'DALU Dalkorting',
+	        },
 		12: {
 			#0x09c9: 'studwkvrij', #could also be studwkkort
 			#0x09cb: 'studwkkort', #could also be studwkvrij
