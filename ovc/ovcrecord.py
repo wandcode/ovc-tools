@@ -96,6 +96,9 @@ class OvcRecord:
 			offsets[i] = tmploffsets[i]
 			self._apply_fixedwidth(fields, offsets)
 
+		#print "Final:"
+		#print fields
+		#print offsets, "\n"
 		# now parse all fields
 		fieldvalues={}
 		for i in range(len(fields)):
@@ -149,6 +152,7 @@ class OvcRecord:
 		s = ''
 		if self.parsed:
 			fields = filter(lambda x: self.__dict__[x] is not None, [x[0] for x in self._fieldchars])
+			#s += ' '.join([x+":"+str(self.__dict__[x]) for x in fields])
 			s += ' '.join([str(self.__dict__[x]) for x in fields])
 		else:
 			data = self.data
@@ -160,11 +164,12 @@ class OvcRecord:
 class OvcClassicTransaction(OvcRecord):
 	'''Transaction on a mifare classic card'''
 
-	_fieldchars = [
+	_fieldchars = [ #                    width
 			('id',        'I',   12, OvcTransactionId),
 			('date',      'T',   25, OvcDatetime),
 			('validfrom', 'R',   14, OvcDate),
 			('validto',   'O',   14, OvcDate),
+			('cardvalidfrom','E',   14, OvcDate),
 			('company',   'M',    4, OvcCompany),
 			('transfer',  'Y',    4, OvcTransfer),
 			('amount',    'N',   16, OvcAmount),
@@ -211,6 +216,10 @@ class OvcClassicTransaction(OvcRecord):
 		( '0a 00 e0 00 MB BB B0 00 00 II IU UU RR RO OO OW WW WW WW WW WW WW WW WW WW WW WW WW WW', {'R': -2, 'O': -1}),
 		( '0a 02 e0 00 MB BB B0 00 00 II IU UU 2a RR RO OO WW WW WW WW WW WW WW WW WW WW WW WW WW WW', {'R': -1} ),
 	        ( '0a 02 e0 0? MB BB B0 00 00 II IU UU 3e RR R0 00 OO OW WW WW WW WW WW WW WW WW WW WW WW WW WW W', {'R': -1} ),
+
+#		( '0a 00 e0 00 MB BB B0 00 00 II IU UU RR RO OO OV VV VE EE WW WW WW WW WW WW WW WW WW WW', {'R': -2, 'O': -1, 'E':+2}),
+#		( '0a 02 e0 00 MB BB B0 00 00 II IU UU 2a RR RO OO VV VV EE EW WW WW WW WW WW WW WW WW WW WW', {'R': -1} ),
+#		( '0a 02 e0 0? MB BB B0 00 00 II IU UU 3e RR R0 00 OO OV EE EW WW WW WW WW WW WW WW WW WW WW WW W', {'R': -1} ),
 	] 
 
 	def __init__(self, data):

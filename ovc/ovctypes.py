@@ -191,4 +191,13 @@ class FixedWidthHex(long):
 	def __str__(self):
 		return '0x'+('%x'%self).zfill(self._fieldwidth)
 
-
+class TransactionAddr(long):
+	def __new__(cls, x, width=0, **kwargs):
+	        #addr = i < 7 ? (0xB00 + i * 0x20) : (0xC00 + (i - 7) * 0x20)
+		if x < 7: addr = 0xB00 + x * 0x20
+		else:     addr = 0xC00 + (x - 7) * 0x20
+		i = long.__new__(cls, addr)
+		i._fieldwidth = width
+		return i
+	def __str__(self):
+		return '0x'+('%x'%self).zfill(self._fieldwidth)

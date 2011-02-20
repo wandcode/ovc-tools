@@ -79,7 +79,32 @@ if __name__ == '__main__':
 			for chunk in [0x90, 0xa0]:
 				if ord(sdata[chunk]) == 0: continue
 				print OvcSaldoTransaction(sdata[chunk:chunk+0x10])
-				
+			# indexes at FB0, FD0
+			class OvcIndex(OvcRecord):
+				_fieldchars = [
+					('counter', 'I', 12, OvcTransactionId),
+					('trans-ptr', 'J', 4, TransactionAddr),
+				 	('unkY',   'Y', None , FixedWidthHex),
+					('lstV',   'V', 28  , FixedWidthHex),
+					('lstW',   'W', 48  , FixedWidthHex),
+					('lstX',   'X', 48  , FixedWidthHex),
+					# trans-ptr J is the first element of lstU
+					('lstU',   'U', 36,   FixedWidthHex),
+				 	('lstP',   'P', 48  , FixedWidthHex),
+				 	('unkZ',   'Z', 12  , FixedWidthHex),
+				    ]
+				_templates = [
+# 0fb0  a3 00 00 00 01 23 45 60 12 34 56 78 9a b0 12 34.56 78 9a b0 12 34 56 78 90 12 34 56 78 9a b1 00 
+      ('PP PP II YY VV VV VV VW WW WW WW WW WW WX XX XX XX XX XX XJ UU UU UU UU UP PP PP PP PP PP PZ ZZ', {'I': -2, }),
+				]
+				def __str__(self):
+					s = '[index_____] '
+					return s + OvcRecord.__str__(self)
+			# FB0, FD0
+			sdata = mfclassic_getsector(data, 39)[:-0x10]
+			for chunk in [0xb0, 0xd0]:
+				#if ord(sdata[chunk]) == 0: continue
+				print OvcIndex(sdata[chunk:chunk+0x20])
 
 		elif len(data) == 64:	# mifare ultralight GVB
 			# TODO card id, otp, etc.
