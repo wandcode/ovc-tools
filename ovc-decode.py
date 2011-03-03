@@ -20,6 +20,7 @@ import sys
 
 from ovc import *
 from ovc.ovctypes import *
+#from ovc.newrecord import *
 from ovc.util import mfclassic_getsector, getbits, mfclassic_getoffset
 
 
@@ -35,6 +36,7 @@ if __name__ == '__main__':
 		inp.close()
 
 		if len(data) == 4096:	# mifare classic 4k
+			print "Dump file: ", fn
 			# card details
 			# TODO make the card an object in itself with fixed-position templates
 			# note that these data areas are not yet fully understood
@@ -48,16 +50,21 @@ if __name__ == '__main__':
 			print s
 
 			# subscriptions
+			# Print the idsubs value for this subscription before it.
+			# XXX if the subscriptions don't start in the first slot, and a new
+			# one is added there, the numbers change???
 			print "Subscriptions:"
+			log_entry = 0
 			for sector in range(32, 35):
 				sdata = mfclassic_getsector(data, sector)[:-0x10]
 				offset,size = mfclassic_getoffset(sector)
 				for chunk in range(0, len(sdata), 0x30):
 					if ord(sdata[chunk]) == 0: continue
-					sys.stdout.write(('%03x: ' % (offset + chunk)))
+					log_entry += 1
+					sys.stdout.write(('#%d=%03x: ' % (log_entry, offset + chunk)))
 					print OvcClassicTransaction(sdata[chunk:chunk+0x30])
 			# transactions
-			print "Transaction logs:"
+			print "Transaction logs: (history, checkin/out, credit)"
 			# Entries  0-10: for User, chronologic, may be erased?
 			# Entries 11-23: for Conductor, not chronologic, only one check-in
 			# Entries 24-27: add Credit transactions
@@ -74,62 +81,61 @@ if __name__ == '__main__':
 					log_entry += 1
 					if l == start_log_1 or l == start_log_2: print "--"
 					if ord(sdata[chunk]) == 0: continue
-					if   l >= start_log_2: l = l - start_log_2
-					elif l >= start_log_1: l = l - start_log_1
+					if l >= start_log_2: l = OvcMostRecentCreditIndex.map[l - start_log_2 - 1]
+					elif   l >= start_log_1: l = l - start_log_1
 					sys.stdout.write(('#%x=%03x: ' % (l, offset + chunk)))
-					print OvcClassicTransaction(sdata[chunk:chunk+0x20])
+					#print OvcClassicTransaction(sdata[chunk:chunk+0x20])
+					print OvcVariableTransaction(sdata[chunk:chunk+0x20])
 
-			# saldo
-			class OvcSaldoTransaction(OvcRecord):
-				_fieldchars = [
-					('id',     'I',   12, OvcTransactionId),
-					('idsaldo','H',   12, OvcSaldoTransactionId),
-					('saldo',  'N',   16, OvcAmountSigned),
-					('unkU',   'U', None, FixedWidthHex),
-					('unkV',   'V', None, FixedWidthHex),
-				]
-				_templates = [
-					('20 II I0 00 00 00 80 HH H0 0N NN N0', {'I':1, 'N':1}),
-				]
-				def __str__(self):
-					s = '[saldo_%02x__] '%(ord(self.data[0]))
-					return s + OvcRecord.__str__(self)
-				
-			print "Credit:"
+			# Credit at F90 and FA0
+			print
+			print "Credit: (current and previous)"
 			sdata = mfclassic_getsector(data, 39)[:-0x10]
 			offset,size = mfclassic_getoffset(39)
-			for chunk in [0x90, 0xa0]:
-				if ord(sdata[chunk]) == 0: continue
-				sys.stdout.write(('%03x: ' % (offset + chunk)))
-				print OvcSaldoTransaction(sdata[chunk:chunk+0x10])
-			# indexes at FB0, FD0
-			class OvcIndex(OvcRecord):
-				_fieldchars = [
-					('counter', 'I', 12, OvcTransactionId),
-					('trans-ptr', 'J', 4, TransactionAddr),
-				 	('unkY',   'Y', None , FixedWidthHex),
-					('lstV',   'V', 28  , FixedWidthHex),
-					('lstW',   'W', 48  , FixedWidthHex),
-					('lstX',   'X', 48  , FixedWidthHex),
-					# trans-ptr J is the first element of lstU
-					('lstU',   'U', 36,   FixedWidthHex),
-				 	('lstP',   'P', 48  , FixedWidthHex),
-				 	('unkZ',   'Z', 12  , FixedWidthHex),
-				    ]
-				_templates = [
-# 0fb0  a3 00 00 00 01 23 45 60 12 34 56 78 9a b0 12 34.56 78 9a b0 12 34 56 78 90 12 34 56 78 9a b1 00 
-      ('PP PP II YY VV VV VV VW WW WW WW WW WW WX XX XX XX XX XX XJ UU UU UU UU UP PP PP PP PP PP PZ ZZ', {'I': -2, }),
-				]
-				def __str__(self):
-					s = '[index_____] '
-					return s + OvcRecord.__str__(self)
-			print "Main index (current and previous):"
-			# FB0, FD0
+
+			saldo1 = OvcSaldo(sdata[0x90:0x90+0x10])
+			saldo2 = OvcSaldo(sdata[0xa0:0xa0+0x10])
+			s1 = "f90: " + str(saldo1)
+			s2 = "fa0: " + str(saldo2)
+			# Kan ook 'transact-id' van hieronder zijn...
+			if saldo1.get('id') < saldo2.get('id'):
+			    print s2; print s1
+			else:
+			    print s1; print s2
+
+			# indexes at F50, F70
+			print
+			print "Incheck indexes:"
 			#sdata = mfclassic_getsector(data, 39)[:-0x10]
 			#offset,size = mfclassic_getoffset(39)
-			for chunk in [0xb0, 0xd0]:
+			# Kan ook 'transact-id' van hieronder zijn...
+			for chunk in [0x50, 0x70]:
 				sys.stdout.write(('%03x: ' % (offset + chunk)))
-				print OvcIndex(sdata[chunk:chunk+0x20])
+				print OvcIndexF50(sdata[chunk:chunk+0x20])
+
+			# indexes at F10, F30
+			print
+			print "Most recent subscription:  KLOPT NIET"
+			for chunk in [0x10, 0x30]:
+				sys.stdout.write(('%03x: ' % (offset + chunk)))
+				print OvcIndexF10(sdata[chunk:chunk+0x20])
+			
+
+			# indexes at FB0, FD0
+			print
+			print "Main index (current and previous):"
+			#sdata = mfclassic_getsector(data, 39)[:-0x10]
+			#offset,size = mfclassic_getoffset(39)
+
+			index1 = OvcIndexFB0(sdata[0xb0:0xb0+0x20])
+			index2 = OvcIndexFB0(sdata[0xd0:0xd0+0x20])
+			s1 = "fb0: " + str(index1)
+			s2 = "fd0: " + str(index2)
+
+			if index1.get('transact-id') < index2.get('transact-id'):
+			    print s2; print s1
+			else:
+			    print s1; print s2
 
 		elif len(data) == 64:	# mifare ultralight GVB
 			# TODO card id, otp, etc.

@@ -19,4 +19,5 @@
 import stations
 from ovctypes import *
 from ovcrecord import *
+from ovcnewrecord import *
 

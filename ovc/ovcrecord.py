@@ -171,20 +171,21 @@ class OvcClassicTransaction(OvcRecord):
 			('validto',   'O',   14, OvcDate),
 			('cardvalidfrom','E',   14, OvcDate),
 			('company',   'M',    4, OvcCompany),
-			('transfer',  'Y',    4, OvcTransfer),
+			('transfer',  'Y',    4, OvcAction),
 			('amount',    'N',   16, OvcAmount),
 			('station',   'S',   16, OvcStation),
 			('subs',      'B',   16, OvcSubscription),
+			('vehicleId', 'v',   16, OvcVehicleId),
 
 			# subscription index this journey is done with
-			('idsubs',    'P',    4, FixedWidthDec), 
+			('idsubs',    'P',    4, OvcSubscriptionId), 
 
 			# id of saldo change
 			('idsaldo',   'H',   12, OvcSaldoTransactionId),
 			# Meaning of ritnr unsure yet; is equal for check-in/checkout and
 			# 28/29-type records. Also same line on same day sometimes can have
 			# the same number here. May be bus number instead.
-			('ritnr',     'J',   40, FixedWidthHex),
+			('ritnr',     'J',   40-16, FixedWidthHex),
 			# Meaning of portnr unsure yet; can be equal when station is equal
 			# but this may be something completely different as well.
 			('portnr',    'K',   24, FixedWidthHex),
@@ -198,14 +199,24 @@ class OvcClassicTransaction(OvcRecord):
 	_templates = [
 		# journey transactions
 		( '28 00 55 4T TT TT T0 Y0 00 M0 00 II IS SS SK KK KK KN NN NP ?? ??' ),
+		( '28 00 55 4T TT TT T0 Y0 00 M0 00 II IS SS SK KK KK KN NN NP ?? ??' ),
 		( '28 00 55 6T TT TT T2 94 00 00 Y0 00 M0 00 II IS SS SK KK KK KN NN NP ?? ??' ), # need more data
-		( '28 04 55 6T TT TT T2 94 00 00 Y0 00 M0 00 II IS SS SJ JJ JJ JJ JJ JN NN NP ?? ??' ),
+		#  28 00 55 65 0b 66 30 00 00 00 10 00 40 00 00 90 0a a0 00 00 00 7d
+		( '28 00 55 6T TT TT T0 00 00 00 Y0 00 M0 00 II IS SS SK KK KK KN NN NP ?? ??' ), # need more data
+		( '28 04 55 6T TT TT T2 94 00 00 Y0 00 M0 00 II IS SS SJ JJ JJ Jv vv vN NN NP ?? ??' ),
+		( '28 04 55 6T TT TT T0 94 00 00 Y0 00 M0 00 II IS SS SJ JJ JJ Jv vv vN NN NP ?? ??' ),
 		# 2nd journey log
 		( '29 00 55 4T TT TT T0 Y0 00 M0 00 II IS SS SK KK KK KU UU UN NN NP ?? ?? ??' ),
-		( '29 04 55 4T TT TT T0 Y0 00 M0 00 II IS SS SJ JJ JJ JJ JJ JU UU UN NN NP ?? ??'),
+		( '29 04 55 4T TT TT T0 Y0 00 M0 00 II IS SS SJ JJ JJ Jv vv vU UU UN NN NP ?? ??'),
 		# special transaction: add product (not really sure; data needed!; W either -1 or 1)
 		( '20 00 55 2T TT TT T2 94 00 0U UU M0 00 II IS SS SV VV VV VW WW', {'U':1, 'M':1, 'I':1, 'S':1, 'W':-1} ),
+		#  20 00 55 20 00 00 00 94 00 00 00 20 00 00 28 1c 08 38 49 68 80
+		( '20 00 55 2T TT TT T0 94 00 0U UU M0 00 II IS SS SV VV VV VW WW', {'U':1, 'M':1, 'I':1, 'S':1, 'W':-1} ),
 		#( '20 04 55 4T TT TT TV VV 00 M0 00 II IS SS SU UU UU UU UU U?' ),
+		#  20 00 55 65 0c 1e 1a 94 00 00 00 00 00 00 00 00 37 c0 00 00 02 add product 1-dag 1eklas op saldo
+		( '20 00 55 6T TT TT TV VV 00 00 00 00 0U UU M0 00 II IS SS SW WP', {'U':1, 'M':1, 'I':1, 'S':1, 'W':-1} ), # ???
+		#  20 00 55 45 0c 1e 18 00 00 00 00 00 00 37 c0 00 00 02 00 ... 00 add product 1-dag 1eklas op saldo
+		( '20 00 55 4T TT TT TV Y0 00 M0 00 II IS SS SK KK KK KP ?? ??' ), # ???
 		# special transaction: add money
 		#   U=3a9 for company 25,26; U=000 otherwise (same seen in add product)
 		#   ?=0 usually, but for special fare returns at the counter 4,8 has been seen
@@ -214,6 +225,7 @@ class OvcClassicTransaction(OvcRecord):
 		( '08 10 55 0T TT TT TU UU M0 00 0V VS SS SW WW WW WW NN NN ?0', {'M':1, 'N':2, 'S':1} ),
 		# subscriptions
 		( '0a 00 e0 00 MB BB B0 00 00 II IU UU RR RO OO OW WW WW WW WW WW WW WW WW WW WW WW WW WW', {'R': -2, 'O': -1}),
+		#  00 11 22 33 44 55 66 77 88 99 AA BB CC DD EE FF
 		( '0a 02 e0 00 MB BB B0 00 00 II IU UU 2a RR RO OO WW WW WW WW WW WW WW WW WW WW WW WW WW WW', {'R': -1} ),
 	        ( '0a 02 e0 0? MB BB B0 00 00 II IU UU 3e RR R0 00 OO OW WW WW WW WW WW WW WW WW WW WW WW WW WW W', {'R': -1} ),
 
@@ -243,7 +255,7 @@ class OvcULTransaction(OvcRecord):
 		('id',        'I',   14, OvcTransactionId),
 		('date',      'T',   25, OvcDatetime),
 		('company',   'M',    4, OvcCompany),
-		('transfer',  'Y',    3, OvcTransfer),
+		('transfer',  'Y',    3, OvcAction),
 		('station',   'S',   16, OvcStation),
 		('unkU',      'U', None, FixedWidthHex),
 		('unkV',      'V', None, FixedWidthHex),
