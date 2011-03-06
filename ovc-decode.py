@@ -60,9 +60,9 @@ if __name__ == '__main__':
 				offset,size = mfclassic_getoffset(sector)
 				for chunk in range(0, len(sdata), 0x30):
 					if ord(sdata[chunk]) == 0: continue
-					log_entry += 1
-					sys.stdout.write(('#%d=%03x: ' % (log_entry, offset + chunk)))
+					sys.stdout.write(('#%x=%03x: ' % (log_entry, offset + chunk)))
 					print OvcClassicTransaction(sdata[chunk:chunk+0x30])
+					log_entry += 1
 			# transactions
 			print "Transaction logs: (history, checkin/out, credit)"
 			# Entries  0-10: for User, chronologic, may be erased?
@@ -120,17 +120,15 @@ if __name__ == '__main__':
 
 			# indexes at F50, F70
 			print
-			print "Incheck indexes: (current and previous)"
+			print "Check-in and outcheck-out indexes:"
 
 			index1 = OvcIndexF50(sdata[0x50:0x50+0x20])
-			index2 = OvcIndexF50(sdata[0x70:0x70+0x20])
+			index2 = OvcIndexF70(sdata[0x70:0x70+0x20])
 			s1 = "f50: " + str(index1)
 			s2 = "f70: " + str(index2)
 
-			if swap_dupl:
-			    print s2; print s1
-			else:
-			    print s1; print s2
+			print s1
+			print s2
 
 			# indexes at F10, F30
 			print

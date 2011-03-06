@@ -131,9 +131,24 @@ class OvcIndexFB0(OvcFixedRecord):
 class OvcIndexF50(OvcFixedRecord):
     _fields = [
             #name,           start,  width,     type
-            ('company',         14,      4,     OvcCompany),
-            ('unk1',             0,     14,     FixedWidthHex),
-            ('unk2',            18,32*8-18,     FixedWidthHex),
+            #('company',         14,      4,     OvcCompany),
+            #('unk1',             0,     14,     FixedWidthHex),
+            #('unk2',            18,32*8-18,     FixedWidthHex),
+            ('teller1a',         0,      4,     FixedWidthDec),
+            ('uit_in',           4,      2,     FixedWidthDec),	# 01 = check-in
+            ('zeroes1a',         6,      4,     FixedWidthDec),
+            ('company1',        10,      8,     OvcCompany),
+            ('teller1b',        18,      4,     FixedWidthDec),
+            ('zeroes1b',        22,      6,     FixedWidthDec),
+            ('company2',        28,      8,     OvcCompany),	# 18 bits
+            ('teller2',         36,      4,     FixedWidthDec), #
+            ('zeroes2',         40,      6,     FixedWidthDec), #
+            ('company3',        46,      8,     OvcCompany),
+            ('teller3',         54,      4,     FixedWidthDec),
+            ('zeroes3',         58,      6,     FixedWidthDec),
+            ('company4',        64,      8,     OvcCompany),
+            ('teller4',         72,      4,     FixedWidthDec),
+            ('zeroes4',         76,      6,     FixedWidthDec),
         ]
 
     def __init__(self, data):
@@ -141,6 +156,35 @@ class OvcIndexF50(OvcFixedRecord):
 
     def __str__(self):
         res = "[index_F50_] "
+        res += OvcFixedRecord.__str__(self)
+        return res
+
+class OvcIndexF70(OvcFixedRecord):
+    _fields = [
+            #name,           start,  width,     type
+            ('teller1a',         0,      4,     FixedWidthDec),
+            ('uit_in',           4,      2,     FixedWidthDec),	# 01 = check-in
+            ('zeroes1a',         6,      4,     FixedWidthDec),
+            ('company1',        10,      8,     OvcCompany),
+            ('in',              18,      2,     FixedWidthDec),	# 01 2 extra bits
+            ('teller1b',        20,      4,     FixedWidthDec),
+            ('zeroes1b',        24,      6,     FixedWidthDec),
+            ('company2',        30,      8,     OvcCompany),	# 18 bits
+            ('teller2',         38,      4,     FixedWidthDec), #
+            ('zeroes2',         42,      6,     FixedWidthDec), #
+            ('company3',        48,      8,     OvcCompany),
+            ('teller3',         56,      4,     FixedWidthDec),
+            ('zeroes3',         60,      6,     FixedWidthDec),
+            ('company4',        66,      8,     OvcCompany),
+            ('teller4',         74,      4,     FixedWidthDec),
+            ('zeroes4',         78,      6,     FixedWidthDec),
+        ]
+
+    def __init__(self, data):
+        OvcFixedRecord.__init__(self, data)
+
+    def __str__(self):
+        res = "[index_F70_] "
         res += OvcFixedRecord.__str__(self)
         return res
 
