@@ -103,39 +103,51 @@ if __name__ == '__main__':
 			else:
 			    print s1; print s2
 
-			# indexes at F50, F70
-			print
-			print "Incheck indexes:"
-			#sdata = mfclassic_getsector(data, 39)[:-0x10]
-			#offset,size = mfclassic_getoffset(39)
-			# Kan ook 'transact-id' van hieronder zijn...
-			for chunk in [0x50, 0x70]:
-				sys.stdout.write(('%03x: ' % (offset + chunk)))
-				print OvcIndexF50(sdata[chunk:chunk+0x20])
-
-			# indexes at F10, F30
-			print
-			print "Most recent subscription:  KLOPT NIET"
-			for chunk in [0x10, 0x30]:
-				sys.stdout.write(('%03x: ' % (offset + chunk)))
-				print OvcIndexF10(sdata[chunk:chunk+0x20])
-			
-
 			# indexes at FB0, FD0
 			print
 			print "Main index (current and previous):"
-			#sdata = mfclassic_getsector(data, 39)[:-0x10]
-			#offset,size = mfclassic_getoffset(39)
 
 			index1 = OvcIndexFB0(sdata[0xb0:0xb0+0x20])
 			index2 = OvcIndexFB0(sdata[0xd0:0xd0+0x20])
 			s1 = "fb0: " + str(index1)
 			s2 = "fd0: " + str(index2)
 
-			if index1.get('transact-id') < index2.get('transact-id'):
+			swap_dupl = index1.get('transact-id') < index2.get('transact-id')
+			if swap_dupl:
 			    print s2; print s1
 			else:
 			    print s1; print s2
+
+			# indexes at F50, F70
+			print
+			print "Incheck indexes: (current and previous)"
+
+			index1 = OvcIndexF50(sdata[0x50:0x50+0x20])
+			index2 = OvcIndexF50(sdata[0x70:0x70+0x20])
+			s1 = "f50: " + str(index1)
+			s2 = "f70: " + str(index2)
+
+			if swap_dupl:
+			    print s2; print s1
+			else:
+			    print s1; print s2
+
+			# indexes at F10, F30
+			print
+			print "Most recent subscription:  KLOPT NIET"
+			index1 = OvcIndexF10(sdata[0x10:0x10+0x20])
+			index2 = OvcIndexF10(sdata[0x30:0x30+0x20])
+			s1 = "f10: " + str(index1)
+			s2 = "f30: " + str(index2)
+
+			if swap_dupl:
+			    print s2; print s1
+			else:
+			    print s1; print s2
+			
+			# at F00: just zeros
+			#print "f00: %x" % (getbits(sdata[0:0x10], 0, 16*8))
+
 
 		elif len(data) == 64:	# mifare ultralight GVB
 			# TODO card id, otp, etc.

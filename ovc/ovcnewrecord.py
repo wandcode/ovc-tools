@@ -278,8 +278,8 @@ class OvcVariableTransaction(OvcVariableRecord):
             #('rest',             None, 96,     FixedWidthHex), # the unused remaining bits
         ]
     _order = [
-            'datetime',
             'transaction',
+            'datetime',
             'action',
             'amount', 
             'company',
