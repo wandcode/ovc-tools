@@ -99,7 +99,8 @@ class OvcIndexFB0(OvcFixedRecord):
             ('unk2',            26,      6,     FixedWidthHex),
             ('ptr0_6_array_1', 4*8,    7*4,     FixedWidthHex),
             ('ptr0_b_array_1', 7*8+4, 12*4,     FixedWidthHex),
-            ('ptr0_b_array_2',13*8+4, 12*4,     FixedWidthHex),
+	    ('Sbscr:',             0,    0,     None),
+            ('subscr_ptrs',   13*8+4, 12*4,     FixedWidthHex),
 	    ('Hist:',              0,    0,     None),
             ('history_ptrs',  19*8+4, 10*4,     FixedWidthHex),
            #('ptr0_b_array-3',24*8+4, 12*4,     FixedWidthHex),
@@ -117,12 +118,15 @@ class OvcIndexFB0(OvcFixedRecord):
 	self.next_check  = find_missing(self.checks, 0x0, 0xc)
         self.checksmyst  = self.mkarray(CheckInOutTransactionAddr, 'ptr0_b_array_1', 4)
 	self.next_checkmyst  = find_missing(self.checksmyst, 0x0, 0xc)
+	# subscr_ptrs is an ordinary array mapping from subscription index
+	# (OvcSubscriptionId) to subscription slot number; first entry is for
+	# OvcSubscriptionId = 1.
 
     def __str__(self):
         res = "[index_FB0_] "
         res += OvcFixedRecord.__str__(self)
         #res += "\n     History (most recent first): " + str(map(str, self.history))
-	res += "\n     next in logs               :           %x                                  %x                  %x" % (self.next_checkmyst, self.next_history, self.next_check)
+	res += "\n     next in logs               :           %x                                        %x                  %x" % (self.next_checkmyst, self.next_history, self.next_check)
         #res += "\n     Checks                     : " + str(map(str, self.checks))
 	#res += "\n     next in checkin/out log    : %x" % self.next_check
 	#res += "\n     next in mystery log        : %x" % self.next_checkmyst
@@ -230,7 +234,25 @@ class OvcSaldo(OvcFixedRecord):
         res += OvcFixedRecord.__str__(self)
         return res
 
+class OvcSubscriptionAux(OvcFixedRecord):
+    _fields = [
+            #name,           start,  width,     type
+            ('unk1',             0,   16*8,     FixedWidthHex),
+        ]
 
+    def __init__(self, data):
+        OvcFixedRecord.__init__(self, data)
+
+    def __str__(self):
+        res = "[subscrip_2] "
+        res += OvcFixedRecord.__str__(self)
+        return res
+
+    @staticmethod
+    def addr(slot):
+	aux_addr = 0x6c0 + slot * 0x10
+	if slot > 2: aux_addr += 0x10	# skip trailer
+	return aux_addr
 
 class OvcVariableRecord(OvcNewRecord):
     '''Interpret binary records with variable data fields. Needs to be subclassed.'''

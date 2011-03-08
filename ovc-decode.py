@@ -59,10 +59,16 @@ if __name__ == '__main__':
 				sdata = mfclassic_getsector(data, sector)[:-0x10]
 				offset,size = mfclassic_getoffset(sector)
 				for chunk in range(0, len(sdata), 0x30):
-					if ord(sdata[chunk]) == 0: continue
-					sys.stdout.write(('#%x=%03x: ' % (log_entry, offset + chunk)))
-					print OvcClassicTransaction(sdata[chunk:chunk+0x30])
+					l = log_entry
 					log_entry += 1
+					if ord(sdata[chunk]) == 0: continue
+					addr = offset + chunk
+					sys.stdout.write(('#%x=%03x: ' % (l, addr)))
+					print OvcClassicTransaction(sdata[chunk:chunk+0x30])
+					aux_addr = OvcSubscriptionAux.addr(l)
+					aux_sdata = data[aux_addr:aux_addr+0x10]
+					sys.stdout.write(('   %03x: ' % (aux_addr)))
+					print OvcSubscriptionAux(aux_sdata)
 			# transactions
 			print "Transaction logs: (history, checkin/out, credit)"
 			# Entries  0-10: for User, chronologic, may be erased?

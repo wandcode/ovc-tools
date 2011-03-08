@@ -95,7 +95,7 @@ class OvcCompany(int):
 		 8: 'Arriva',      9: 'Syntus',
 		12: 'DUO',
 		25: 'AH/Primera',
-	     15001: 'AH/Primera',
+	     15001: 'AH/PrimerA',
 	}
 	def __new__(cls, x, **kwargs):
 		return int.__new__(cls, x)
@@ -120,7 +120,8 @@ class OvcSubscription(int):
 			0x00b1: 'Studenten korting week 2009',
 			0x00b2: 'Studenten korting weekend 2009',
 			0x00c9: 'Reizen op saldo (1e klas)',
-			   229: 'Reizen op saldo (1e klas) (1 dag)',
+			   229: '1e klas (1 dag)',
+			   231: '1e klas (1 dag) (korting? p?)',	# voor kortingskaart, of voor persoonlijke kaart?
 			0x00ca: 'Reizen op saldo (2e klas)',
 			0x00ce: 'Voordeelurenabonnement',
 		},
