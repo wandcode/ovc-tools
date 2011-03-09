@@ -97,15 +97,15 @@ class OvcIndexFB0(OvcFixedRecord):
             ('transact-id',     10,     16,     OvcTransactionId),
             ('unk1',             0,     10,     FixedWidthHex),
             ('unk2',            26,      6,     FixedWidthHex),
-            ('ptr0_6_array_1', 4*8,    7*4,     FixedWidthHex),
-            ('ptr0_b_array_1', 7*8+4, 12*4,     FixedWidthHex),
+            ('ptr0_6_array_1', 4*8,    7*4,     FixedWidthHex),	# index 1
+            ('ptr0_b_array_1', 7*8+4, 12*4,     FixedWidthHex), # index 2
 	    ('Sbscr:',             0,    0,     None),
-            ('subscr_ptrs',   13*8+4, 12*4,     FixedWidthHex),
+            ('subscr_ptrs',   13*8+4, 12*4,     FixedWidthHex), # index 3
 	    ('Hist:',              0,    0,     None),
-            ('history_ptrs',  19*8+4, 10*4,     FixedWidthHex),
+            ('history_ptrs',  19*8+4, 10*4,     FixedWidthHex), # index 4
            #('ptr0_b_array-3',24*8+4, 12*4,     FixedWidthHex),
 	    ('Check:',             0,    0,     None),
-            ('check_ptrs',    24*8+4, 12*4,     FixedWidthHex),
+            ('check_ptrs',    24*8+4, 12*4,     FixedWidthHex), # index 5
             ('recent_credit', 30*8+4,    4,     OvcMostRecentCreditIndex),
             ('unk3',          31*8  ,    8,     FixedWidthHex),
         ]
@@ -274,11 +274,6 @@ class OvcVariableRecord(OvcNewRecord):
             name, mask, width, fieldtype = field
             #print name, mask, width, fieldtype
             if (mask == None) or (identifier & mask):
-                # If there are 2 alignment fields in sequence, undo the earlier one.
-#                if name == 'unk12_3' and prev_field != None:
-#                    prev_name, prev_mask, prev_width, prev_fieldtype = prev_field
-#                    if prev_name == 'unk24_2':   # horrible hack
-#                        start -= 3
                 bits = self.getbits(start, width)
 #                print name, start, width, bits
                 start += width
@@ -309,25 +304,6 @@ class OvcVariableRecord(OvcNewRecord):
 
 class OvcVariableTransaction(OvcVariableRecord):
     _fields = [
-            # name,           bitmask, width,   type
-#            ('datetime',         None,  25,     OvcDatetime),
-#            ('unk24_2',     0x0000002,  24,     FixedWidthHex),
-#            ('unk3_1',           None,   3,     FixedWidthHex), # alignment?
-#            ('action',      0x0000004,   4,     OvcAction),
-#            ('unk12_3',          None,  12,     FixedWidthHex), 
-#                # for credit transactions, this is smaller, 9 bits?
-#                # for add product, this is also 9 bits?
-#            ('company',     0x0000010,   4,     OvcCompany),
-#            ('ident_4',     0x0000040,  12,     FixedWidthHex), # "identifier"
-#            ('transaction',      None,  12,     OvcTransactionId),      # for credit transactions, this should be OvcSaldoTransactionId
-#            ('station',     0x0000100,  16,     OvcStation),
-#            ('trip_pole',   0x0000400,  24,     OvcMachineId),
-#            ('vehicle',     0x0004000,  16,     OvcVehicleId),
-#            ('product',     0x0010000,  12,     FixedWidthDec), # product ID ? 5 bits?
-#            ('unk16_5',     0x0100000,  16,     FixedWidthHex), # seems to be zeroes
-#            ('amount',      0x0800000,  16,     OvcAmount),
-#            ('subscription',0x2000000,   4,     OvcSubscriptionId),# corresponding subscription
-
             # name,           bitmask, width,   type
             ('datetime',         None,  25,     OvcDatetime),
             ('unk24_2',     0x0000002,  24,     FixedWidthHex),
