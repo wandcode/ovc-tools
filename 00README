@@ -1,0 +1,94 @@
+Wat doet de automaat bij
+
+geld toevoegen
+    - geen transaktie in transaktie-log (van boven naar beneden)
+      maar reserveert wel het volgende transaktie-id
+    - transaktie in credit-log
+      met het volgende credit-transaktie-id
+    - update credit slots: zet in oude slot een aangepaste kopie van het
+      nieuwste slot, met beide soorten transaktie-ids
+    - update main index: update credit transaktie slot nummer (8,6,1)
+
+update van dubbel uitgevoerde informatie (main index, credit, most recent
+subscription, incheck indexes) gebeurt door de waarde van de nu-nog-nieuwste
+versie over te nemen, aan te passen, en te plaatsen in het andere slot. Er in
+of elders is te zien welke versie het nieuwste is.
+voor credit: hoogste transaktie-id (?)
+voor main index (FB0/FD0): (eigen) transaktienummer
+F10/F30 en F50/F70: zelfde volgorde als main index
+
+in/uitchecken
+    - transaktie in transaktie-log met het volgende transaktie-id
+      (slotnummer 1 lager met wraparound, is tevens ook het niet
+      voorkomende slotnummer in history index)
+    + history index updaten: schuif alle waarden 1 positie naar rechts,
+      de rechter valt er af, het gebruikte slot links plaatsen.
+    - transaktie in incheck-log met hetzelfde transaktie-id.
+      slotnummer wordt gegeven in de check-index: het nummer
+      dat ontbreekt moet gebruikt worden.
+    + kiest (HOE??) een slotnummer voor de volgende in/uitcheck-transaktie
+      dat slotnummer wordt uit de check-index gehaald, door het met het
+      zojuit gebruikte slotnummer te overschrijven
+    - doet ook iets met data op F50/F70 (schuif entries naar rechts en
+      voeg links een nieuwe in met een tellertje en de vervoerder)
+    - doet ook iets met mystery-index (index2) in FD0/FB0
+    - Voor inchecken: verlaagt saldo met incheckborg (positieve waarde
+      komt in transaktie)
+    + Voor uitchecken: vindt de incheck en verhoog saldo, verlaagd met
+      ritprijs. (de NS genereert een extra oplaadtransaktie als je hele borg
+      terugkrijgt)
+    + Zelfs als het saldo niet is veranderd: updatet saldo met transaktie-id.
+      Credit-transaktie-id wordt (wel?)/NIET bijgewerkt als het saldo
+      wel is veranderd.
+    - Bij eerste checkin met gebruikmaking van een bepaald abonnement:
+      doet iets met het "auxiliary" slot in 0x6c0...
+
+Abonnement ("product") toevoegen:
+    - kiest plaats (HOE?) voor abonnement in slots 0x800...
+    - doet iets op 0xF10/0xF30 (zelfde soort naar rechts-schuiven als
+      bij het toevoegen van in/uitcheck entries?)
+    - doet iets met 16-byte slots vanaf 0x6c0 (korresponderend met de
+      48-byte slots vanaf 0x800)
+    - schrijft het volgnummer (oplopend vanaf 1) van het abonnement in de
+      subscription index (0xFB0/0xFD0 bits 108-155, aka index3). Die werkt
+      weer anders dan de andere indexen: het is een map van abo nummer
+      naar slot nummer: op de eerste positie staat het slot nummer van
+      abonnement nr 1, daarna van abo #2, etc.
+
+-----
+
+Huidige Credit transaction nummer: staat het nog ergens, of is het is
+het alleen af te leiden uit de hoogste waarde in de credit slots en
+credit transaction log?
+
+-----
+Quotes:
+
+het valt me op dat bij de allereerste incheck ook block 0x7a0 bescreven wordt
+
+Code: Select all
+    oud:
+    0x7a0 - 00 12 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+    nieuw:
+    0x7a0 - 00 70 df 85 9f 00 00 00 00 00 00 00 00 00 00 00
+
+
+dit block correspondeert volgens mij met subscription slot 0xa30: het laatst
+geactiveerde abonnement (nr 52: 2e klas reizen)
+
+het lijkt er dus op dat het abonnement pas echt in gebruik wordt genomen zodra
+je voor het eerste keer incheckt.
+
+edit: ook 0xf10 wordt nog aangepast bij de eerste check-in
+
+-----
+abonnement toevoegen: quotes:
+-----
+
+- Het enige wat ik heb gemerkt is dat er bij het toevoegen van een product
+  gegevens komen te staan in block 0xf10 en 0xf30.
+
+- kijk de dumps nog maar eens terug van Laude: de slots 0x6c0 - 0x7e0 worden in
+  dezelfde volgorde geschreven als de subcription slots 0x800 - 0xac0 dus
+  bijvoorbeeld slot 0x800 correspondeert met 0x6c0, 0x830 met 0x6d0, etc.
+-----
