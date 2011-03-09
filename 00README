@@ -54,6 +54,7 @@ Abonnement ("product") toevoegen:
       weer anders dan de andere indexen: het is een map van abo nummer
       naar slot nummer: op de eerste positie staat het slot nummer van
       abonnement nr 1, daarna van abo #2, etc.
+    - plaatst een aankoop-transactie in de transactie-log (als boven)
 
 -----
 
