@@ -64,9 +64,13 @@ if __name__ == '__main__':
 					if ord(sdata[chunk]) == 0: continue
 					addr = offset + chunk
 					sys.stdout.write(('#%x=%03x: ' % (l, addr)))
+					#Oldest method:
 					#print OvcClassicTransaction(sdata[chunk:chunk+0x30])
 					#sys.stdout.write('      : ')
-					print OvcSubscriptionRecord.make(sdata[chunk:chunk+0x30])
+					#Method #2:
+					#print OvcSubscriptionRecord.make(sdata[chunk:chunk+0x30])
+					#sys.stdout.write('      : ')
+					print OvcVariableSubscription(sdata[chunk:chunk+0x30])
 					aux_addr = OvcSubscriptionAux.addr(l)
 					aux_sdata = data[aux_addr:aux_addr+0x10]
 					sys.stdout.write(('   %03x: ' % (aux_addr)))

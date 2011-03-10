@@ -20,7 +20,9 @@ F10/F30 en F50/F70: zelfde volgorde als main index
 in/uitchecken
     - transaktie in transaktie-log met het volgende transaktie-id
       (slotnummer 1 lager met wraparound, is tevens ook het niet
-      voorkomende slotnummer in history index)
+      voorkomende slotnummer in history index).
+      Als er op een abonnement gereisd wordt, komt het Subscription ID
+      in de transaktie (S:xxx).
     + history index updaten: schuif alle waarden 1 positie naar rechts,
       de rechter valt er af, het gebruikte slot links plaatsen.
     - transaktie in incheck-log met hetzelfde transaktie-id.
@@ -49,12 +51,14 @@ Abonnement ("product") toevoegen:
       bij het toevoegen van in/uitcheck entries?)
     - doet iets met 16-byte slots vanaf 0x6c0 (korresponderend met de
       48-byte slots vanaf 0x800)
-    - schrijft het volgnummer (oplopend vanaf 1) van het abonnement in de
+    - schrijft het volgnummer (oplopend vanaf 1) van het abonnement 
+      (subscription ID) in de
       subscription index (0xFB0/0xFD0 bits 108-155, aka index3). Die werkt
       weer anders dan de andere indexen: het is een map van abo nummer
       naar slot nummer: op de eerste positie staat het slot nummer van
       abonnement nr 1, daarna van abo #2, etc.
     - plaatst een aankoop-transactie in de transactie-log (als boven)
+      met daarin tevens het Subscription ID (S:xxx).
 
 -----
 

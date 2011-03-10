@@ -28,7 +28,6 @@ class OvcNewRecord(object):
         self.data = data
         self.field = {}
         self.desc = {}
-        self.bits = {}
 
     def get(self, name):
         return self.field[name]
@@ -43,14 +42,13 @@ class OvcNewRecord(object):
 class OvcFixedRecord(OvcNewRecord):
     '''Interpret binary records with fixed data fields. Needs to be subclassed.'''
 
+    _fields = []
+
     def __init__(self, data):
         OvcNewRecord.__init__(self, data)
         self.parse()
 
     def parse(self):
-        self.field = {}
-        self.desc = {}
-        self.bits = {}
 	self.parse2(self._fields)
 
     def parse2(self, fields):
@@ -61,7 +59,6 @@ class OvcFixedRecord(OvcNewRecord):
 		#print name, start, width, fieldtype
 		self.field[name] = fieldtype(bits, obj=self,width=(width+3)/4)
 		self.desc[name] = field
-		self.bits[name] = bits
         # everything is ok, incorporate fields
         self.__dict__.update(self.field)
     
@@ -240,6 +237,7 @@ class OvcSaldo(OvcFixedRecord):
 class OvcSubscriptionRecord(OvcFixedRecord):
     def __init__(self, data):
 	self.unk4 = None
+	self.unk5 = None
 	self.machine = None
         OvcFixedRecord.__init__(self, data)
 
@@ -256,6 +254,8 @@ class OvcSubscriptionRecord(OvcFixedRecord):
 	    res += " " + str(self.machine)
 	if self.unk4 != None:
 	    res += " " + str(self.unk4)
+	if self.unk5 != None:
+	    res += " " + str(self.unk5)
         return res
 
     # A factory function, returns an instance of a subclass
@@ -281,8 +281,9 @@ class OvcSubscription_0a00e00(OvcSubscriptionRecord):
             ('unk3',            84,      9,     FixedWidthHex),
             ('validfrom',       93,     14,     OvcDate),
             ('validto',        107,     14,     OvcDate),
-            ('unk4',           121,48*8-121,    FixedWidthHex),
+            ('unk4',           121,     53,     FixedWidthHex),
             ('machine',        174,     24,     OvcMachineId),
+            ('unk5',           198,48*8-198,    FixedWidthHex),
         ]
 
     def __init__(self, data):
@@ -308,15 +309,17 @@ class OvcSubscription_0a02e00(OvcSubscriptionRecord):
     _fields21 = [
             #name,           start,  width,     type
             ('validto',        117,     14,     OvcDate),
-            ('unk3',           131,48*8-131,    FixedWidthHex),
+            ('unk3',           132,     63,     FixedWidthHex),
             ('machine',        195,     24,     OvcMachineId),	# guessed location
+            ('unk4',           219,48*8-219,    FixedWidthHex),
         ]
     _fields31 = [
             #name,           start,  width,     type
             ('unk3',           117,      9,     FixedWidthHex),
             ('validto',        128,     14,     OvcDate),
-            ('unk4',           142,48*8-142,    FixedWidthHex),
+            ('unk4',           142,     64,     FixedWidthHex),
             ('machine',        206,     24,     OvcMachineId),	# 78 bits after valid2
+            ('unk5',           230,48*8-230,    FixedWidthHex),
         ]
 
     def __init__(self, data):
@@ -358,20 +361,20 @@ class OvcSubscriptionAux(OvcFixedRecord):
 class OvcVariableRecord(OvcNewRecord):
     '''Interpret binary records with variable data fields. Needs to be subclassed.'''
 
+    _fields = []
     _order = None
 
     def __init__(self, data):
         OvcNewRecord.__init__(self, data)
 
-    def parse(self, skip):
-        self.field = {}
-        self.desc = {}
-        self.bits = {}
+    def parse(self, **kwargs):
         identifier = self.getbits(0, 28)
+	return self.parse2(identifier, 28, self._fields)
+
+    def parse2(self, identifier, start, fields):
         identifier0 = identifier
-        prev_field = None
-        start = 28 + skip
-        for field in self._fields:
+	start0 = start
+        for field in fields:
             name, mask, width, fieldtype = field
             #print name, mask, width, fieldtype
             if (mask == None) or (identifier & mask):
@@ -380,10 +383,14 @@ class OvcVariableRecord(OvcNewRecord):
                 start += width
                 self.field[name] = fieldtype(bits, obj=self, width=(width+3)/4)
                 self.desc[name] = field
-                self.bits[name] = bits
+
+		# Recursively process nested 'identifiers'
+		if isinstance(self.field[name], OvcVariableSubRecord):
+		    width = self.field[name].parse(start=start)
+		    start += width
+
                 if mask != None:
                     identifier = identifier ^ mask
-                prev_field = field
         if identifier != 0:
             print "Unknown bits in identifier: %04x (%04x)" % (identifier, identifier0)
 	end = len(self.data) * 8
@@ -396,6 +403,7 @@ class OvcVariableRecord(OvcNewRecord):
 	    self._rest = None
         # everything is ok, incorporate fields
         self.__dict__.update(self.field)
+	return start - start0
     
     def __str__(self):
         res = ""
@@ -413,6 +421,24 @@ class OvcVariableRecord(OvcNewRecord):
 	    res += " Rest:" + str(self._rest)
         return res
 
+class OvcVariableSubRecord(OvcVariableRecord):
+
+    def __init__(self, value, obj, **kwargs):
+        OvcVariableRecord.__init__(self, obj.data)
+	self.base_obj = obj
+	self.identifier = value
+
+    def parse(self, start, **kwargs):
+	width = self.parse2(self.identifier, start, self._fields)
+	self._rest = None
+	self.propagate()
+	return width
+
+    def propagate(self):
+        # incorporate fields into base object
+        self.base_obj.__dict__.update(self.field)
+	self.base_obj.field.update(self.field)
+
 class OvcVariableTransaction(OvcVariableRecord):
     _fields = [
             # name,           bitmask, width,   type
@@ -428,7 +454,6 @@ class OvcVariableTransaction(OvcVariableRecord):
             ('unk16_5',     0x0100000,  16,     FixedWidthHex), # seems to be zeroes
             ('amount',      0x0800000,  16,     OvcAmount),
             ('subscription',0x2000000,   4,     OvcSubscriptionId),# corresponding subscription
-            #('rest',             None, 96,     FixedWidthHex), # the unused remaining bits
         ]
     _order = [
             'transaction',
@@ -453,10 +478,78 @@ class OvcVariableTransaction(OvcVariableRecord):
 
     def __str__(self):
         res = '[%02x_%02x_%02x_%x] '%(ord(self.data[0]),ord(self.data[1]),ord(self.data[2]),ord(self.data[3])>>4)
-        #res += str(self.datetime) + " "
         res += OvcVariableRecord.__str__(self)
-        return res # + "\n"
+        return res
 
-    def parse(self):
-        #self.datetime = OvcDatetime(self.getbits(28, 25))
-        OvcVariableRecord.parse(self, 0)
+#    def parse(self):
+#        return OvcVariableRecord.parse(self)
+
+class OvcVariableSubscriptionSub1(OvcVariableSubRecord):
+    _fields = [
+            # name,           bitmask, width,   type
+            ('dt_from',         0x001,  14,     OvcDate),
+            ('tm_from',         0x002,  11,     OvcTime),
+            ('dt_to',           0x004,  14,     OvcDate),
+            ('tm_to',           0x008,  11,     OvcTime),
+            ('unk62_1',         0x010,  53,     FixedWidthHex),	# was 62 wide
+        ]
+
+    _order = [
+            'dt_from',
+            'tm_from',
+            'dt_to',
+            'tm_to',
+            'unk62_1',
+	]
+
+    def __init__(self, value, obj, **kwargs):
+        OvcVariableSubRecord.__init__(self, value, obj=obj, **kwargs)
+
+    def parse(self, start, **kwargs):
+        width = OvcVariableSubRecord.parse(self, start=start)
+	if 'dt_from' in self.field and not 'tm_from' in self.field:
+	    self.field['tm_from'] = OvcTime(-1)
+	    self.propagate()
+	if 'dt_to' in self.field and not 'tm_to' in self.field:
+	    self.field['tm_to'] = OvcTime(-1)
+	    self.propagate()
+	return width
+
+class OvcVariableSubscription(OvcVariableRecord):
+    _fields = [
+            # name,           bitmask, width,   type
+            ('company',     0x0000200,   8,     OvcCompany),
+            ('sub',         0x0000400,  24,     OvcSubscription),
+            ('transaction', 0x0000800,  24,     OvcTransactionId),
+            ('unk10_1',     0x0002000,  10,     FixedWidthHex),
+            ('subfield1',   0x0200000,   9,     OvcVariableSubscriptionSub1),
+            ('machine',     0x0800000,  24,     OvcMachineId),
+        ]
+
+    _order = [
+            'transaction',
+            'datetime',
+	    #'subfield1',
+		'dt_from',
+		'tm_from',
+		'dt_to',
+		'tm_to',
+	    'company',
+	    'sub',
+	    'machine',
+	    'unk10_1',
+		'unk62_1',
+	]
+
+    def __init__(self, data):
+        OvcVariableRecord.__init__(self, data)
+        self.parse()
+
+    def __str__(self):
+        res = '[%02x_%02x_%02x_%x] '%(ord(self.data[0]),ord(self.data[1]),ord(self.data[2]),ord(self.data[3])>>4)
+        res += OvcVariableRecord.__str__(self)
+        return res
+
+#    def parse(self):
+#        return OvcVariableRecord.parse(self)
+

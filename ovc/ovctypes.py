@@ -33,18 +33,48 @@ def _maxlength(l):
 
 
 class OvcDate(datetime.date):
-	'''date with ovc-integer constructor'''
+	'''date with ovc-integer constructor (days)'''
 	# TODO subclassing this built-in type doesn't work fully :(
 	def __new__(cls, x, **kwargs):
+		days = x
 		d = datetime.date.__new__(cls, 1997, 1, 1)
-		d += datetime.timedelta(x)
+		d += datetime.timedelta(days)
 		return d
 	def __str__(self):
 		return self.strftime('%d-%m-%Y')
 
 
+#class OvcTime(datetime.time):
+#	'''time with ovc-integer constructor (minutes)'''
+#	# TODO subclassing this built-in type doesn't work fully :(
+#	def __new__(cls, x, **kwargs):
+#		minutes = x
+#		d = datetime.time.__new__(cls, 0)
+#		d = d + datetime.timedelta(0, minutes * 60)
+#		return d
+#	def __str__(self):
+#		return self.strftime('%H:%m')
+
+class OvcTime(object):
+	'''time with ovc-integer constructor (minutes)'''
+	# TODO subclassing the built-in type datetime.time doesn't work fully :(
+	def __init__(self, x, **kwargs):
+		minutes = x
+		if minutes < 0:
+		    self.present = False
+		    self.hours = self.minutes = 0
+		else:
+		    self.present = True
+		    self.hours = minutes / 60
+		    self.minutes = minutes % 60
+	def __str__(self):
+		if self.present:
+		    return "%02d:%02d" % (self.hours, self.minutes)
+		else:
+		    return "--:--"
+
 class OvcDatetime(datetime.datetime):
-	'''datetime with ovc-integer constructor'''
+	'''datetime with ovc-integer constructor (combined days and minutes)'''
 	# TODO subclassing this built-in type doesn't work fully :(
 	def __new__(cls, x, **kwargs):
 		d = datetime.datetime.__new__(cls, 1997, 1, 1)
@@ -145,8 +175,13 @@ class OvcSubscription(int):
 		i._obj = obj
 		return i
 	def __str__(self):
-		try: return _rfill(self._strs[self._obj.company][self], self._strs)
-		except KeyError: return _rfill('subscription %d'%self, self._strs)
+		try:
+		    return _rfill(self._strs[self._obj.company][self], self._strs)
+		except KeyError:
+		    try:
+			return _rfill(self._strs[self._obj.company][self >> 8], self._strs)
+		    except KeyError:
+			return _rfill('subscription %d'%self, self._strs)
 
 _ostwidth = 0
 class OvcStation(int):
