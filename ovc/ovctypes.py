@@ -225,7 +225,7 @@ class OvcVehicleId(long):
 		i._fieldwidth = width
 		return i
 	def __str__(self):
-	        return ('V:%d'%long(self)).zfill(self._fieldwidth)
+		return "V:"+('%d'%long(self)).zfill(self._fieldwidth)
 
 class OvcMachineId(long):
 	def __new__(cls, x, width=0, **kwargs):
@@ -233,7 +233,7 @@ class OvcMachineId(long):
 		i._fieldwidth = width
 		return i
 	def __str__(self):
-	        return ('M:%d'%long(self)).zfill(self._fieldwidth)
+		return "M:"+('%x'%long(self)).zfill(self._fieldwidth)
 
 class FixedWidthDec(long):
 	def __new__(cls, x, width=0, **kwargs):
