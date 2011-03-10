@@ -125,7 +125,7 @@ class OvcCompany(int):
 		 8: 'Arriva',      9: 'Syntus',
 		12: 'DUO',
 		25: 'AH/Primera',
-	     15001: 'AH/PrimerA',
+	     15001: 'AH/PrimerA',	# include extra bits on the left of the field
 	}
 	def __new__(cls, x, **kwargs):
 		return int.__new__(cls, x)
@@ -136,22 +136,24 @@ class OvcCompany(int):
 class OvcSubscription(int):
 	_strs = {
 		 1: {	# Connexxion
-		     1682: 'Daluren Oost-Nederland (1682)',
-		     1692: 'Daluren Oost-Nederland (1692)',
+		        0x0692: 'Daluren Oost-Nederland (1682)',
+		        0x069c: 'Daluren Oost-Nederland (1692)',	# both have been seen
 		},
 		 2: {	# GVB (Amsterdam)
  			0x0bbd: 'Supplement fiets',
 		}, 
 		 4: {	# NS
 			0x0005: 'OV-jaarkaart',
+			0x0007: 'OV-bijkaart 1e klas',
+			0x0011: 'NS business card',
 			0x0019: '2-jaar Voordeelurenabonnement?',
 			0x00af: 'Studenten week vrij 2009',
 			0x00b0: 'Studenten weekend vrij 2009',
 			0x00b1: 'Studenten korting week 2009',
 			0x00b2: 'Studenten korting weekend 2009',
 			0x00c9: 'Reizen op saldo (1e klas)',
-			   229: '1e klas (1 dag)',
-			   231: '1e klas (1 dag) (korting? p?)',	# voor kortingskaart, of voor persoonlijke kaart?
+			0x00e5: '1e klas (1 dag)',
+
 			0x00ca: 'Reizen op saldo (2e klas)',
 			0x00ce: 'Voordeelurenabonnement',
 		},
@@ -159,15 +161,13 @@ class OvcSubscription(int):
 		        0x0626: 'DALU Dalkorting',
 	        },
 		 8: {	# Arriva
-			1434:	'Voordeeluren',	# uit 035BD45C.dump
+			0x059a:	'Voordeeluren',	# uit 035BD45C.dump
 		},
 		12: {
-			#0x09c9: 'studwkvrij', #could also be studwkkort
-			#0x09cb: 'studwkkort', #could also be studwkvrij
-			2502: "Student, weekend-vrij",
-			2503: "Student, week-discount",
-			2505: "Student, week-vrij",
-			2506: "Student, weekend-discount",
+			0x09c6: "Student, weekend-vrij",
+			0x09c7: "Student, week-discount",
+			0x09c9: "Student, week-vrij",
+			0x09ca: "Student, weekend-discount",
 		}
 	}
 	def __new__(cls, x, obj, **kwargs):
@@ -178,6 +178,9 @@ class OvcSubscription(int):
 		try:
 		    return _rfill(self._strs[self._obj.company][self], self._strs)
 		except KeyError:
+		    # The field got changed with 8 more bits at the right. This caused all
+		    # numbers to change. Try to chop off some bits to compensate.
+		    # This is a temporary hack.
 		    try:
 			return _rfill(self._strs[self._obj.company][self >> 8], self._strs)
 		    except KeyError:
