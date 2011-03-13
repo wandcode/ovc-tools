@@ -372,8 +372,8 @@ class OvcVariableRecord(OvcNewRecord):
 	return self.parse2(identifier, 28, self._fields)
 
     def parse2(self, identifier, start, fields):
-        identifier0 = identifier
 	start0 = start
+	done = 0
         for field in fields:
             name, mask, width, fieldtype = field
             #print name, mask, width, fieldtype
@@ -390,9 +390,9 @@ class OvcVariableRecord(OvcNewRecord):
 		    start += width
 
                 if mask != None:
-                    identifier = identifier ^ mask
-        if identifier != 0:
-            print "Unknown bits in identifier: %04x (%04x)" % (identifier, identifier0)
+                    done = done | mask
+        if done ^ identifier != 0:
+            print "Unknown bits in identifier: %04x (%04x)" % (done ^ identifier, identifier)
 	end = len(self.data) * 8
 	if start < end:
 	    width = end - start
@@ -411,6 +411,8 @@ class OvcVariableRecord(OvcNewRecord):
 	    for name in self._order:
 		if name in self.field:
 		    res += str(self.field[name]) + " "
+		elif name[0] == ":":
+		    res += name[1:]
 	else:
 	    for field in self._fields:
 		name, start, width, fieldtype = field
@@ -454,6 +456,9 @@ class OvcVariableTransaction(OvcVariableRecord):
             ('unk16_5',     0x0100000,  16,     FixedWidthHex), # seems to be zeroes
             ('amount',      0x0800000,  16,     OvcAmount),
             ('subscription',0x2000000,   4,     OvcSubscriptionId),# corresponding subscription
+	    #   12 bits instead? or 13 even?
+	    # "De eerste 4 bits zijn van de locatie (misschien) en de rest is denk ik het soort subscription dat is gebruikt."
+            ('subscriptio2',0x2000000,   9,     FixedWidthHex),
         ]
     _order = [
             'transaction',
@@ -465,7 +470,8 @@ class OvcVariableTransaction(OvcVariableRecord):
             'machine',
             'vehicle',
             'product',
-            'subscription',
+            'subscription', ':+', 'subscriptio2',
+	    ':/',
             'unk24_2',
             'unk16_5',
 	]
