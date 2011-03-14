@@ -23,9 +23,10 @@ from ovctypes import *
 class OvcNewRecord(object):
     '''Interpret binary records. Needs to be subclassed.'''
 
-    def __init__(self, data):
+    def __init__(self, data, ovc):
         self.parsed = False
         self.data = data
+	self.ovc = ovc
         self.field = {}
         self.desc = {}
 
@@ -44,8 +45,8 @@ class OvcFixedRecord(OvcNewRecord):
 
     _fields = []
 
-    def __init__(self, data):
-        OvcNewRecord.__init__(self, data)
+    def __init__(self, data, ovc):
+        OvcNewRecord.__init__(self, data, ovc)
         self.parse()
 
     def parse(self):
@@ -110,8 +111,8 @@ class OvcIndexFB0(OvcFixedRecord):
             ('unk3',          31*8  ,    8,     FixedWidthHex),
         ]
 
-    def __init__(self, data):
-        OvcFixedRecord.__init__(self, data)
+    def __init__(self, data, ovc):
+        OvcFixedRecord.__init__(self, data, ovc)
         self.history = self.mkarray(HistoryTransactionAddr, 'history_ptrs', 4)
 	self.next_history  = find_missing(self.history, 0x0, 0xa)
         self.checks  = self.mkarray(CheckInOutTransactionAddr, 'check_ptrs', 4)
@@ -121,6 +122,7 @@ class OvcIndexFB0(OvcFixedRecord):
 	# subscr_ptrs is an ordinary array mapping from subscription index
 	# (OvcSubscriptionId) to subscription slot number; first entry is for
 	# OvcSubscriptionId = 1.
+	self.subscr_id_to_slot_nr = self.mkarray(FixedWidthDec, 'subscr_ptrs', 4)
 
     def __str__(self):
         res = "[index_FB0_] "
@@ -153,10 +155,11 @@ class OvcIndexF50(OvcFixedRecord):
             ('company4',        64,      8,     OvcCompany),
             ('teller4',         72,      4,     FixedWidthDec),
             ('zeroes4',         76,      6,     FixedWidthDec),
+	    #...  needs a few more
         ]
 
-    def __init__(self, data):
-        OvcFixedRecord.__init__(self, data)
+    def __init__(self, data, ovc):
+        OvcFixedRecord.__init__(self, data, ovc)
 
     def __str__(self):
         res = "[index_F50_] "
@@ -184,8 +187,8 @@ class OvcIndexF70(OvcFixedRecord):
             ('zeroes4',         78,      6,     FixedWidthDec),
         ]
 
-    def __init__(self, data):
-        OvcFixedRecord.__init__(self, data)
+    def __init__(self, data, ovc):
+        OvcFixedRecord.__init__(self, data, ovc)
 
     def __str__(self):
         res = "[index_F70_] "
@@ -206,8 +209,8 @@ class OvcIndexF10(OvcFixedRecord):
     # --00000011001101001 voor 1ste klasse NS
     # --00000011001110001 voor 2de klasse NS
 
-    def __init__(self, data):
-        OvcFixedRecord.__init__(self, data)
+    def __init__(self, data, ovc):
+        OvcFixedRecord.__init__(self, data, ovc)
 
     def __str__(self):
         res = "[index_F10_] "
@@ -226,8 +229,8 @@ class OvcSaldo(OvcFixedRecord):
             ('unk4',        11*8+5,     35,     FixedWidthHex),
         ]
 
-    def __init__(self, data):
-        OvcFixedRecord.__init__(self, data)
+    def __init__(self, data, ovc):
+        OvcFixedRecord.__init__(self, data, ovc)
 
     def __str__(self):
         res = "[saldo_____] "
@@ -235,11 +238,11 @@ class OvcSaldo(OvcFixedRecord):
         return res
 
 class OvcSubscriptionRecord(OvcFixedRecord):
-    def __init__(self, data):
+    def __init__(self, data, ovc):
 	self.unk4 = None
 	self.unk5 = None
 	self.machine = None
-        OvcFixedRecord.__init__(self, data)
+        OvcFixedRecord.__init__(self, data, ovc)
 
     def __str__(self):
 	res = str(self.transaction) + " " + \
@@ -260,12 +263,12 @@ class OvcSubscriptionRecord(OvcFixedRecord):
 
     # A factory function, returns an instance of a subclass
     @staticmethod
-    def make(data, **kwargs):
+    def make(data, ovc, **kwargs):
 	id = getbits(data, 0, 28)
 	if id == 0x0a00e00:
-	    it = OvcSubscription_0a00e00(data)
+	    it = OvcSubscription_0a00e00(data, ovc)
 	elif id == 0x0a02e00: 
-	    it = OvcSubscription_0a02e00(data)
+	    it = OvcSubscription_0a02e00(data, ovc)
 	else:
 	    it = "Unknown type of subscription"
 	return it
@@ -286,8 +289,8 @@ class OvcSubscription_0a00e00(OvcSubscriptionRecord):
             ('unk5',           198,48*8-198,    FixedWidthHex),
         ]
 
-    def __init__(self, data):
-        OvcSubscriptionRecord.__init__(self, data)
+    def __init__(self, data, ovc):
+        OvcSubscriptionRecord.__init__(self, data, ovc)
 
     def __str__(self):
         res = "[0a_00_e0_0] "
@@ -323,7 +326,7 @@ class OvcSubscription_0a02e00(OvcSubscriptionRecord):
         ]
 
     def __init__(self, data):
-        OvcSubscriptionRecord.__init__(self, data)
+        OvcSubscriptionRecord.__init__(self, data, ovc)
 	if self.vt_pos == 21:
 	    self.parse2(OvcSubscription_0a02e00._fields21)
 	elif self.vt_pos == 31:
@@ -344,8 +347,8 @@ class OvcSubscriptionAux(OvcFixedRecord):
             ('unk1',             0,   16*8,     FixedWidthHex),
         ]
 
-    def __init__(self, data):
-        OvcFixedRecord.__init__(self, data)
+    def __init__(self, data, ovc):
+        OvcFixedRecord.__init__(self, data, ovc)
 
     def __str__(self):
         res = "[subscr_aux] "
@@ -364,8 +367,8 @@ class OvcVariableRecord(OvcNewRecord):
     _fields = []
     _order = None
 
-    def __init__(self, data):
-        OvcNewRecord.__init__(self, data)
+    def __init__(self, data, ovc):
+        OvcNewRecord.__init__(self, data, ovc)
 
     def parse(self, **kwargs):
         identifier = self.getbits(0, 28)
@@ -426,7 +429,7 @@ class OvcVariableRecord(OvcNewRecord):
 class OvcVariableSubRecord(OvcVariableRecord):
 
     def __init__(self, value, obj, **kwargs):
-        OvcVariableRecord.__init__(self, obj.data)
+        OvcVariableRecord.__init__(self, obj.data, ovc=obj.ovc)
 	self.base_obj = obj
 	self.identifier = value
 
@@ -455,10 +458,10 @@ class OvcVariableTransaction(OvcVariableRecord):
             ('product',     0x0010000,   5,     FixedWidthDec), # product ID ? 5 bits?
             ('unk16_5',     0x0100000,  16,     FixedWidthHex), # seems to be zeroes
             ('amount',      0x0800000,  16,     OvcAmount),
-            ('subscription',0x2000000,   4,     OvcSubscriptionId),# corresponding subscription
+            ('idsubs',      0x2000000,   4,     OvcSubscriptionId),# corresponding subscription
 	    #   12 bits instead? or 13 even?
 	    # "De eerste 4 bits zijn van de locatie (misschien) en de rest is denk ik het soort subscription dat is gebruikt."
-            ('subscriptio2',0x2000000,   9,     FixedWidthHex),
+            ('idsubs2',     0x2000000,   9,     FixedWidthHex),
         ]
     _order = [
             'transaction',
@@ -470,14 +473,14 @@ class OvcVariableTransaction(OvcVariableRecord):
             'machine',
             'vehicle',
             'product',
-            'subscription', ':+', 'subscriptio2',
+            'idsubs', ':+', 'idsubs2',
 	    ':/',
             'unk24_2',
             'unk16_5',
 	]
 
-    def __init__(self, data):
-        OvcVariableRecord.__init__(self, data)
+    def __init__(self, data, ovc):
+        OvcVariableRecord.__init__(self, data, ovc)
         self.parse()
         if not 'action' in self.field:
             self.action = self.field['action'] = OvcAction(0)
@@ -547,8 +550,8 @@ class OvcVariableSubscription(OvcVariableRecord):
 		'unk62_1',
 	]
 
-    def __init__(self, data):
-        OvcVariableRecord.__init__(self, data)
+    def __init__(self, data, ovc):
+        OvcVariableRecord.__init__(self, data, ovc)
         self.parse()
 
     def __str__(self):

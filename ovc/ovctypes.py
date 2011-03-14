@@ -216,15 +216,21 @@ class OvcStation(int):
 #	def __str__(self):
 #		return '$%03d'%self
 
+# The Transaction ID can also be a Credit Transacion ID, if it is in a
+# Credit Transaction. We want to distinguish them because it counts
+# independently of normal Transaction IDs.
+# I use a horrible hack here to convert one to the other.
 class OvcTransactionId(int):
 	def __new__(cls, x, obj, **kwargs):
-#		is_credit_transaction = False
-#		try:
-#		    if obj.amount != 0: is_credit_transaction = True
-#		except AttributeError:
-#		    is_credit_transaction = False
-#		if is_credit_transaction:
-#		    return OvcSaldoTransactionId(x)
+		try:
+		    # For identifiers 08_10_55_0 and not for 28_00_55_6
+		    # or 29_00_55_4.  Basically this tests for the
+		    # absence of 'idsubs' but at the time this code
+		    # runs it has not been parsed yet.
+		    if not (ord(obj.data[0]) & 0x20):
+			return OvcSaldoTransactionId(x)
+		except AttributeError:
+		    pass
 		return int.__new__(cls, x)
 	def __str__(self):
 		return '#%03d'%self
