@@ -24,7 +24,6 @@ class OvcNewRecord(object):
     '''Interpret binary records. Needs to be subclassed.'''
 
     def __init__(self, data, ovc):
-        self.parsed = False
         self.data = data
 	self.ovc = ovc
         self.field = {}

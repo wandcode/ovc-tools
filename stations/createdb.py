@@ -27,6 +27,7 @@ def tsv_each(filename):
 	f = open(filename, 'r')
 	fields = None
 	for line in f:
+		if line == "": continue
 		if line.startswith('#'): continue
 		try: line = line[:line.index('#')]
 		except ValueError: pass
@@ -89,7 +90,11 @@ if __name__ == '__main__':
 					','.join(fields.keys()),
 					','.join(['?'] * len(fields.values())),
 				)
-			cur.execute(query, fields.values())
+			try:
+			    cur.execute(query, fields.values())
+			except sqlite3.IntegrityError as ex:
+			    print ex
+			    print fields
 		
 	# Only now we have all data, the foreign key constraints can be checked
 #	cur.executescript('COMMIT;')

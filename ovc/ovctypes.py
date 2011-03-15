@@ -19,7 +19,8 @@
 import datetime
 import stations
 from util import bcd2int
-
+import config
+import sys
 
 def _rfill(s, l):
 	'''Fill string right with spaces to make as long as longest value in list/dict'''
@@ -145,16 +146,16 @@ class OvcSubscription(int):
 			0x0005: 'OV-jaarkaart',
 			0x0007: 'OV-bijkaart 1e klas',
 			0x0011: 'NS business card',
-			0x0019: '2-jaar Voordeelurenabonnement?',
+			0x0019: '2-jaar Voordeelurenabonnement',
 			0x00af: 'Studenten week vrij 2009',
 			0x00b0: 'Studenten weekend vrij 2009',
 			0x00b1: 'Studenten korting week 2009',
 			0x00b2: 'Studenten korting weekend 2009',
 			0x00c9: 'Reizen op saldo (1e klas)',
-			0x00e5: '1e klas (1 dag)',
-
 			0x00ca: 'Reizen op saldo (2e klas)',
 			0x00ce: 'Voordeelurenabonnement',
+			0x00e5: '1e klas (1 dag)',
+			0x00e7: '1e klas (1 dag) (korting)',
 		},
 		 7: {   # Veolia
 		        0x0626: 'DALU Dalkorting',
@@ -220,6 +221,13 @@ class OvcMachineId(long):
 		s = stations.get_machine(self._obj.company, self)
 		if not s or not s.title:
 			s = ''
+			if config.print_new_data:
+			    if 'station' in self._obj.__dict__:
+				sys.stderr.write("# company\tmachineid\tovcid\n")
+				sys.stderr.write("%d\t%d\t%d\n" % (self._obj.company, int(self), self._obj.station))
+			    if 'vehicle' in self._obj.__dict__:
+				sys.stderr.write("# company\tmachineid\tvehicleid\n")
+				sys.stderr.write("%d\t%d\t%d" % (self._obj.company, int(self), self._obj.vehicle))
 		else:
 			s = "(" + s.title + ")"
 		s = s + ' '*(_omwidth-len(s))
