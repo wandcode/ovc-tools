@@ -483,17 +483,24 @@ class OvcVariableTransaction(OvcVariableRecord):
 
     def __init__(self, data, ovc):
         OvcVariableRecord.__init__(self, data, ovc)
+	self.field['action'] = OvcAction(0)
         self.parse()
-        if not 'action' in self.field:
-            self.action = self.field['action'] = OvcAction(0)
 
     def __str__(self):
         res = '[%02x_%02x_%02x_%x] '%(ord(self.data[0]),ord(self.data[1]),ord(self.data[2]),ord(self.data[3])>>4)
         res += OvcVariableRecord.__str__(self)
         return res
 
-#    def parse(self):
-#        return OvcVariableRecord.parse(self)
+    def parse(self):
+        width = OvcVariableRecord.parse(self)
+	# Check if this is a credit transaction
+	try:
+	    if self.action == 0 and self.amount != None and \
+		    not ('idsubs' in self.field):
+		self.transaction = self.field['transaction'] = OvcSaldoTransactionId(int(self.transaction))
+	except AttributeError:
+	    pass
+	return width
 
 class OvcVariableSubscriptionSub1(OvcVariableSubRecord):
     _fields = [

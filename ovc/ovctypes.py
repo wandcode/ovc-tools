@@ -242,15 +242,15 @@ class OvcMachineId(long):
 # I use a horrible hack here to convert one to the other.
 class OvcTransactionId(int):
 	def __new__(cls, x, obj, **kwargs):
-		try:
-		    # For identifiers 08_10_55_0 and not for 28_00_55_6
-		    # or 29_00_55_4.  Basically this tests for the
-		    # absence of 'idsubs' but at the time this code
-		    # runs it has not been parsed yet.
-		    if not (ord(obj.data[0]) & 0x20):
-			return OvcSaldoTransactionId(x)
-		except AttributeError:
-		    pass
+#		try:
+#		    # For identifiers 08_10_55_0 and not for 28_00_55_6
+#		    # or 29_00_55_4.  Basically this tests for the
+#		    # absence of 'idsubs' but at the time this code
+#		    # runs it has not been parsed yet.
+#		    if not (ord(obj.data[0]) & 0x20):
+#			return OvcSaldoTransactionId(x)
+#		except AttributeError:
+#		    pass
 		return int.__new__(cls, x)
 	def __str__(self):
 		return '#%03d'%self
