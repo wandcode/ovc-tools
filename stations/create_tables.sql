@@ -27,18 +27,9 @@ CREATE VIEW stations AS
 CREATE TABLE machines_data (
 		company INT NOT NULL,			-- transport company number
 		machineid INT NOT NULL,			-- machine id
-		name VARCHAR(50),			-- name as used by transport company
---		city VARCHAR(50),			-- city/municipality
---		longname VARCHAR(120),			-- long name, should be fully clear
---		haltenr INT,				-- dutch general halte nummer
---		zone INT,				-- dutch public transport zone
---		lon FLOAT,				-- longitude
---		lat FLOAT,				-- lattitude
-		PRIMARY KEY (company, machineid)
+		ovcid INT,				-- corresponding station
+		vehicleid INT,				-- or corresponding vehicle
+		PRIMARY KEY (company, machineid) --,
+		-- FOREIGN KEY (company, ovcid) REFERENCES stations_data(company, ovcid) DEFERRABLE INITIALLY DEFERRED
         );
 
--- machines view with title based on available fields in machines_data
-CREATE VIEW machines AS
-	SELECT	*,
-		name AS title
-	 FROM machines_data;

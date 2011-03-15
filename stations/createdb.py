@@ -57,10 +57,11 @@ if __name__ == '__main__':
 	cur.executescript('''
 		PRAGMA journal_mode = OFF;
 		PRAGMA locking_mode = EXCLUSIVE;
+		PRAGMA foreign_keys = ON;
 	''')
 
-	# create table first
-	print 'Creating table'
+	# create tables first
+	print 'Creating tables'
 	cur.executescript(readfile(os.path.join(prefix, createsql)))
 
 	# then import all other sql files
@@ -69,6 +70,9 @@ if __name__ == '__main__':
 		if filename == createsql: continue
 		print 'Importing SQL: %s'%filename
 		cur.executescript(readfile(os.path.join(prefix, filename)))
+
+	# Defer foreign key constraints first.
+#	cur.executescript('BEGIN;')
 
 	# and import tab-separated files; first line are fields,
 	# hash '#' at start of a line is a comment
@@ -87,11 +91,15 @@ if __name__ == '__main__':
 				)
 			cur.execute(query, fields.values())
 		
+	# Only now we have all data, the foreign key constraints can be checked
+#	cur.executescript('COMMIT;')
+
 	# compact database
 	print 'Compacting database'
 	cur.executescript('''
 		VACUUM;
 	''')
 
+	con.close()
 	print 'Done!'
 

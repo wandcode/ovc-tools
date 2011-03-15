@@ -214,7 +214,8 @@ class OvcMachineId(long):
 		# return "M:"+('%d'%long(self)).zfill(self._fieldwidth)
 		# compute maximum length of machine name and cache it
 		global _omwidth
-		if not _omwidth: _omwidth = stations.get_max_len('machines', 'title')
+		if not _omwidth: _omwidth = 10
+		if not _omwidth: _omwidth = stations.get_max_len(table='stations', field='title')
 		# get machine name
 		s = stations.get_machine(self._obj.company, self)
 		if not s or not s.title:

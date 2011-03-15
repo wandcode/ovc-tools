@@ -38,14 +38,14 @@ class OvcMachine:
 	'''single station'''
 
 	# fields the are always present (regardless or database, albeit possibly None)
-	_fields = ['company', 'machineid', 'title']
+	_fields = ['company', 'machineid', 'title', 'ovcid', 'vehicleid']
 
 	def __init__(self, d):
 		self.__dict__.update(dict.fromkeys(self._fields))
 		self.__dict__.update(d)
 	
 	def __str__(self):
-		return self.title
+		return str(self.company) + "." + str(self.machineid)
 
 db = None
 con = None
@@ -83,10 +83,18 @@ def get_machine(company, number):
 	if not con: init()
 	if not con: return None
 	cur = con.cursor()
-	cur.execute('SELECT * FROM machines WHERE company=? AND machineid=?', (company, number))
+	cur.execute('SELECT * FROM machines_data WHERE company=? AND machineid=?', (company, number))
 	row = cur.fetchone()
 	if not row: return None
-	return OvcMachine(dict(zip([x[0] for x in cur.description], row)))
+	m = OvcMachine(dict(zip([x[0] for x in cur.description], row)))
+	if m.ovcid != None:
+	    return get_station(company, m.ovcid)
+	if m.vehicleid == None:
+	    m.title = "???"
+	else:
+	    m.title = "in vehicle %d" % m.vehicleid
+	return m
+
 
 def get_max_len(table='stations', field='title', company=None):
 	'''return maximum length of station names'''

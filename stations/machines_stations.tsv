@@ -1,0 +1,80 @@
+# NS machine codes
+company	machineid	ovcid
+4	1245327	303	# Den Helder Zuid
+4	1245365	96	# Beek-Elsloo
+4	1245366	96	# Beek-Elsloo
+4	1246374	50	# Alkmaar
+4	1246412	306	# Heerhugowaard
+4	1246487	65	# Anna Paulowna
+4	1246488	65	# Anna Paulowna
+4	1249020	505	# Rijswijk
+4	1249023	505	# Rijswijk
+4	1249034	280	# Den Haag HS
+4	1249063	470	# Nijmegen
+4	1249076	553	# Schiedam Centrum
+4	1249079	642	# Vlaardingen West
+4	1249080	642	# Vlaardingen West
+4	1249081	642	# Vlaardingen West
+4	1249229	280	# Den Haag HS
+4	1253497	561	# Schiphol
+4	1253528	282	# Den Haag Centraal
+4	1253759	380	# Den Haag Laan van NOI
+4	1253796	507	# Rotterdam Alexander
+4	1253945	470	# Nijmegen
+4	1253957	470	# Nijmegen
+4	1253965	65	# Anna Paulowna
+4	1256356	170	# Delft
+4	1257804	170	# Delft
+4	1257805	170	# Delft
+4	1257876	530	# Rotterdam Centraal
+4	1258038	529	# Rotterdam Blaak
+4	1258223	280	# Den Haag HS
+4	1258239	280	# Den Haag HS
+4	1258243	280	# Den Haag HS
+4	1258245	280	# Den Haag HS
+4	1258249	280	# Den Haag HS
+4	1258251	285	# Haarlem
+4	1258260	285	# Haarlem
+4	1258318	282	# Den Haag Centraal
+#
+# Check in/uit poortjes:
+4	68479	849	# Vlaardingen Oost
+4	68480	849	# Vlaardingen Oost
+# NS Kaartautomaten:
+4	460088	520	# Rotterdam Centraal
+4	460115	529	# Rotterdam Blaak
+4	460118	529	# Rotterdam Blaak
+4	460192	58	# Amsterdam Centraal
+4	460199	170	# Delft
+4	460207	170	# Delft
+4	460304	65	# Anna Paulowna
+4	460305	65	# Anna Paulowna
+4	460306	113	# Beverwijk
+4	460329	306	# Heerhugowaard
+4	460389	96	# Beek-Elsloo
+4	460390	96	# Beek-Elsloo
+4	460522	270	# Haarlem Spaarnwoude
+4	460722	73	# Assen
+4	460800	470	# Nijmegen
+4	460805	472	# Nijmegen Dukenburg
+4	460829	170	# Delft
+4	460830	170	# Delft
+4	460849	282	# Den Haag Centraal
+4	460856	282	# Den Haag Centraal
+4	460862	280	# Den Haag HS
+4	460863	280	# Den Haag HS
+4	460970	316	# Hengelo
+4	461025	642	# Vlaardingen West
+4	461101	621	# Utrecht Centraal
+4	480848	282	# Den Haag Centraal
+# RET
+5	1310971	3189	# Rotterdam	Station Blaak
+# Veolia
+7	1259767	11659	# Nijmegen CS (Veolia)
+# Arriva
+8	1247880	525	# ?
+8	1254526	263	# ?
+# Arriva oplaadpunten
+8	262516	263	# ?
+# Oplaadpunten
+25	271194	-1	# Dio drogisterij Anna Paulowna
