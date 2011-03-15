@@ -469,7 +469,9 @@ class OvcVariableTransaction(OvcVariableRecord):
             'action',
             'amount', 
             'company',
-            'station',
+	    'station',
+	    # the lines are getting too wide but this is ugly too...
+	    # ':\n\t\t\t\t\t',
             'machine',
             'vehicle',
             'product',

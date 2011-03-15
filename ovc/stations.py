@@ -24,7 +24,7 @@ import sqlite3
 class OvcStation:
 	'''single station'''
 
-	# fields the are always present (irregardless or database, albeit possibly None)
+	# fields the are always present (regardless or database, albeit possibly None)
 	_fields = ['company', 'ovcid', 'title', 'name', 'fullname', 'city', 'zone', 'lonlat']
 
 	def __init__(self, d):
@@ -34,6 +34,18 @@ class OvcStation:
 	def __str__(self):
 		return self.title
 
+class OvcMachine:
+	'''single station'''
+
+	# fields the are always present (regardless or database, albeit possibly None)
+	_fields = ['company', 'machineid', 'title']
+
+	def __init__(self, d):
+		self.__dict__.update(dict.fromkeys(self._fields))
+		self.__dict__.update(d)
+	
+	def __str__(self):
+		return self.title
 
 db = None
 con = None
@@ -54,7 +66,7 @@ def init(_db=None):
 			sys.stderr.write('you may want to rerun stations/createdb.py\n')
 	con = sqlite3.connect(db)
 
-def get(company, number):
+def get_station(company, number):
 	'''return station object by number'''
 	global con
 	if not con: init()
@@ -65,7 +77,18 @@ def get(company, number):
 	if not row: return None
 	return OvcStation(dict(zip([x[0] for x in cur.description], row)))
 
-def get_max_len(field='title', company=None):
+def get_machine(company, number):
+	'''return machine object by number'''
+	global con
+	if not con: init()
+	if not con: return None
+	cur = con.cursor()
+	cur.execute('SELECT * FROM machines WHERE company=? AND machineid=?', (company, number))
+	row = cur.fetchone()
+	if not row: return None
+	return OvcMachine(dict(zip([x[0] for x in cur.description], row)))
+
+def get_max_len(table='stations', field='title', company=None):
 	'''return maximum length of station names'''
 	global con
 	if not con: init()
@@ -73,6 +96,6 @@ def get_max_len(field='title', company=None):
 	where=''
 	if company is not None: where = 'WHERE company=%d'%company
 	cur = con.cursor()
-	cur.execute('SELECT MAX(LENGTH(%s)) FROM stations %s'%(field, where))
+	cur.execute('SELECT MAX(LENGTH(%s)) FROM %s %s'%(field, table, where))
 	return int(cur.fetchone()[0])
 

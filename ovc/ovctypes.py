@@ -105,7 +105,6 @@ class OvcAction(int):
 		  0: 'purchase',  1: 'check-in', 2: 'check-out',
 		  4: 'opla/con', 12: 'controle',
 		  6: 'transfer',
-		 -2: 'credit',   -3: 'no-data',
 		}
 	def __new__(cls, x, **kwargs):
 		return int.__new__(cls, x)
@@ -195,14 +194,35 @@ class OvcStation(int):
 	def __str__(self):
 		# compute maximum length of station name and cache it
 		global _ostwidth
-		if not _ostwidth: _ostwidth = stations.get_max_len('title')
+		if not _ostwidth: _ostwidth = stations.get_max_len('stations', 'title')
 		# get station name and pad string
-		s = stations.get(self._obj.company, self)
+		s = stations.get_station(self._obj.company, self)
 		if not s or not s.title:
 			s = '(station %5d)'%self
 		else:
 			s = s.title
 		return s + ' '*(_ostwidth-len(s))
+
+_omwidth = 0
+class OvcMachineId(long):
+	def __new__(cls, x, obj, width=0, **kwargs):
+		i = long.__new__(cls, x)
+		i._fieldwidth = width
+		i._obj = obj
+		return i
+	def __str__(self):
+		# return "M:"+('%d'%long(self)).zfill(self._fieldwidth)
+		# compute maximum length of machine name and cache it
+		global _omwidth
+		if not _omwidth: _omwidth = stations.get_max_len('machines', 'title')
+		# get machine name
+		s = stations.get_machine(self._obj.company, self)
+		if not s or not s.title:
+			s = ''
+		else:
+			s = "(" + s.title + ")"
+		s = s + ' '*(_omwidth-len(s))
+		return "M:"+('%7d'%long(self))+s
 
 #class OvcTransactionId(int):
 #	def __new__(cls, x,  **kwargs):
@@ -270,14 +290,6 @@ class OvcVehicleId(long):
 		return i
 	def __str__(self):
 		return "V:"+('%d'%long(self)).zfill(self._fieldwidth)
-
-class OvcMachineId(long):
-	def __new__(cls, x, width=0, **kwargs):
-		i = long.__new__(cls, x)
-		i._fieldwidth = width
-		return i
-	def __str__(self):
-		return "M:"+('%x'%long(self)).zfill(self._fieldwidth)
 
 class FixedWidthDec(long):
 	def __new__(cls, x, width=0, **kwargs):
