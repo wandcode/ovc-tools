@@ -482,7 +482,6 @@ class OvcVariableTransaction(OvcVariableRecord):
 
     def __init__(self, data, ovc):
         OvcVariableRecord.__init__(self, data, ovc)
-	self.field['action'] = OvcAction(0)
         self.parse()
 
     def __str__(self):
@@ -491,6 +490,7 @@ class OvcVariableTransaction(OvcVariableRecord):
         return res
 
     def parse(self):
+	self.field['action'] = OvcAction(0)
         width = OvcVariableRecord.parse(self)
 	# Check if this is a credit transaction
 	try:
