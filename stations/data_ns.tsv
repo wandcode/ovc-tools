@@ -405,57 +405,57 @@ company	ovcid	name
 4	 747	Zwolle
 4	 752	Zwijndrecht
 # ticket machine codes
-4	 850	Alkmaar
-4	 755	Almelo
-4	 853	Amersfoort
-4	 756	Amsterdam Amstel
-4	 875	Amsterdam Centraal
-4	 876	Amsterdam Centraal
-4	 757	Apeldoorn
-4	 878	Arnhem
-4	 758	Assen
-4	 775	Almere Centrum
-4	 759	Beverwijk
-4	 854	Breda
-4	 778	Delft
-4	 760	Deventer
-4	 761	Dordrecht
-4	 762	Ede-Wageningen
-4	 883	Eindhoven
-4	 763	Enschede
-4	7310	Apeldoorn de Maten
-4	1340	Almere Oostvaarders
-4	6840	Arnhem Zuid
-4	7320	Apeldoorn Osseveld
-4	7020	Gaanderen
-4	5730	Helmond Brandevoort
-4	 764	Gouda
-4	 880	Groningen
-4	 882	Den Haag HS
-4	 895	Den Haag Centraal
-4	 885	Haarlem
-4	 768	Heerenveen
-4	 765	Heerlen
-4	 766	Den Helder
-4	 857	Hengelo
-4	 862	's-Hertogenbosch
-4	 867	Hilversum
-4	 767	Hoorn
-4	 770	Leeuwarden
-4	 888	Leiden Centraal
-4	 890	Maastricht
-4	 771	Middelburg
-4	 869	Naarden-Bussum
-4	 892	Nijmegen
-4	 772	Roermond
-4	 870	Roosendaal
-4	 893	Rotterdam Centraal
-4	 894	Rotterdam Centraal
-4	 881	Schiphol
-4	 773	Sittard
-4	 871	Tilburg
-4	 897	Utrecht Centraal
-4	 872	Venlo
-4	 779	Zaandam
-4	 774	Zutphen
-4	 873	Zwolle
+4	 850	*Alkmaar
+4	 755	*Almelo
+4	 853	*Amersfoort
+4	 756	*Amsterdam Amstel
+4	 875	*Amsterdam Centraal
+4	 876	*Amsterdam Centraal
+4	 757	*Apeldoorn
+4	 878	*Arnhem
+4	 758	*Assen
+4	 775	*Almere Centrum
+4	 759	*Beverwijk
+4	 854	*Breda
+4	 778	*Delft
+4	 760	*Deventer
+4	 761	*Dordrecht
+4	 762	*Ede-Wageningen
+4	 883	*Eindhoven
+4	 763	*Enschede
+4	7310	*Apeldoorn de Maten
+4	1340	*Almere Oostvaarders
+4	6840	*Arnhem Zuid
+4	7320	*Apeldoorn Osseveld
+4	7020	*Gaanderen
+4	5730	*Helmond Brandevoort
+4	 764	*Gouda
+4	 880	*Groningen
+4	 882	*Den Haag HS
+4	 895	*Den Haag Centraal
+4	 885	*Haarlem
+4	 768	*Heerenveen
+4	 765	*Heerlen
+4	 766	*Den Helder
+4	 857	*Hengelo
+4	 862	*'s-Hertogenbosch
+4	 867	*Hilversum
+4	 767	*Hoorn
+4	 770	*Leeuwarden
+4	 888	*Leiden Centraal
+4	 890	*Maastricht
+4	 771	*Middelburg
+4	 869	*Naarden-Bussum
+4	 892	*Nijmegen
+4	 772	*Roermond
+4	 870	*Roosendaal
+4	 893	*Rotterdam Centraal
+4	 894	*Rotterdam Centraal
+4	 881	*Schiphol
+4	 773	*Sittard
+4	 871	*Tilburg
+4	 897	*Utrecht Centraal
+4	 872	*Venlo
+4	 779	*Zaandam
+4	 774	*Zutphen
+4	 873	*Zwolle

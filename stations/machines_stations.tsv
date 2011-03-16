@@ -3,6 +3,8 @@ company	machineid	ovcid
 4	1245327	303	# Den Helder Zuid
 4	1245365	96	# Beek-Elsloo
 4	1245366	96	# Beek-Elsloo
+4	1245427	212	# - enschede
+4	1245430	221	# - enschede drienerlo
 4	1246374	50	# Alkmaar
 4	1246412	306	# Heerhugowaard
 4	1246487	65	# Anna Paulowna
@@ -21,12 +23,16 @@ company	machineid	ovcid
 4	1253759	380	# Den Haag Laan van NOI
 4	1253796	507	# Rotterdam Alexander
 4	1253945	470	# Nijmegen
+4	1253947	212	# - enschede
+4	1253950	212	# - enschede
 4	1253957	470	# Nijmegen
+4	1253962	212	# - enschede
 4	1253965	65	# Anna Paulowna
 4	1256356	170	# Delft
 4	1257804	170	# Delft
 4	1257805	170	# Delft
 4	1257876	530	# Rotterdam Centraal
+4	1258004	221	# - enschede drienerlo
 4	1258038	529	# Rotterdam Blaak
 4	1258223	280	# Den Haag HS
 4	1258239	280	# Den Haag HS
@@ -44,7 +50,8 @@ company	machineid	ovcid
 4	460088	520	# Rotterdam Centraal
 4	460115	529	# Rotterdam Blaak
 4	460118	529	# Rotterdam Blaak
-4	460192	58	# Amsterdam Centraal
+4	460189	875	#- amsterdam centraal, or 876?
+4	460192	875	# Amsterdam Centraal, or 876?
 4	460199	170	# Delft
 4	460207	170	# Delft
 4	460304	65	# Anna Paulowna
@@ -54,6 +61,7 @@ company	machineid	ovcid
 4	460389	96	# Beek-Elsloo
 4	460390	96	# Beek-Elsloo
 4	460522	270	# Haarlem Spaarnwoude
+4	460586	862	# - 's-hertogenbosch
 4	460722	73	# Assen
 4	460800	470	# Nijmegen
 4	460805	472	# Nijmegen Dukenburg
@@ -63,6 +71,8 @@ company	machineid	ovcid
 4	460856	282	# Den Haag Centraal
 4	460862	280	# Den Haag HS
 4	460863	280	# Den Haag HS
+4	460957	763	# - enschede
+4	460958	763	# - enschede
 4	460970	316	# Hengelo
 4	461025	642	# Vlaardingen West
 4	461101	621	# Utrecht Centraal
@@ -110,4 +120,3 @@ company	machineid	ovcid
 7	1259795	11665
 8	262560	171
 8	262565	742
-
