@@ -92,12 +92,12 @@ class ovc4k(object):
 	    self.FB0_prev_prefix = s2
 
 	# indexes at F50, F70; don't seem to be current/previous versions.
-	self.F50 = OvcIndexF50(sdata[0x50:0x50+0x20], ovc=self)
-	self.F70 = OvcIndexF70(sdata[0x70:0x70+0x20], ovc=self)
+	self.F50 = OvcIndexF50(sdata[0x50:0x70], ovc=self)
+	self.F70 = OvcIndexF50(sdata[0x70:0x90], ovc=self)
 
-	# indexes at F10, F30
-	index1 = OvcIndexF10(sdata[0x10:0x10+0x20], ovc=self)
-	index2 = OvcIndexF10(sdata[0x30:0x30+0x20], ovc=self)
+	# indexes at F10, F30, 0x20 long
+	index1 = OvcIndexF10(sdata[0x10:0x30], ovc=self)
+	index2 = OvcIndexF10(sdata[0x30:0x50], ovc=self)
 	s1 = "f10:"
 	s2 = "f30:"
 
@@ -192,7 +192,7 @@ class ovc4k(object):
 	print self.FB0_curr_prefix, str(self.FB0_curr)
 	print self.FB0_prev_prefix, str(self.FB0_prev)
 	print
-	print "Check-in and outcheck-out indexes:"
+	print "Check-in and check-out indexes:"
 	print "f50:", str(self.F50)
 	print "f70:", str(self.F70)
 	print

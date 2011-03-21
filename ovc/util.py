@@ -29,7 +29,6 @@ def getbits(data, start, end):
 		mask = 0xff	# to chop off excess bits on the left
 		if byte == start/8: mask = (1<<(8-start%8))-1
 		#if verbose: print "mask = %02x" % mask
-		#val = (val << bits) + ((ord(data[byte])>>(8-bits)) & mask)
 		val = (val << bits) + ((ord(data[byte]) & mask)>>(8-bits))
 		#if verbose: print "data[byte] = %02x val = %02x" % (ord(data[byte]), val)
 	return val

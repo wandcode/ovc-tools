@@ -43,6 +43,7 @@ class OvcFixedRecord(OvcNewRecord):
     '''Interpret binary records with fixed data fields. Needs to be subclassed.'''
 
     _fields = []
+    _order = None
 
     def __init__(self, data, ovc):
         OvcNewRecord.__init__(self, data, ovc)
@@ -57,27 +58,32 @@ class OvcFixedRecord(OvcNewRecord):
 	    if fieldtype != None:
 		bits = self.getbits(start, width)
 		#print name, start, width, fieldtype
-		self.field[name] = fieldtype(bits, obj=self,width=(width+3)/4)
+		self.field[name] = fieldtype(bits, obj=self,width=width)
 		self.desc[name] = field
         # everything is ok, incorporate fields
         self.__dict__.update(self.field)
     
     def __str__(self):
         res = ""
-        for field in self._fields:
-            name, start, width, fieldtype = field
-	    if fieldtype == None:
-		res += name
-	    else:
-		res += str(self.field[name]) + " "
+	if self._order != None:
+	    for name in self._order:
+		if name in self.field:
+		    res += str(self.field[name]) + " "
+	else:
+	    for field in self._fields:
+		name, start, width, fieldtype = field
+		if fieldtype == None:
+		    res += name
+		else:
+		    res += str(self.field[name]) + " "
         return res
 
     def mkarray(self, membertype, name, bitwidth):
         arr = []
         name, start, width, fieldtype = self.desc[name]
-        for off in xrange(0, width, bitwidth):
+        for off in xrange(0, width - bitwidth + 1, bitwidth):
             one = self.getbits(start + off, bitwidth)
-            arr.append(membertype(one, obj=self, width=(bitwidth+3)/4))
+            arr.append(membertype(one, obj=self, ovc=self.ovc, width=bitwidth))
         return arr
 
 def find_missing(array, lwb, upb):
@@ -133,36 +139,80 @@ class OvcIndexFB0(OvcFixedRecord):
 	#res += "\n     next in mystery log        : %x" % self.next_checkmyst
         return res
 
+class OvcIndexF50sub(OvcFixedRecord):
+    _fields = [
+            #name,           start,  width,     type
+            ('company',         0,      8,     OvcCompany),	# 18 bits
+            ('teller',          8,      4,     FixedWidthDec), #
+            ('zeroes',         12,      6,     FixedWidthDec), #
+        ]
+
+    def __init__(self, data, ovc, **kwargs):
+	# Data is an 18-bit integer, turn it into a string.
+	# This is a hack, nested fixed records should be handled better.
+	string = chr((data >> 10) & 0xFF) + \
+	         chr((data >>  2) & 0xFF) + \
+		 chr((data & 0x03) << 6)
+        OvcFixedRecord.__init__(self, string, ovc)
+
+    def __str__(self):
+        res = ""
+        res += OvcFixedRecord.__str__(self)
+        return res
+
 class OvcIndexF50(OvcFixedRecord):
     _fields = [
             #name,           start,  width,     type
-            #('company',         14,      4,     OvcCompany),
-            #('unk1',             0,     14,     FixedWidthHex),
-            #('unk2',            18,32*8-18,     FixedWidthHex),
-            ('teller1a',         0,      4,     FixedWidthDec),
-            ('uit_in',           4,      2,     FixedWidthDec),	# 01 = check-in
-            ('zeroes1a',         6,      4,     FixedWidthDec),
-            ('company1',        10,      8,     OvcCompany),
-            ('teller1b',        18,      4,     FixedWidthDec),
-            ('zeroes1b',        22,      6,     FixedWidthDec),
-            ('company2',        28,      8,     OvcCompany),	# 18 bits
-            ('teller2',         36,      4,     FixedWidthDec), #
-            ('zeroes2',         40,      6,     FixedWidthDec), #
-            ('company3',        46,      8,     OvcCompany),
-            ('teller3',         54,      4,     FixedWidthDec),
-            ('zeroes3',         58,      6,     FixedWidthDec),
-            ('company4',        64,      8,     OvcCompany),
-            ('teller4',         72,      4,     FixedWidthDec),
-            ('zeroes4',         76,      6,     FixedWidthDec),
-	    #...  needs a few more
+            ('teller1',         0,      4,     FixedWidthDec),
+            ('uit_in',          4,      2,     FixedWidthDec),	# 01 = check-in
+            ('zeroes1',         6,      4,     FixedWidthDec),
+            ('company',        10,      8,     OvcCompany),
+	]
+    _fields00 = [
+            ('teller2',        18,      4,     FixedWidthDec),
+            ('zeroes2',        22,      6,     FixedWidthDec),
+            ('prevbits',       28, 32*8-28,    FixedWidthHex),
         ]
+    _fields01 = [
+            ('uit_in2',        18,      2,     FixedWidthDec),	# 01 = check-in
+            ('teller2',        20,      4,     FixedWidthDec),
+            ('zeroes2',        24,      6,     FixedWidthDec),
+            ('prevbits',       30, 32*8-30,    FixedWidthHex),
+        ]
+    # Experimental and not yet correct:
+    _fields11 = [
+            ('uit_in2',        18,      2,     FixedWidthDec),	# 01 = check-in
+            ('teller2',        20,      4,     FixedWidthDec),
+            ('zeroes2',        24,      6,     FixedWidthDec),
+            ('prevbits',       32, 32*8-32,    FixedWidthHex),
+        ]
+    _order = [
+	    'teller1', 'uit_in', 'zeroes1', 'company', 'uit_in2', 'teller2', 'zeroes2',
+	]
 
     def __init__(self, data, ovc):
         OvcFixedRecord.__init__(self, data, ovc)
 
+    def parse(self):
+	OvcFixedRecord.parse(self)
+	if self.uit_in == 0x00:	# maybe uit_in is another "identifier"?
+	    self.parse2(self._fields00)
+	elif self.uit_in == 0x01:
+	    self.parse2(self._fields01)
+	elif self.uit_in == 0x02:
+	    self.parse2(self._fields11)
+	elif self.uit_in == 0x03:
+	    self.parse2(self._fields11)
+	else:
+	    print "Unknown value %x for field uit_in, expected 0 or 1" % self.uit_in
+	self.prev = self.mkarray(OvcIndexF50sub, 'prevbits', 18)
+
     def __str__(self):
         res = "[index_F50_] "
         res += OvcFixedRecord.__str__(self)
+	res += "["
+	res += ",".join(map(str, self.prev))
+	res += "]\n" + tobin(self.data)
         return res
 
 class OvcIndexF70(OvcFixedRecord):
@@ -236,110 +286,6 @@ class OvcSaldo(OvcFixedRecord):
         res += OvcFixedRecord.__str__(self)
         return res
 
-class OvcSubscriptionRecord(OvcFixedRecord):
-    def __init__(self, data, ovc):
-	self.unk4 = None
-	self.unk5 = None
-	self.machine = None
-        OvcFixedRecord.__init__(self, data, ovc)
-
-    def __str__(self):
-	res = str(self.transaction) + " " + \
-	      str(self.validfrom) + " " + \
-	      str(self.validto) + " " + \
-	      str(self.company) + " " + \
-	      str(self.subs) + " " + \
-	      str(self.unk1) + " " + \
-	      str(self.unk2) + " " + \
-	      str(self.unk3)
-	if self.machine != None:
-	    res += " " + str(self.machine)
-	if self.unk4 != None:
-	    res += " " + str(self.unk4)
-	if self.unk5 != None:
-	    res += " " + str(self.unk5)
-        return res
-
-    # A factory function, returns an instance of a subclass
-    @staticmethod
-    def make(data, ovc, **kwargs):
-	id = getbits(data, 0, 28)
-	if id == 0x0a00e00:
-	    it = OvcSubscription_0a00e00(data, ovc)
-	elif id == 0x0a02e00: 
-	    it = OvcSubscription_0a02e00(data, ovc)
-	else:
-	    it = "Unknown type of subscription"
-	return it
-
-class OvcSubscription_0a00e00(OvcSubscriptionRecord):
-    _fields = [
-            #name,           start,  width,     type
-            ('unk1',            28,      4,     FixedWidthHex),
-            ('company',         32,      4,     OvcCompany),
-            ('subs',            36,     16,     OvcSubscription),
-            ('unk2',            52,     20,     FixedWidthHex),
-            ('transaction',     72,     12,     OvcTransactionId),
-            ('unk3',            84,      9,     FixedWidthHex),
-            ('validfrom',       93,     14,     OvcDate),
-            ('validto',        107,     14,     OvcDate),
-            ('unk4',           121,     53,     FixedWidthHex),
-            ('machine',        174,     24,     OvcMachineId),
-            ('unk5',           198,48*8-198,    FixedWidthHex),
-        ]
-
-    def __init__(self, data, ovc):
-        OvcSubscriptionRecord.__init__(self, data, ovc)
-
-    def __str__(self):
-        res = "[0a_00_e0_0] "
-        res += OvcSubscriptionRecord.__str__(self)
-        return res
-
-class OvcSubscription_0a02e00(OvcSubscriptionRecord):
-    _fields = [
-            #name,           start,  width,     type
-            ('unk1',            28,      4,     FixedWidthHex),
-            ('company',         32,      4,     OvcCompany),
-            ('subs',            36,     16,     OvcSubscription),
-            ('unk2',            52,     20,     FixedWidthHex),
-            ('transaction',     72,     12,     OvcTransactionId),
-            ('unk2',            84,      7,     FixedWidthHex),
-            ('vt_pos',          91,     12,     FixedWidthDec), # indicates where validto is
-            ('validfrom',      103,     14,     OvcDate),
-        ]
-    _fields21 = [
-            #name,           start,  width,     type
-            ('validto',        117,     14,     OvcDate),
-            ('unk3',           132,     63,     FixedWidthHex),
-            ('machine',        195,     24,     OvcMachineId),	# guessed location
-            ('unk4',           219,48*8-219,    FixedWidthHex),
-        ]
-    _fields31 = [
-            #name,           start,  width,     type
-            ('unk3',           117,      9,     FixedWidthHex),
-            ('validto',        128,     14,     OvcDate),
-            ('unk4',           142,     64,     FixedWidthHex),
-            ('machine',        206,     24,     OvcMachineId),	# 78 bits after valid2
-            ('unk5',           230,48*8-230,    FixedWidthHex),
-        ]
-
-    def __init__(self, data):
-        OvcSubscriptionRecord.__init__(self, data, ovc)
-	if self.vt_pos == 21:
-	    self.parse2(OvcSubscription_0a02e00._fields21)
-	elif self.vt_pos == 31:
-	    self.parse2(OvcSubscription_0a02e00._fields31)
-	else:
-	    self.validto = 0
-
-    def __str__(self):
-        res = "[0a_02_e0_0] "
-        res += OvcSubscriptionRecord.__str__(self)
-	res += " " + str(self.vt_pos)
-        return res
-
-
 class OvcSubscriptionAux(OvcFixedRecord):
     _fields = [
             #name,           start,  width,     type
@@ -383,7 +329,7 @@ class OvcVariableRecord(OvcNewRecord):
                 bits = self.getbits(start, width)
                 #print name, start, width, bits
                 start += width
-                self.field[name] = fieldtype(bits, obj=self, width=(width+3)/4)
+                self.field[name] = fieldtype(bits, obj=self, width=width)
                 self.desc[name] = field
 
 		# Recursively process nested 'identifiers'
@@ -398,7 +344,7 @@ class OvcVariableRecord(OvcNewRecord):
 	end = len(self.data) * 8
 	if start < end:
 	    width = end - start
-	    self._rest = FixedWidthHex(self.getbits(start, width), obj=self, width=(width+3)/4)
+	    self._rest = FixedWidthHex(self.getbits(start, width), obj=self, width=width)
 	    if self._rest == 0:
 		self._rest = None
 	else:
@@ -455,7 +401,7 @@ class OvcVariableTransaction(OvcVariableRecord):
             ('machine',     0x0000400,  24,     OvcMachineId),
             ('vehicle',     0x0004000,  16,     OvcVehicleId),
             ('product',     0x0010000,   5,     FixedWidthDec), # product ID ? 5 bits?
-            ('unk16_5',     0x0100000,  16,     FixedWidthHex), # seems to be zeroes
+            ('unk16_5',     0x0100000,  16,     FixedWidthHex),
             ('amount',      0x0800000,  16,     OvcAmount),
             ('idsubs',      0x2000000,   4,     OvcSubscriptionId),# corresponding subscription
 	    #   12 bits instead? or 13 even?

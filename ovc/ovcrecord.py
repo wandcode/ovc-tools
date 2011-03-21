@@ -111,7 +111,7 @@ class OvcRecord:
 			else:
 				# template variable: store
 				fname, fchar, flen, ftype = self._field_by_char(curchar)
-				try: fieldvalues[fname] = ftype(value, obj=self, width=(offsets[i+1]-offsets[i]+3)/4)
+				try: fieldvalues[fname] = ftype(value, obj=self, width=(offsets[i+1]-offsets[i]))
 				except TypeError: fieldvalues[fname] = ftype(value)
 
 		# everything is ok, incorporate fields

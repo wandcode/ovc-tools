@@ -42,12 +42,14 @@ company	machineid	ovcid
 4	1258251	285	# Haarlem
 4	1258260	285	# Haarlem
 4	1258318	282	# Den Haag Centraal
+4	1253527	282	# Den Haag Centraal
+4	1253543	282	# Den Haag Centraal
 #
 # Check in/uit poortjes:
 4	68479	849	# Vlaardingen Oost
 4	68480	849	# Vlaardingen Oost
 # NS Kaartautomaten:
-4	460088	520	# Rotterdam Centraal
+4	460088	893	# Rotterdam Centraal
 4	460115	529	# Rotterdam Blaak
 4	460118	529	# Rotterdam Blaak
 4	460189	875	#- amsterdam centraal, or 876?
@@ -63,8 +65,8 @@ company	machineid	ovcid
 4	460522	270	# Haarlem Spaarnwoude
 4	460586	862	# - 's-hertogenbosch
 4	460722	73	# Assen
-4	460800	470	# Nijmegen
-4	460805	472	# Nijmegen Dukenburg
+4	460800	892	# Nijmegen
+4	460805	475	# Nijmegen Dukenburg
 4	460829	170	# Delft
 4	460830	170	# Delft
 4	460849	282	# Den Haag Centraal
@@ -120,3 +122,14 @@ company	machineid	ovcid
 7	1259795	11665
 8	262560	171
 8	262565	742
+# Palen
+4	1246538	424	# Maastricht
+4	1246440	523	# Roermond
+4	1253819	564	# Sittard
+4	1245374 151	# Castricum
+4	1258182	302	# Heemstede-Aerdenhout
+# 
+# Automaten
+4	460406	890	# Maastricht
+4	460419	772	# Roermond
+4	460790	892	# Nijmegen

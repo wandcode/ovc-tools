@@ -17,6 +17,7 @@
 #
 
 import stations
+import config
 from ovctypes import *
 from ovcrecord import *
 from ovcnewrecord import *

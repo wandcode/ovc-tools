@@ -155,6 +155,7 @@ class OvcSubscription(int):
 			0x00ca: 'Reizen op saldo (2e klas)',
 			0x00ce: 'Voordeelurenabonnement',
 			0x00e5: '1e klas (1 dag)',
+			0x00e6: '2e klas (1 dag)',
 			0x00e7: '1e klas (1 dag) (korting)',
 		},
 		 7: {   # Veolia
@@ -274,7 +275,7 @@ class OvcSubscriptionId(int):
 	def __new__(cls, x,  **kwargs):
 		return int.__new__(cls, x)
 	def __str__(self):
-		return 'S:%03d'%self
+		return 'S:%02d'%self
 
 class OvcAmount(float):
 	'''amount in euro; prints '-' when zero'''
@@ -295,7 +296,7 @@ class OvcAmountSigned(float):
 class OvcVehicleId(long):
 	def __new__(cls, x, width=0, **kwargs):
 		i = long.__new__(cls, x)
-		i._fieldwidth = width
+		i._fieldwidth = ( 3 * width + 9) / 10
 		return i
 	def __str__(self):
 		return "V:"+('%d'%long(self)).zfill(self._fieldwidth)
@@ -303,7 +304,7 @@ class OvcVehicleId(long):
 class FixedWidthDec(long):
 	def __new__(cls, x, width=0, **kwargs):
 		i = long.__new__(cls, x)
-		i._fieldwidth = width
+		i._fieldwidth = ( 3 * width + 9) / 10
 		return i
 	def __str__(self):
 		return ('%d'%long(self)).zfill(self._fieldwidth)
@@ -311,10 +312,37 @@ class FixedWidthDec(long):
 class FixedWidthHex(long):
 	def __new__(cls, x, width=0, **kwargs):
 		i = long.__new__(cls, x)
-		i._fieldwidth = width
+		i._fieldwidth = (width + 3) / 4
 		return i
 	def __str__(self):
 		return '0x'+('%x'%self).zfill(self._fieldwidth)
+
+class FixedWidthBin(long):
+	def __new__(cls, x, width=0, **kwargs):
+		i = long.__new__(cls, x)
+		i._fieldwidth = width
+		return i
+	def __str__(self):
+		s = ""
+		for b in xrange(self._fieldwidth - 1, -1, -1):
+		    if self & (1L << b):
+			s += "1"
+		    else:
+			s += "0"
+		return s
+
+def tobin(string):
+    s = ""
+    for ch in string:
+	bits = ord(ch)
+	s0 = ""
+	for b in xrange(7, -1, -1):
+	    if bits & (1 << b):
+		s0 += "1"
+	    else:
+		s0 += "0"
+	s += s0 + " "
+    return s
 
 class HistoryTransactionAddr(int):
 	def __new__(cls, x, width=0, **kwargs):
