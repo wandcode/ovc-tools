@@ -1,14 +1,39 @@
 # NS machine codes
+# We zijn tot de conclusie gekomen dat de machine ID afhangt van het soort paaltje of automaat:
+# Check in/uit paaltjes: 124xxxx of 125xxxx
+# Check in/uit poortjes: 6xxxx
+#
+# NS kaartautomaten: 460xxx of 461xxx
+# Arriva kaartautomaten: 262xxx
+#
 company	machineid	ovcid
+1	1966086	55
+1	327846	90
+1	327890	90
+#
+2	262370	1223
+# NS incheckpalen
+4	1245256	179
+4	1245257	179
 4	1245327	303	# Den Helder Zuid
+4	1245332	614
+4	1245333	614
+4	1245339	480	# Obdam
+4	1245340	480	# Obdam
 4	1245365	96	# Beek-Elsloo
 4	1245366	96	# Beek-Elsloo
+4	1245374 151	# Castricum
+4	1245374	151	# Castricum
+4	1245408	613
 4	1245427	212	# - enschede
 4	1245430	221	# - enschede drienerlo
+4	1245460	614
 4	1246374	50	# Alkmaar
 4	1246412	306	# Heerhugowaard
+4	1246440	523	# Roermond
 4	1246487	65	# Anna Paulowna
 4	1246488	65	# Anna Paulowna
+4	1246538	424	# Maastricht
 4	1249020	505	# Rijswijk
 4	1249023	505	# Rijswijk
 4	1249034	280	# Den Haag HS
@@ -19,21 +44,37 @@ company	machineid	ovcid
 4	1249081	642	# Vlaardingen West
 4	1249229	280	# Den Haag HS
 4	1253497	561	# Schiphol
+4	1253527	282	# Den Haag Centraal
 4	1253528	282	# Den Haag Centraal
+4	1253543	282	# Den Haag Centraal
+4	1253605	621	# Utrecht Centraal
 4	1253759	380	# Den Haag Laan van NOI
+4	1253786	337	# Hoorn
 4	1253796	507	# Rotterdam Alexander
+4	1253798	52	# Alkmaar Noord
+4	1253800	52	# Alkmaar Noord
+4	1253819	564	# Sittard
+4	1253940	470
 4	1253945	470	# Nijmegen
 4	1253947	212	# - enschede
 4	1253950	212	# - enschede
 4	1253957	470	# Nijmegen
 4	1253962	212	# - enschede
 4	1253965	65	# Anna Paulowna
+4	1256217	614
+4	1256218	614
+4	1256259	306	# Heerhugowaard
+4	1256329	90	# Barendrecht
 4	1256356	170	# Delft
 4	1257804	170	# Delft
 4	1257805	170	# Delft
 4	1257876	530	# Rotterdam Centraal
+4	1257936	752	# Zwijndrecht
 4	1258004	221	# - enschede drienerlo
+4	1258021	475
 4	1258038	529	# Rotterdam Blaak
+4	1258177	336	# Hoorn Kersenboogerd
+4	1258182	302	# Heemstede-Aerdenhout
 4	1258223	280	# Den Haag HS
 4	1258239	280	# Den Haag HS
 4	1258243	280	# Den Haag HS
@@ -42,29 +83,40 @@ company	machineid	ovcid
 4	1258251	285	# Haarlem
 4	1258260	285	# Haarlem
 4	1258318	282	# Den Haag Centraal
-4	1253527	282	# Den Haag Centraal
-4	1253543	282	# Den Haag Centraal
+4	1966083	180
+4	1966084	55
+4	1966089	55
 #
-# Check in/uit poortjes:
+# NS Check in/uit poortjes:
 4	68479	849	# Vlaardingen Oost
 4	68480	849	# Vlaardingen Oost
 # NS Kaartautomaten:
 4	460088	893	# Rotterdam Centraal
+4	460108	542	# Rotterdam Lombardijen
 4	460115	529	# Rotterdam Blaak
 4	460118	529	# Rotterdam Blaak
+4	460141	614
 4	460189	875	#- amsterdam centraal, or 876?
 4	460192	875	# Amsterdam Centraal, or 876?
 4	460199	170	# Delft
 4	460207	170	# Delft
+4	460277	620
 4	460304	65	# Anna Paulowna
 4	460305	65	# Anna Paulowna
 4	460306	113	# Beverwijk
 4	460329	306	# Heerhugowaard
 4	460389	96	# Beek-Elsloo
 4	460390	96	# Beek-Elsloo
+4	460406	890	# Maastricht
+4	460419	772	# Roermond
+4	460465	179
 4	460522	270	# Haarlem Spaarnwoude
 4	460586	862	# - 's-hertogenbosch
 4	460722	73	# Assen
+4	460768	878
+4	460790	892	# Nijmegen
+4	460792	892
+4	460793	892
 4	460800	892	# Nijmegen
 4	460805	475	# Nijmegen Dukenburg
 4	460829	170	# Delft
@@ -73,63 +125,34 @@ company	machineid	ovcid
 4	460856	282	# Den Haag Centraal
 4	460862	280	# Den Haag HS
 4	460863	280	# Den Haag HS
+4	460865	882
 4	460957	763	# - enschede
 4	460958	763	# - enschede
 4	460970	316	# Hengelo
+4	460995	90	# Barendrecht
 4	461025	642	# Vlaardingen West
 4	461101	621	# Utrecht Centraal
+4	461111	621	# Utrecht Centraal
+4	461112	621	# Utrecht Centraal
 4	480848	282	# Den Haag Centraal
-# RET
+# RET incheckpaaltjes
 5	1310971	3189	# Rotterdam	Station Blaak
-# Veolia
+# Veolia incheckpaaltjes
 7	1259767	11659	# Nijmegen CS (Veolia)
-# Arriva
+7	1259765	11659
+7	1259795	11665
+# Arriva incheckpaaltjes
+8	1247849	171	# Delfzijl
 8	1247880	525	# ?
 8	1254526	263	# ?
 # Arriva oplaadpunten
 8	262516	263	# ?
-# Oplaadpunten
-15001	271194	-1	# Dio drogisterij Anna Paulowna
-# New from dumps
-# company	machineid	ovcid
-1	1966086	55
-1	327846	90
-1	327890	90
-15001	263783	839
-15001	263851	1090
-2	262370	1223
-4	1245256	179
-4	1245257	179
-4	1245332	614
-4	1245333	614
-4	1245408	613
-4	1245460	614
-4	1253940	470
-4	1256217	614
-4	1256218	614
-4	1258021	475
-4	1966083	180
-4	1966084	55
-4	1966089	55
-4	460141	614
-4	460277	620
-4	460465	179
-4	460768	878
-4	460792	892
-4	460793	892
-4	460865	882
-7	1259765	11659
-7	1259795	11665
 8	262560	171
 8	262565	742
+# Oplaadpunten
+15001	271194	-1	# Dio drogisterij Anna Paulowna
+15001	263783	839
+15001	263851	1090
 # Palen
-4	1246538	424	# Maastricht
-4	1246440	523	# Roermond
-4	1253819	564	# Sittard
-4	1245374 151	# Castricum
-4	1258182	302	# Heemstede-Aerdenhout
 # 
 # Automaten
-4	460406	890	# Maastricht
-4	460419	772	# Roermond
-4	460790	892	# Nijmegen
