@@ -91,7 +91,7 @@ company	machineid	ovcid
 4	68479	849	# Vlaardingen Oost
 4	68480	849	# Vlaardingen Oost
 # NS Kaartautomaten:
-4	460088	893	# Rotterdam Centraal
+4	460088	893	# Rotterdam Centraal or 894?
 4	460108	542	# Rotterdam Lombardijen
 4	460115	529	# Rotterdam Blaak
 4	460118	529	# Rotterdam Blaak
@@ -143,11 +143,11 @@ company	machineid	ovcid
 7	1259795	11665
 # Arriva incheckpaaltjes
 8	1247849	171	# Delfzijl
-8	1247880	525	# ?
-8	1254526	263	# ?
+8	1247880	525	# Roodeschool
+8	1254526	263	# Groningen
 # Arriva oplaadpunten
-8	262516	263	# ?
-8	262560	171
+8	262516	263	# Groningen
+8	262560	171	# Delfzijl
 8	262565	742
 # Oplaadpunten
 15001	271194	-1	# Dio drogisterij Anna Paulowna
