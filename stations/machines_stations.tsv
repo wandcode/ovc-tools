@@ -98,12 +98,12 @@ company	machineid	ovcid
 4	460141	614
 4	460189	875	#- amsterdam centraal, or 876?
 4	460192	875	# Amsterdam Centraal, or 876?
-4	460199	170	# Delft
-4	460207	170	# Delft
+4	460199	778	# Delft
+4	460207	778	# Delft
 4	460277	620
 4	460304	65	# Anna Paulowna
 4	460305	65	# Anna Paulowna
-4	460306	113	# Beverwijk
+4	460306	759	# Beverwijk
 4	460329	306	# Heerhugowaard
 4	460389	96	# Beek-Elsloo
 4	460390	96	# Beek-Elsloo
@@ -119,16 +119,16 @@ company	machineid	ovcid
 4	460793	892
 4	460800	892	# Nijmegen
 4	460805	475	# Nijmegen Dukenburg
-4	460829	170	# Delft
-4	460830	170	# Delft
-4	460849	282	# Den Haag Centraal
-4	460856	282	# Den Haag Centraal
+4	460829	778	# Delft
+4	460830	778	# Delft
+4	460849	895	# Den Haag Centraal
+4	460856	895	# Den Haag Centraal
 4	460862	280	# Den Haag HS
 4	460863	280	# Den Haag HS
 4	460865	882
 4	460957	763	# - enschede
 4	460958	763	# - enschede
-4	460970	316	# Hengelo
+4	460970	857	# Hengelo
 4	460995	90	# Barendrecht
 4	461025	642	# Vlaardingen West
 4	461101	621	# Utrecht Centraal
