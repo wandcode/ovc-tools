@@ -22,6 +22,7 @@ company	machineid	ovcid
 4	1245340	480	# Obdam
 4	1245365	96	# Beek-Elsloo
 4	1245366	96	# Beek-Elsloo
+4	1245367	615	# Uitgeest
 4	1245374 151	# Castricum
 4	1245374	151	# Castricum
 4	1245408	613
@@ -61,6 +62,10 @@ company	machineid	ovcid
 4	1253957	470	# Nijmegen
 4	1253962	212	# - enschede
 4	1253965	65	# Anna Paulowna
+4	1253994	206	# Eindhoven
+4	1256183	549	# Schagen
+4	1256184	549	# Schagen
+4	1256186	549	# Schagen
 4	1256217	614
 4	1256218	614
 4	1256259	306	# Heerhugowaard
@@ -73,6 +78,9 @@ company	machineid	ovcid
 4	1258004	221	# - enschede drienerlo
 4	1258021	475
 4	1258038	529	# Rotterdam Blaak
+4	1258174	336	# Hoorn Kersenboogerd
+4	1258175	336	# Hoorn Kersenboogerd
+4	1258176	336	# Hoorn Kersenboogerd
 4	1258177	336	# Hoorn Kersenboogerd
 4	1258182	302	# Heemstede-Aerdenhout
 4	1258223	280	# Den Haag HS
@@ -86,6 +94,7 @@ company	machineid	ovcid
 4	1966083	180
 4	1966084	55
 4	1966089	55
+4	68561	390	# Leiden Centraal
 #
 # NS Check in/uit poortjes:
 4	68479	849	# Vlaardingen Oost
@@ -113,11 +122,17 @@ company	machineid	ovcid
 4	460522	270	# Haarlem Spaarnwoude
 4	460586	862	# - 's-hertogenbosch
 4	460722	73	# Assen
+4	460734	880	# Groningen
+4	460737	880	# Groningen
+4	460740	880	# Groningen
 4	460768	878
 4	460790	892	# Nijmegen
-4	460792	892
-4	460793	892
+4	460792	892	# "
+4	460793	892	# "
+4	460795	892	# "
+4	460798	892	# "
 4	460800	892	# Nijmegen
+4	460802	892	# Nijmegen
 4	460805	475	# Nijmegen Dukenburg
 4	460829	778	# Delft
 4	460830	778	# Delft
@@ -126,6 +141,7 @@ company	machineid	ovcid
 4	460862	280	# Den Haag HS
 4	460863	280	# Den Haag HS
 4	460865	882
+4	460897	888	# Leiden (Centraal)
 4	460957	763	# - enschede
 4	460958	763	# - enschede
 4	460970	857	# Hengelo
@@ -146,7 +162,10 @@ company	machineid	ovcid
 8	1247880	525	# Roodeschool
 8	1254526	263	# Groningen
 # Arriva oplaadpunten
+8	327882	263	# Groningen Arriva Store
 8	262516	263	# Groningen
+8	262547	547	# Sauwerd
+8	262554	525	# Roodeschool
 8	262560	171	# Delfzijl
 8	262565	742
 # Oplaadpunten
