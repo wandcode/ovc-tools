@@ -1,6 +1,27 @@
 # Arriva, treinstations
 # It seems they use the same numbers as the NS.
 company	ovcid	name
-8	171	Delfzijl
-8	263	Groningen
-8	525	Roodeschool
+8	  67	Appingedam?
+8	  89	Baflo?
+8	  94	Bedum?
+8	 171	Delfzijl
+8	 175	Delfzijl West?
+8	 263	Groningen
+8	 264	Groningen Noord?
+8	 331	Hoogezand-Sappemeer?
+8	 369	Kropswolde?
+8	 403	Loppersum
+8	 430	Martenshoek?
+8	 457	Nieuweschans?
+8	 525	Roodeschool
+8	 545	Sappemeer Oost?
+8	 547	Sauwerd
+8	 551	Scheemda?
+8	 576	Stedum?
+8	 617	Uithuizen?
+8	 618	Uithuizermeeden?
+8	 619	Usquert?
+8	 679	Warffum?
+8	 696	Winschoten?
+8	 697	Winsum?
+8	 742	Zuidbroek?
