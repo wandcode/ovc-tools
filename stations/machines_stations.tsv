@@ -44,10 +44,15 @@ company	machineid	ovcid
 4	1249080	642	# Vlaardingen West
 4	1249081	642	# Vlaardingen West
 4	1249229	280	# Den Haag HS
+4	1253475	621	# Utrecht Centraal: 1253475 (spoor 1/2)
 4	1253497	561	# Schiphol
 4	1253527	282	# Den Haag Centraal
 4	1253528	282	# Den Haag Centraal
+4	1253537	282	# Den Haag Centraal
 4	1253543	282	# Den Haag Centraal
+4	1253586	316	# Hengelo
+4	1253589	316	# Hengelo
+4	1253590	316	# Hengelo
 4	1253605	621	# Utrecht Centraal
 4	1253759	380	# Den Haag Laan van NOI
 4	1253786	337	# Hoorn
@@ -69,13 +74,18 @@ company	machineid	ovcid
 4	1256217	614
 4	1256218	614
 4	1256259	306	# Heerhugowaard
+4	1256307	55	# Amersfoort
 4	1256329	90	# Barendrecht
 4	1256356	170	# Delft
 4	1257804	170	# Delft
 4	1257805	170	# Delft
 4	1257876	530	# Rotterdam Centraal
+4	1257906	621	# Utrecht Centraal: 1257906 (spoor 1/2)
 4	1257936	752	# Zwijndrecht
+4	1257952	316	# Hengelo
+4	1257960	316	# Hengelo
 4	1258004	221	# - enschede drienerlo
+4	1258005	221	# Enschede Drienerlo
 4	1258021	475
 4	1258038	529	# Rotterdam Blaak
 4	1258174	336	# Hoorn Kersenboogerd
@@ -84,6 +94,7 @@ company	machineid	ovcid
 4	1258177	336	# Hoorn Kersenboogerd
 4	1258182	302	# Heemstede-Aerdenhout
 4	1258223	280	# Den Haag HS
+4	1258227	280	# Den Haag HS
 4	1258239	280	# Den Haag HS
 4	1258243	280	# Den Haag HS
 4	1258245	280	# Den Haag HS
@@ -91,6 +102,7 @@ company	machineid	ovcid
 4	1258251	285	# Haarlem
 4	1258260	285	# Haarlem
 4	1258318	282	# Den Haag Centraal
+4	1258326	282	# Den Haag Centraal
 4	1966083	180
 4	1966084	55
 4	1966089	55
@@ -109,7 +121,7 @@ company	machineid	ovcid
 4	460192	875	# Amsterdam Centraal, or 876?
 4	460199	778	# Delft
 4	460207	778	# Delft
-4	460277	620
+4	460277	620	# Utrecht Overvecht
 4	460304	65	# Anna Paulowna
 4	460305	65	# Anna Paulowna
 4	460306	759	# Beverwijk
@@ -138,9 +150,11 @@ company	machineid	ovcid
 4	460830	778	# Delft
 4	460849	895	# Den Haag Centraal
 4	460856	895	# Den Haag Centraal
+4	460857	897	# Den Haag Centraal
 4	460862	280	# Den Haag HS
 4	460863	280	# Den Haag HS
 4	460865	882
+4	460881	279	# Den Haag Moerwijk
 4	460897	888	# Leiden (Centraal)
 4	460957	763	# - enschede
 4	460958	763	# - enschede
