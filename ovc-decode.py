@@ -22,7 +22,7 @@ from ovc import *
 from ovc.ovctypes import *
 #from ovc.newrecord import *
 from ovc.util import mfclassic_getsector, getbits, mfclassic_getoffset
-import config
+import ovc.config
 
 class ovc4k(object):
     def __init__(self, data):
