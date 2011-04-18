@@ -1,28 +1,48 @@
 # Arriva, treinstations
 # It seems they use the same numbers as the NS.
-# TODO: de Friese stations
 company	ovcid	name
 8	  67	Appingedam?
 8	  89	Baflo?
 8	  94	Bedum?
+8	 139	Buitenpost?
+8	 168	Deinum?
 8	 171	Delfzijl
 8	 175	Delfzijl West?
+8	 192	Dronrijp?
+8	 232	Franeker?
 8	 263	Groningen
 8	 264	Groningen Noord?
+8	 267	Grijpskerk?
+8	 292	Hurdegaryp?
+8	 296	Harlingen?
+8	 298	Harlingen Haven?
+8	 323	Hindeloopen?
 8	 331	Hoogezand-Sappemeer?
+8	 366	Koudum-Molkwerum?
 8	 369	Kropswolde?
+8	 387	Leeuwarden?
+8	 389	Leeuwarden Camminghaburen?
 8	 403	Loppersum
+8	 427	Mantgum?
 8	 430	Martenshoek?
 8	 457	Nieuweschans?
 8	 525	Roodeschool
 8	 545	Sappemeer Oost?
 8	 547	Sauwerd
 8	 551	Scheemda?
+8	 566	Sneek?
+8	 574	Sneek Noord?
+8	 575	Stavoren?
 8	 576	Stedum?
 8	 617	Uithuizen?
 8	 618	Uithuizermeeden?
 8	 619	Usquert?
+8	 638	Veenwouden?
 8	 679	Warffum?
 8	 696	Winschoten?
 8	 697	Winsum?
+8	 706	Workum?
+8	 722	IJlst?
 8	 742	Zuidbroek?
+8	 743	Zuidhorn?
+8	 745	Zwaagwesteinde?
