@@ -13,6 +13,8 @@ company	machineid	ovcid
 #
 2	262370	1223
 # NS incheckpalen
+4	66670	332	# Hoofddorp
+4	68561	390	# Leiden Centraal
 4	1245256	179
 4	1245257	179
 4	1245327	303	# Den Helder Zuid
@@ -30,6 +32,7 @@ company	machineid	ovcid
 4	1245430	221	# - enschede drienerlo
 4	1245460	614
 4	1246374	50	# Alkmaar
+4	1246401	311	# Den Helder
 4	1246412	306	# Heerhugowaard
 4	1246440	523	# Roermond
 4	1246487	65	# Anna Paulowna
@@ -60,6 +63,8 @@ company	machineid	ovcid
 4	1253798	52	# Alkmaar Noord
 4	1253800	52	# Alkmaar Noord
 4	1253819	564	# Sittard
+4	1253829	59	# Amsterdam Sloterdijk
+4	1253856	731	# Zaandam
 4	1253940	470
 4	1253945	470	# Nijmegen
 4	1253947	212	# - enschede
@@ -68,6 +73,7 @@ company	machineid	ovcid
 4	1253962	212	# - enschede
 4	1253965	65	# Anna Paulowna
 4	1253994	206	# Eindhoven
+4	1254036	311	# Den Helder
 4	1256183	549	# Schagen
 4	1256184	549	# Schagen
 4	1256186	549	# Schagen
@@ -106,7 +112,6 @@ company	machineid	ovcid
 4	1966083	180
 4	1966084	55
 4	1966089	55
-4	68561	390	# Leiden Centraal
 #
 # NS Check in/uit poortjes:
 4	68479	849	# Vlaardingen Oost
