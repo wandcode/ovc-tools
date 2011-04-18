@@ -113,7 +113,10 @@ class OvcIndexFB0(OvcFixedRecord):
 	    ('Check:',             0,    0,     None),
             ('check_ptrs',    24*8+4, 12*4,     FixedWidthHex), # index 5
             ('recent_credit', 30*8+4,    4,     OvcMostRecentCreditIndex),
-            ('unk3',          31*8  ,    8,     FixedWidthHex),
+            ('latest_subscr',    248,    1,     FixedWidthHex),
+            ('latest_travel',    249,    1,     FixedWidthHex),
+            ('latest_credit',    250,    1,     FixedWidthHex),
+            ('unk3',          31*8+3,    5,     FixedWidthHex),
         ]
 
     def __init__(self, data, ovc):

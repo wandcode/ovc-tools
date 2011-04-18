@@ -53,25 +53,12 @@ class ovc4k(object):
     def parse(self):
 	data = self.data	# convenience abbreviation
 
-	# Credit at F90 and FA0
+	# Sector 39, 0xF00, for various indexes
 	sdata = mfclassic_getsector(data, 39)[:-0x10]
 	offset,size = mfclassic_getoffset(39)
 
-	saldo1 = OvcSaldo(sdata[0x90:0x90+0x10], ovc=self)
-	saldo2 = OvcSaldo(sdata[0xa0:0xa0+0x10], ovc=self)
-	s1 = "f90:"
-	s2 = "fa0:"
-	# Kan ook 'transact-id' van hieronder zijn...
-	if saldo1.get('id') < saldo2.get('id'):
-	    self.saldo_curr = saldo2
-	    self.saldo_curr_prefix = s2
-	    self.saldo_prev = saldo1
-	    self.saldo_prev_prefix = s1
-	else:
-	    self.saldo_curr = saldo1
-	    self.saldo_curr_prefix = s1
-	    self.saldo_prev = saldo2
-	    self.saldo_prev_prefix = s2
+	# at F00: just zeros
+	#print "f00: %x" % (getbits(sdata[0:0x10], 0, 16*8))
 
 	# indexes at FB0, FD0
 	index1 = OvcIndexFB0(sdata[0xb0:0xb0+0x20], ovc=self)
@@ -79,8 +66,7 @@ class ovc4k(object):
 	s1 = "fb0:"
 	s2 = "fd0:"
 
-	swap_dupl = index1.get('transact-id') < index2.get('transact-id')
-	if swap_dupl:
+	if index1.get('transact-id') < index2.get('transact-id'):
 	    self.FB0_curr = index2
 	    self.FB0_curr_prefix = s2
 	    self.FB0_prev = index1
@@ -91,29 +77,37 @@ class ovc4k(object):
 	    self.FB0_prev = index2
 	    self.FB0_prev_prefix = s2
 
-	# indexes at F50, F70; don't seem to be current/previous versions.
-	self.F50 = OvcIndexF50(sdata[0x50:0x70], ovc=self)
-	self.F70 = OvcIndexF50(sdata[0x70:0x90], ovc=self)
+	latest_credit = self.FB0_curr.latest_credit
+	latest_travel = self.FB0_curr.latest_travel
+	latest_subscr = self.FB0_curr.latest_subscr
+
+	# Credit at F90 and FA0
+	locs = [ 0x90, 0xa0 ]
+	loc_curr = locs[latest_credit]
+	loc_prev = locs[1 - latest_credit]
+	self.saldo_curr = OvcSaldo(sdata[loc_curr:loc_curr+0x10], ovc=self)
+	self.saldo_prev = OvcSaldo(sdata[loc_prev:loc_prev+0x10], ovc=self)
+	self.saldo_curr_prefix = "%3x:" % (0xf00 + loc_curr)
+	self.saldo_prev_prefix = "%3x:" % (0xf00 + loc_prev)
 
 	# indexes at F10, F30, 0x20 long
-	index1 = OvcIndexF10(sdata[0x10:0x30], ovc=self)
-	index2 = OvcIndexF10(sdata[0x30:0x50], ovc=self)
-	s1 = "f10:"
-	s2 = "f30:"
+	locs = [ 0x10, 0x30 ]
+	loc_curr = locs[latest_subscr]
+	loc_prev = locs[1 - latest_subscr]
+	self.F10_curr = OvcIndexF10(sdata[loc_curr:loc_curr+0x20], ovc=self)
+	self.F10_prev = OvcIndexF10(sdata[loc_prev:loc_prev+0x20], ovc=self)
+	self.F10_curr_prefix = "%3x:" % (0xf00 + loc_curr)
+	self.F10_prev_prefix = "%3x:" % (0xf00 + loc_prev)
 
-	if swap_dupl:
-	    self.F10_curr = index2
-	    self.F10_curr_prefix = s2
-	    self.F10_prev = index1
-	    self.F10_prev_prefix = s1
-	else:
-	    self.F10_curr = index1
-	    self.F10_curr_prefix = s1
-	    self.F10_prev = index2
-	    self.F10_prev_prefix = s2
-	
-	# at F00: just zeros
-	#print "f00: %x" % (getbits(sdata[0:0x10], 0, 16*8))
+	# indexes at F50, F70;
+	# something to do with travel (check in/out) transactions
+	locs = [ 0x50, 0x70 ]
+	loc_curr = locs[latest_travel]
+	loc_prev = locs[1 - latest_travel]
+	self.F50_curr = OvcIndexF50(sdata[loc_curr:loc_curr+0x20], ovc=self)
+	self.F50_prev = OvcIndexF50(sdata[loc_prev:loc_prev+0x20], ovc=self)
+	self.F50_curr_prefix = "%3x:" % (0xf00 + loc_curr)
+	self.F50_prev_prefix = "%3x:" % (0xf00 + loc_prev)
 
     def printit(self):
 	data = self.data
@@ -187,16 +181,18 @@ class ovc4k(object):
 	print "Credit: (current and previous)"
 	print self.saldo_curr_prefix, str(self.saldo_curr)
 	print self.saldo_prev_prefix, str(self.saldo_prev)
+	if not self.saldo_prev.get('id') <= self.saldo_curr.get('id'):
+	    print "Order bit 250 in 0xFB0/FD0 contradicted by id order"
 	print
 	print "Main index (current and previous):"
 	print self.FB0_curr_prefix, str(self.FB0_curr)
 	print self.FB0_prev_prefix, str(self.FB0_prev)
 	print
-	print "Check-in and check-out indexes:"
-	print "f50:", str(self.F50)
-	print "f70:", str(self.F70)
+	print "Check-in and check-out indexes (current and previous):"
+	print self.F50_curr_prefix, str(self.F50_curr)
+	print self.F50_prev_prefix, str(self.F50_prev)
 	print
-	print "Most recent subscription:  KLOPT NIET"
+	print "Most recent subscription (current and previous):  KLOPT NIET"
 	print self.F10_curr_prefix, str(self.F10_curr)
 	print self.F10_prev_prefix, str(self.F10_prev)
 
