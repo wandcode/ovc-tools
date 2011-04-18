@@ -150,7 +150,7 @@ company	machineid	ovcid
 4	460830	778	# Delft
 4	460849	895	# Den Haag Centraal
 4	460856	895	# Den Haag Centraal
-4	460857	897	# Den Haag Centraal
+4	460857	895	# Den Haag Centraal
 4	460862	280	# Den Haag HS
 4	460863	280	# Den Haag HS
 4	460865	882
@@ -161,12 +161,15 @@ company	machineid	ovcid
 4	460970	857	# Hengelo
 4	460995	90	# Barendrecht
 4	461025	642	# Vlaardingen West
+4	461037	208	# Emmen
 4	461101	621	# Utrecht Centraal
 4	461111	621	# Utrecht Centraal
 4	461112	621	# Utrecht Centraal
 4	480848	282	# Den Haag Centraal
 # RET incheckpaaltjes
 5	1310971	3189	# Rotterdam	Station Blaak
+# Veolia klantenservice-machines
+7	327878	1	# Nijmegen (maybe re-used number?)
 # Veolia incheckpaaltjes
 7	1259767	11659	# Nijmegen CS (Veolia)
 7	1259765	11659

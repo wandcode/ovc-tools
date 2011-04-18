@@ -1,5 +1,6 @@
 # Arriva, treinstations
 # It seems they use the same numbers as the NS.
+# TODO: de Friese stations
 company	ovcid	name
 8	  67	Appingedam?
 8	  89	Baflo?
