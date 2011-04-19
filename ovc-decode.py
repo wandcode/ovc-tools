@@ -181,7 +181,7 @@ class ovc4k(object):
 	print "Credit: (current and previous)"
 	print self.saldo_curr_prefix, str(self.saldo_curr)
 	print self.saldo_prev_prefix, str(self.saldo_prev)
-	if not self.saldo_prev.get('id') <= self.saldo_curr.get('id'):
+	if not self.saldo_prev.id <= self.saldo_curr.id:
 	    print "Order bit 250 in 0xFB0/FD0 contradicted by id order"
 	print
 	print "Main index (current and previous):"
@@ -192,9 +192,13 @@ class ovc4k(object):
 	print self.F50_curr_prefix, str(self.F50_curr)
 	print self.F50_prev_prefix, str(self.F50_prev)
 	print
-	print "Most recent subscription (current and previous):  KLOPT NIET"
+	print "Most recent subscription (current and previous):"
 	print self.F10_curr_prefix, str(self.F10_curr)
 	print self.F10_prev_prefix, str(self.F10_prev)
+	if not self.F10_prev.size <= self.F10_curr.size:
+	    # Maybe this will also occur if nearly all slots are taken
+	    # and they are being re-used
+	    print "Order bit 248 in 0xFB0/FD0 contradicted by subscription order (list getting full?)"
 
     def find_subscr_id(self, slotnr):
 	# Find the subscription ID corresponding to the subscription slot number

@@ -23,11 +23,12 @@ from ovctypes import *
 class OvcNewRecord(object):
     '''Interpret binary records. Needs to be subclassed.'''
 
-    def __init__(self, data, ovc):
+    def __init__(self, data, ovc, offset=0, **kwargs):
         self.data = data
 	self.ovc = ovc
         self.field = {}
         self.desc = {}
+	self.offset = offset
 
     def get(self, name):
         return self.field[name]
@@ -45,8 +46,8 @@ class OvcFixedRecord(OvcNewRecord):
     _fields = []
     _order = None
 
-    def __init__(self, data, ovc):
-        OvcNewRecord.__init__(self, data, ovc)
+    def __init__(self, data, ovc, offset=0, **kwargs):
+        OvcNewRecord.__init__(self, data, ovc, offset=offset)
         self.parse()
 
     def parse(self):
@@ -56,7 +57,7 @@ class OvcFixedRecord(OvcNewRecord):
         for field in fields:
             name, start, width, fieldtype = field
 	    if fieldtype != None:
-		bits = self.getbits(start, width)
+		bits = self.getbits(self.offset + start, width)
 		#print name, start, width, fieldtype
 		self.field[name] = fieldtype(bits, obj=self,width=width)
 		self.desc[name] = field
@@ -247,26 +248,54 @@ class OvcIndexF70(OvcFixedRecord):
         res += OvcFixedRecord.__str__(self)
         return res
 
+class OvcIndexF10sub(OvcFixedRecord):
+    _fields = [
+            #name,           start,  width,     type
+            ('type1',           0,       8,     FixedWidthHex),
+            ('type2',           8,       6,     FixedWidthHex),
+            ('used',            14,      1,     FixedWidthHex),
+            ('rest',            15,      2,     FixedWidthHex),
+            ('subscr',          17,      4,     OvcSubscriptionId),
+        ]
+    # type1 and type2 vary by subscription type.
+
+    def __init__(self, data, ovc, offset, **kwargs):
+        OvcFixedRecord.__init__(self, data, ovc, offset=offset)
+
+    def __str__(self):
+        res = "[subscr]"
+        res += OvcFixedRecord.__str__(self)
+	if self.type1 != 0:
+	    res += ", active"
+	    if self.used == 0:
+		res += " unused"
+	    else:
+		res += " and used"
+	else:
+	    res += ", deactivated"
+        return res
+
 class OvcIndexF10(OvcFixedRecord):
     _fields = [
             #name,           start,  width,     type
-            ('subscr',           0,      4,     OvcSubscriptionLogIndex),
-            ('bitmask',          4,     17,     FixedWidthHex),
-            ('unk1',            21,32*8-21,     FixedWidthHex),
+            ('size',             0,      4,     FixedWidthDec),
         ]
-    # bitmask: http://www.ov-chipkaart.org/forum/viewtopic.php?f=10&t=121&sid=9cb9ec29723eca11520748ac6140daa9&start=20#p2402
-    # De 0xF10 en 0xF30 velden is het volgt opgebouwd.
-    # 4 bit - soort teller/pointer
-    # 17 bit - Een soort bitmasker voor de subscriptions
-    # --00000011001101001 voor 1ste klasse NS
-    # --00000011001110001 voor 2de klasse NS
 
     def __init__(self, data, ovc):
         OvcFixedRecord.__init__(self, data, ovc)
 
+	offset = 4
+	self.subs = []
+	for i in xrange(0, self.size):
+	    onesub = OvcIndexF10sub(data, ovc=ovc, offset=offset)
+	    self.subs.append(onesub)
+	    offset += 21
+
     def __str__(self):
         res = "[index_F10_] "
         res += OvcFixedRecord.__str__(self)
+	for onesub in self.subs:
+	    res += "; " + str(onesub)
         return res
 
 class OvcSaldo(OvcFixedRecord):
