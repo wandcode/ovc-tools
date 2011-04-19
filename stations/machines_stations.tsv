@@ -139,8 +139,10 @@ company	machineid	ovcid
 4	460522	270	# Haarlem Spaarnwoude
 4	460586	862	# - 's-hertogenbosch
 4	460722	73	# Assen
+4	460733	880	# Groningen
 4	460734	880	# Groningen
 4	460737	880	# Groningen
+4	460740	880	# Groningen
 4	460740	880	# Groningen
 4	460768	878
 4	460790	892	# Nijmegen
@@ -167,6 +169,7 @@ company	machineid	ovcid
 4	460995	90	# Barendrecht
 4	461025	642	# Vlaardingen West
 4	461037	208	# Emmen
+4	461037	208	# Emmen
 4	461101	621	# Utrecht Centraal
 4	461111	621	# Utrecht Centraal
 4	461112	621	# Utrecht Centraal
@@ -181,6 +184,8 @@ company	machineid	ovcid
 7	1259795	11665
 # Arriva incheckpaaltjes
 8	1247772	547	# Sauwerd
+8	1247806 551	# Scheemda
+8	1247812 551	# Scheemda
 8	1247820	263	# Groningen
 8	1247849	171	# Delfzijl
 8	1247874	264	# Groningen Noord?
@@ -189,6 +194,8 @@ company	machineid	ovcid
 8	1254343	547	# Sauwerd
 8	1254346	264	# Groningen Noord?
 8	1254526	263	# Groningen
+8	1254528 263	# Groningen
+8	1254529 263	# Groningen
 # Arriva oplaadpunten
 8	262516	263	# Groningen
 8	262547	547	# Sauwerd
