@@ -20,7 +20,6 @@ import sys
 
 from ovc import *
 from ovc.ovctypes import *
-#from ovc.newrecord import *
 from ovc.util import mfclassic_getsector, getbits, mfclassic_getoffset
 import ovc.config
 
@@ -43,7 +42,7 @@ class ovc4k(object):
 	self.FB0_next_prefix = None
 
 	self.F50_curr = None
-	self.F70_prev = None
+	self.F50_prev = None
 
 	self.F10_curr = None
 	self.F10_curr_prefix = None

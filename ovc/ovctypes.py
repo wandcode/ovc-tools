@@ -380,6 +380,35 @@ class CheckInOutTransactionAddr(int):
 	def __str__(self):
 		return ('#%x=0x%x'%(self,self._addr)).zfill(self._fieldwidth)
 
+# Look up through the index of check in/out transactions in
+# FB0/FD0.
+# XXX For now we must abuse the knowledge that we're always in a
+# XXX OvcIndexF50sub inside an OvcIndexF50 in ovc.
+# XXX This way we know which index to do the array lookup in.
+class CheckInOutTransactionAddrIndex(int):
+	def __new__(cls, x, ovc, obj, width=0, **kwargs):
+		i = int.__new__(cls, x)
+		i._fieldwidth = width
+		i._ovc = ovc
+		i._base_obj = obj.base_obj
+		i._derefd = None
+		return i
+	def __str__(self):
+		if self._derefd == None:
+		    # Check if we're in F50_curr or F50_prev... ugly! XXX
+		    if self._base_obj == self._ovc.F50_curr:
+			checks = self._ovc.FB0_curr.checks
+		    elif self._base_obj == self._ovc.F50_prev:
+			checks = self._ovc.FB0_prev.checks
+		    else:
+			checks = []
+			print "F50 not curr or prev?", str(self._base_obj)
+		    if self >= 0 and self < len(checks):
+			self._derefd = checks[self-1]
+		    else:
+			self._derefd = "?"
+		return ('%x->'%self) + str(self._derefd)
+
 class OvcMostRecentCreditIndex(int):
 	# For some reasons, the entries in this 3-long list are numbered 1, 6 and 8.
 	map = [ 1, 6, 8 ]

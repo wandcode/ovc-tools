@@ -1,5 +1,5 @@
 #
-# OV-chipkaart decoder: main module
+# OV-chipkaart decoder: record interpretation
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,16 +13,29 @@
 # By using, editing and/or distributing this software you agree to
 # the terms and conditions of this license.
 #
-# (c)2010 by Willem van Engen <dev-rfid@willem.engen.nl>
-# (c)2011 by ocsr@unl
+# (c)2011 by ....
 #
 
-import stations
-import config
+import re
+from util import getbits
 from ovctypes import *
-from ovcrecord import *
-from OvcNewRecord import *
-from OvcFixedRecord import *
-from OvcVariableRecord import *
-from ovcnewrecords import *
 
+class OvcNewRecord(object):
+    '''Interpret binary records. Needs to be subclassed.'''
+
+    def __init__(self, data, ovc, offset=0, **kwargs):
+        self.data = data
+	self.ovc = ovc
+        self.field = {}
+        self.desc = {}
+	self.offset = offset
+
+    def get(self, name):
+        return self.field[name]
+
+    def getdata(self):
+        return self.data
+
+    def getbits(self, start, length):
+        # return number at bit positions of data (0 is beginning)
+        return getbits(self.data, start, start+length)
