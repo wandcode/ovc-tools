@@ -93,6 +93,10 @@ class OvcIndexF50sub(OvcVariableSubRecord):
     def __init__(self, value, obj, **kwargs):
         OvcVariableSubRecord.__init__(self, value, obj=obj, **kwargs)
 
+    def setIndexes(self, typeFB0):
+	if 'index' in self.__dict__:
+	    self.index.setIndexes(typeFB0)
+
     def __str__(self):
         res = ""
         res += OvcVariableSubRecord.__str__(self)
@@ -125,6 +129,10 @@ class OvcIndexF50(OvcFixedRecord):
 	    width = onesub.parse(offset)
 	    self.subs.append(onesub)
 	    offset += width
+
+    def setIndexes(self, typeFB0):
+	for sub in self.subs:
+	    sub.setIndexes(typeFB0)
 
     def __str__(self):
         res = "[index_F50_] "
@@ -206,6 +214,10 @@ class OvcIndexF10(OvcFixedRecord):
 	    onesub = OvcIndexF10sub(self.data, ovc=self.ovc, offset=offset)
 	    self.subs.append(onesub)
 	    offset += 21
+
+    def setIndexes(self, typeFB0):
+	for sub in self.subs:
+	    sub.setIndexes(typeFB0)
 
     def __str__(self):
         res = "[index_F10_] "

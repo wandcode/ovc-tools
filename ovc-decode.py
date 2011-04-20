@@ -108,6 +108,9 @@ class ovc4k(object):
 	self.F50_curr_prefix = "%3x:" % (0xf00 + loc_curr)
 	self.F50_prev_prefix = "%3x:" % (0xf00 + loc_prev)
 
+	self.F50_curr.setIndexes(self.FB0_curr)
+	self.F50_prev.setIndexes(self.FB0_prev)
+
     def printit(self):
 	data = self.data
 
