@@ -7,11 +7,21 @@
 # Arriva kaartautomaten: 262xxx
 #
 company	machineid	ovcid
-1	1966086	55
+# TLS
+# This entry with zeros is no doubt sloppy software in the
+# transaction writer...
+0	0	892
+0	1966086	55
+# Connexxion
 1	327846	90
 1	327890	90
-#
+1	1966086	55
+# GVB
 2	262370	1223
+2	262385	1219
+2	1320476	1238
+2	1320968	1206
+2	1321273	1206
 # NS incheckpalen
 4	66670	332	# Hoofddorp
 4	68561	390	# Leiden Centraal
@@ -122,6 +132,7 @@ company	machineid	ovcid
 4	460115	529	# Rotterdam Blaak
 4	460118	529	# Rotterdam Blaak
 4	460141	614
+#4	460161		this one is inconsistent in the dumps
 4	460189	875	#- amsterdam centraal, or 876?
 4	460192	875	# Amsterdam Centraal, or 876?
 4	460199	778	# Delft
@@ -172,6 +183,9 @@ company	machineid	ovcid
 4	461111	621	# Utrecht Centraal
 4	461112	621	# Utrecht Centraal
 4	480848	282	# Den Haag Centraal
+4	1246431	475
+4	1253570	71
+4	1253954	470
 # RET incheckpaaltjes
 5	1310971	3189	# Rotterdam	Station Blaak
 # Veolia klantenservice-machines
