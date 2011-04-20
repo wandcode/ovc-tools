@@ -17,6 +17,7 @@
 # (c)2010 by Willem van Engen <dev-rfid@willem.engen.nl>
 #
 import sys
+import getopt
 
 from ovc import *
 from ovc.ovctypes import *
@@ -217,7 +218,17 @@ if __name__ == '__main__':
 		sys.stderr.write('Usage: %s <ovc_dump> [<ovc_dump_2> [...]]\n'%sys.argv[0])
 		sys.exit(1)
 
-	for fn in sys.argv[1:]:
+	args = sys.argv[1:]
+	optlist, args = getopt.getopt(args, '?', ['stations', 'vehicles'])
+
+	for o, v in optlist:
+	    if o == "--stations":
+		config.print_new_station = True
+	    elif o == "--vehicles":
+		config.print_new_vehicle = True
+		print "print_new_vehicles"
+
+	for fn in args:
 		inp = open(fn, 'rb')
 		data = inp.read()
 		inp.close()

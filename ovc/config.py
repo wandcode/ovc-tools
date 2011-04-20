@@ -10,6 +10,6 @@
 # By using, editing and/or distributing this software you agree to
 # the terms and conditions of this license.
 
-print_new_data = True
-print_new_data = False
+print_new_station = False
+print_new_vehicle = False
 verbose = True

@@ -74,7 +74,12 @@ def get_station(company, number):
 	cur = con.cursor()
 	cur.execute('SELECT * FROM stations WHERE company=? AND ovcid=?', (company, number))
 	row = cur.fetchone()
-	if not row: return None
+	# If company is TLS (unknown, set badly) try NS instead
+	if not row and company == 0:
+	    company = 4
+	    cur.execute('SELECT * FROM stations WHERE company=? AND ovcid=?', (company, number))
+	    row = cur.fetchone()
+	if not row:return None
 	return OvcStation(dict(zip([x[0] for x in cur.description], row)))
 
 def get_machine(company, number):

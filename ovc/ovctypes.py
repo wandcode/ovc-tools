@@ -206,6 +206,8 @@ class OvcStation(int):
 		return s + ' '*(_ostwidth-len(s))
 
 _omwidth = 0
+_hdr = None
+
 class OvcMachineId(long):
 	def __new__(cls, x, obj, width=0, **kwargs):
 		i = long.__new__(cls, x)
@@ -222,13 +224,21 @@ class OvcMachineId(long):
 		s = stations.get_machine(self._obj.company, self)
 		if not s or not s.title:
 			s = ''
-			if config.print_new_data:
-			    if 'station' in self._obj.__dict__:
-				sys.stderr.write("# company\tmachineid\tovcid\n")
+			if config.print_new_station:
+			    if 'station' in self._obj.__dict__ and \
+				    not 'vehicle' in self._obj.__dict__:
+				global _hdr
+				if _hdr != "s":
+				    sys.stderr.write("# company\tmachineid\tovcid\n")
+				    _hdr = "s"
 				sys.stderr.write("%d\t%d\t%d\n" % (self._obj.company, int(self), self._obj.station))
+			if config.print_new_vehicle:
 			    if 'vehicle' in self._obj.__dict__:
-				sys.stderr.write("# company\tmachineid\tvehicleid\n")
-				sys.stderr.write("%d\t%d\t%d" % (self._obj.company, int(self), self._obj.vehicle))
+				global _hdr
+				if _hdr != "v":
+				    sys.stderr.write("# company\tmachineid\tvehicleid\n")
+				    _hdr = "v"
+				sys.stderr.write("%d\t%d\t%d\n" % (self._obj.company, int(self), self._obj.vehicle))
 		else:
 			s = "(" + s.title + ")"
 		s = s + ' '*(_omwidth-len(s))
