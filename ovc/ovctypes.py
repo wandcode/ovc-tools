@@ -128,7 +128,7 @@ class OvcCompany(int):
 	_strs = {
 		 0: 'TLS',         1: 'Connexxion',  2: 'GVB',        3: 'HTM',
 		 4: 'NS',          5: 'RET',                          7: 'Veolia',
-		 8: 'Arriva',      9: 'Syntus',
+		 8: 'Arriva',      9: 'Syntus',     10: 'QBuzz'
 		12: 'DUO',
 		25: 'AH/Primera',
 	     15001: 'AH/PrimerA',	# include extra bits on the left of the field
