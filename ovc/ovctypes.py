@@ -87,11 +87,17 @@ class OvcDatetime(datetime.datetime):
 class OvcBcdDate(datetime.date):
 	'''date with ovc-BCD constructor'''
 	def __new__(cls, x, **kwargs):
-		day   = bcd2int((x>> 0)&0xff)
-		month = bcd2int((x>> 8)&0xff)
-		year  = bcd2int((x>>16)&0xffff)
-		if not year: return None
-		return datetime.date.__new__(cls, year, month, day)
+		day   = (x>> 0)&0xff
+		month = (x>> 8)&0xff
+		year  = (x>>16)&0xffff
+		try:
+		    dday   = bcd2int(day)
+		    dmonth = bcd2int(month)
+		    dyear  = bcd2int(year)
+		    if not year: return None
+		    return datetime.date.__new__(cls, dyear, dmonth, dday)
+		except:
+		    return "%04x-%02x-%02x" % (year, month, day)
 
 class OvcCardType(int):
 	_strs = { 0: 'anonymous', 2: 'personal'}

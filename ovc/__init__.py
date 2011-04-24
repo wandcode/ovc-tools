@@ -24,5 +24,6 @@ from ovcrecord import *
 from OvcNewRecord import *
 from OvcFixedRecord import *
 from OvcVariableRecord import *
+from OvcSector22 import *
 from ovcnewrecords import *
 

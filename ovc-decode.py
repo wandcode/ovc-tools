@@ -121,10 +121,18 @@ class ovc4k(object):
 	cardtype = OvcCardType(getbits(data[0x10:0x36], 18*8+4, 19*8))
 	validuntil = OvcDate(getbits(data[0x10:0x36], 11*8+6, 13*8+4))
 	s = 'OV-Chipkaart id %d, %s, valid until %s'%(cardid, cardtype, validuntil)
-	if cardtype==2:
-		birthdate = OvcBcdDate(getbits(mfclassic_getsector(data, 22), 14*8, 18*8))
-		s += ', birthdate %s'%birthdate
+	#if cardtype==2:
+	#	birthdate = OvcBcdDate(getbits(mfclassic_getsector(data, 22), 14*8, 18*8))
+	#	s += ', birthdate %s'%birthdate
 	print s
+
+	for sector in range(22, 24):
+		sdata = mfclassic_getsector(data, sector)[:-0x10]
+		offset,size = mfclassic_getoffset(sector)
+		sector22 = OvcSector22(sdata, ovc=self, cardtype=cardtype)
+		print ("%3x:" % offset), sector22
+
+	print ""
 
 	# subscriptions
 	# Print the slot number value for this subscription before it and the idsubs after it.
