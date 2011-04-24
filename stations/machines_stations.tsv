@@ -25,6 +25,7 @@ company	machineid	ovcid
 # NS incheckpalen
 4	66670	332	# Hoofddorp
 4	68561	390	# Leiden Centraal
+4	1245243	210	# Enkhuizen
 4	1245256	179
 4	1245257	179
 4	1245327	303	# Den Helder Zuid
@@ -35,13 +36,14 @@ company	machineid	ovcid
 4	1245365	96	# Beek-Elsloo
 4	1245366	96	# Beek-Elsloo
 4	1245367	615	# Uitgeest
+4	1245373	309	# Heiloo
 4	1245374 151	# Castricum
-4	1245374	151	# Castricum
 4	1245408	613
 4	1245427	212	# - enschede
 4	1245430	221	# - enschede drienerlo
 4	1245460	614
 4	1246374	50	# Alkmaar
+4	1246394	230	# Bovenkarspel Flora
 4	1246401	311	# Den Helder
 4	1246412	306	# Heerhugowaard
 4	1246440	523	# Roermond
@@ -67,6 +69,8 @@ company	machineid	ovcid
 4	1253589	316	# Hengelo
 4	1253590	316	# Hengelo
 4	1253605	621	# Utrecht Centraal
+4	1253648	235	# Amsterdam Science Park
+4	1253731	50	# Alkmaar
 4	1253759	380	# Den Haag Laan van NOI
 4	1253786	337	# Hoorn
 4	1253796	507	# Rotterdam Alexander
@@ -75,6 +79,7 @@ company	machineid	ovcid
 4	1253819	564	# Sittard
 4	1253829	59	# Amsterdam Sloterdijk
 4	1253856	731	# Zaandam
+4	1253932	127	# Bovenkarspel-Grootebroek
 4	1253940	470
 4	1253945	470	# Nijmegen
 4	1253947	212	# - enschede
@@ -104,6 +109,7 @@ company	machineid	ovcid
 4	1258005	221	# Enschede Drienerlo
 4	1258021	475
 4	1258038	529	# Rotterdam Blaak
+4	1258144	309	# Heiloo
 4	1258174	336	# Hoorn Kersenboogerd
 4	1258175	336	# Hoorn Kersenboogerd
 4	1258176	336	# Hoorn Kersenboogerd
@@ -124,6 +130,7 @@ company	machineid	ovcid
 4	1966089	55
 #
 # NS Check in/uit poortjes:
+4	66780	58	# Amsterdam Centraal
 4	68479	849	# Vlaardingen Oost
 4	68480	849	# Vlaardingen Oost
 # NS Kaartautomaten:
