@@ -58,13 +58,13 @@ class AutoCharge(OvcFixedRecord):
 
     def __str__(self):
 	s = ""
-	if self.activated == 4:
-	    s += "no autocharge, "
-	elif self.activated == 5:
-	    s += "autocharge, "
+	if self.activated == 4:		# %100
+	    s += "no autocharge"
+	elif self.activated == 5:	# %101
+	    s += "autocharge"
 	else:
-	    s += "autocharge #%x, " % self.activated
-	s += "limit:" + str(self.limit)
+	    s += "autocharge #%x" % self.activated
+	s += ", limit:" + str(self.limit)
 	s += ", charge:" + str(self.charge)
-	s += "(%x)" % (self.unk1)
+	s += " (%x)" % (self.unk1)
 	return s
