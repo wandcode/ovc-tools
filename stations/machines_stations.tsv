@@ -46,10 +46,14 @@ company	machineid	ovcid
 4	1246394	230	# Bovenkarspel Flora
 4	1246401	311	# Den Helder
 4	1246412	306	# Heerhugowaard
+4	1246415	313	# Helmond
+4	1246416	313	# Helmond
+4	1246417	313	# Helmond
 4	1246440	523	# Roermond
 4	1246487	65	# Anna Paulowna
 4	1246488	65	# Anna Paulowna
 4	1246538	424	# Maastricht
+4	1246551	206	# Eindhoven
 4	1249020	505	# Rijswijk
 4	1249023	505	# Rijswijk
 4	1249034	280	# Den Haag HS
@@ -88,6 +92,7 @@ company	machineid	ovcid
 4	1253962	212	# - enschede
 4	1253965	65	# Anna Paulowna
 4	1253994	206	# Eindhoven
+4	1254031	206	# Eindhoven
 4	1254036	311	# Den Helder
 4	1256183	549	# Schagen
 4	1256184	549	# Schagen
@@ -202,7 +207,9 @@ company	machineid	ovcid
 7	1259765	11659
 7	1259795	11665
 # Arriva incheckpaaltjes
+8	1247087	238	# Groningen Europapark
 8	1247772	547	# Sauwerd
+8	1247773 369	# Kropswolde
 8	1247806 551	# Scheemda
 8	1247812 551	# Scheemda
 8	1247820	263	# Groningen
@@ -220,6 +227,7 @@ company	machineid	ovcid
 8	262547	547	# Sauwerd
 8	262554	525	# Roodeschool
 8	262560	171	# Delfzijl
+8	262561	369	# Kropswolde
 8	262565	742	# Zuidbroek?
 8	327882	263	# Groningen Arriva Store
 # Oplaadpunten
