@@ -37,11 +37,12 @@ company	machineid	ovcid
 4	1245366	96	# Beek-Elsloo
 4	1245367	615	# Uitgeest
 4	1245373	309	# Heiloo
-4	1245374 151	# Castricum
+4	1245374	151	# Castricum
 4	1245408	613
 4	1245427	212	# - enschede
 4	1245430	221	# - enschede drienerlo
 4	1245460	614
+4	1245479	379	# Den Haag Ypenburg
 4	1246374	50	# Alkmaar
 4	1246394	230	# Bovenkarspel Flora
 4	1246401	311	# Den Helder
@@ -83,6 +84,7 @@ company	machineid	ovcid
 4	1253819	564	# Sittard
 4	1253829	59	# Amsterdam Sloterdijk
 4	1253856	731	# Zaandam
+4	1253865	379	# Den Haag Ypenburg
 4	1253932	127	# Bovenkarspel-Grootebroek
 4	1253940	470
 4	1253945	470	# Nijmegen
@@ -184,6 +186,7 @@ company	machineid	ovcid
 4	460863	280	# Den Haag HS
 4	460865	882
 4	460881	279	# Den Haag Moerwijk
+4	460882	379	# Den Haag Ypenburg
 4	460897	888	# Leiden (Centraal)
 4	460957	763	# - enschede
 4	460958	763	# - enschede
