@@ -284,6 +284,10 @@ class OvcVariableTransaction(OvcVariableRecord):
             ('idsubs',      0x2000000,   4,     OvcSubscriptionId),# corresponding subscription
 	    #   12 bits instead? or 13 even?
 	    # "De eerste 4 bits zijn van de locatie (misschien) en de rest is denk ik het soort subscription dat is gebruikt."
+	    # Ontdekking: In de history log: als de waarde 0x004 is, betreft
+	    # het de eerste keer dat dit abonnement gebruikt is.
+	    # In de checkin/uitlog hebben de bits schijnbaar een andere
+	    # betekenis.
             ('idsubs2',     0x2000000,   9,     FixedWidthHex),
         ]
     _order = [

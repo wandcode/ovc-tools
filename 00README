@@ -43,7 +43,11 @@ in/uitchecken
       Credit-transaktie-id wordt (wel?)/NIET bijgewerkt als het saldo
       wel is veranderd.
     - Bij eerste checkin met gebruikmaking van een bepaald abonnement:
-      doet iets met het "auxiliary" slot in 0x6c0...
+      doet iets met het "auxiliary" slot in 0x6c0...;
+      het abonnements-nummer S:xx in de chronologiese log wordt gevolgd
+      door 0x004 in de overige (13-4) bits;
+      in de f10/f30-log wordt het abonnement op "active and used" gezet.
+
 
 Abonnement ("product") toevoegen:
     - kiest plaats (HOE?) voor abonnement in slots 0x800...
