@@ -17,20 +17,26 @@ company	machineid	ovcid
 1	327890	90
 1	1966086	55
 # GVB
+# company mismatch: 1
+# 2	327890	90	# GVU klantenservice Centraal Station  
+2	66340	1204	# Weesperplein Laudde 
+2	66424	1231	# Station Zuid/WTC  
+2	66426	1231	# Station Zuid/WTC  
+2	66430	1231	# Station Zuid/WTC  
 2	262370	1223
 2	262385	1219
 2	1320476	1238
 2	1320968	1206
 2	1321273	1206
 # NS incheckpalen
-4	66670	332	# Hoofddorp
-4	68561	390	# Leiden Centraal
+4	1245190	57	# Amsterdam Amstel  
 4	1245243	210	# Enkhuizen
 4	1245256	179
 4	1245257	179
 4	1245327	303	# Den Helder Zuid
 4	1245332	614
 4	1245333	614
+4	1245338	59	# Amsterdam Sloterdijk  
 4	1245339	480	# Obdam
 4	1245340	480	# Obdam
 4	1245365	96	# Beek-Elsloo
@@ -41,8 +47,10 @@ company	machineid	ovcid
 4	1245408	613
 4	1245427	212	# - enschede
 4	1245430	221	# - enschede drienerlo
+4	1245435	691	# Wierden Zokker 
 4	1245460	614
 4	1245479	379	# Den Haag Ypenburg
+4	1245555	653	# Vlissingen Souburg  Paaltje richting Middelburg
 4	1246374	50	# Alkmaar
 4	1246394	230	# Bovenkarspel Flora
 4	1246401	311	# Den Helder
@@ -64,8 +72,10 @@ company	machineid	ovcid
 4	1249080	642	# Vlaardingen West
 4	1249081	642	# Vlaardingen West
 4	1249229	280	# Den Haag HS
+4	1253467	530	# Rotterdam Centraal Laudde 
 4	1253475	621	# Utrecht Centraal: 1253475 (spoor 1/2)
 4	1253497	561	# Schiphol
+4	1253522	282	# Den Haag Centraal Zokker 
 4	1253527	282	# Den Haag Centraal
 4	1253528	282	# Den Haag Centraal
 4	1253537	282	# Den Haag Centraal
@@ -74,6 +84,8 @@ company	machineid	ovcid
 4	1253589	316	# Hengelo
 4	1253590	316	# Hengelo
 4	1253605	621	# Utrecht Centraal
+4	1253607	621	# Utrecht Centraal  
+4	1253609	621	# Utrecht Centraal  
 4	1253648	235	# Amsterdam Science Park
 4	1253731	50	# Alkmaar
 4	1253759	380	# Den Haag Laan van NOI
@@ -82,6 +94,7 @@ company	machineid	ovcid
 4	1253798	52	# Alkmaar Noord
 4	1253800	52	# Alkmaar Noord
 4	1253819	564	# Sittard
+4	1253826	59	# Amsterdam Sloterdijk  
 4	1253829	59	# Amsterdam Sloterdijk
 4	1253856	731	# Zaandam
 4	1253865	379	# Den Haag Ypenburg
@@ -102,12 +115,17 @@ company	machineid	ovcid
 4	1256217	614
 4	1256218	614
 4	1256259	306	# Heerhugowaard
+4	1256299	55	# Amersfoort Zokker 
+4	1256306	55	# Amersfoort Zokker 
 4	1256307	55	# Amersfoort
+4	1256308	55	# Amersfoort Zokker 
 4	1256329	90	# Barendrecht
 4	1256356	170	# Delft
 4	1257804	170	# Delft
 4	1257805	170	# Delft
 4	1257876	530	# Rotterdam Centraal
+4	1257902	621	# Utrecht Centraal  
+4	1257903	621	# Utrecht Centraal  
 4	1257906	621	# Utrecht Centraal: 1257906 (spoor 1/2)
 4	1257936	752	# Zwijndrecht
 4	1257952	316	# Hengelo
@@ -116,6 +134,9 @@ company	machineid	ovcid
 4	1258005	221	# Enschede Drienerlo
 4	1258021	475
 4	1258038	529	# Rotterdam Blaak
+4	1258069	741	# Zoetermeer  
+4	1258070	741	# Zoetermeer  
+4	1258141	113	# Beverwijk  
 4	1258144	309	# Heiloo
 4	1258174	336	# Hoorn Kersenboogerd
 4	1258175	336	# Hoorn Kersenboogerd
@@ -124,6 +145,7 @@ company	machineid	ovcid
 4	1258182	302	# Heemstede-Aerdenhout
 4	1258223	280	# Den Haag HS
 4	1258227	280	# Den Haag HS
+4	1258229	280	# Den Haag HS Laudde 
 4	1258239	280	# Den Haag HS
 4	1258243	280	# Den Haag HS
 4	1258245	280	# Den Haag HS
@@ -137,20 +159,47 @@ company	machineid	ovcid
 4	1966089	55
 #
 # NS Check in/uit poortjes:
+4	66490	685	# Weesp  
+4	66492	685	# Weesp bsm 
+4	66623	82	# Almere Muziekwijk  incheck kant
+4	66624	82	# Almere Muziekwijk  
+4	66670	332	# Hoofddorp
 4	66780	58	# Amsterdam Centraal
-4	68479	849	# Vlaardingen Oost
-4	68480	849	# Vlaardingen Oost
+4	68479	649	# Vlaardingen Oost
+4	68480	649	# Vlaardingen Oost
+4	68512	553	# Schiedam Centrum  
+4	68561	390	# Leiden Centraal
 # NS Kaartautomaten:
+# ovcid mismatch: 862
+# 4	460586	319	# 's-Hertogenbosch  
+# ovcid mismatch: 763
+# 4	460957	212	# Enschede  
+# ovcid mismatch: 763
+# 4	460958	212	# Enschede  
+# ovcid mismatch: 880
+# 4	460734	263	# Groningen  
+# ovcid mismatch: 880
+# 4	460737	263	# Groningen  
+# ovcid mismatch: 880
+# 4	460740	263	# Groningen  
+# ovcid mismatch: 857
+# 4	460970	316	# Hengelo  
+# ovcid mismatch: 890
+# 4	460406	424	# Maastricht  
+# ovcid mismatch: 772
+# 4	460419	523	# Roermond  
 4	460088	893	# Rotterdam Centraal or 894?
 4	460108	542	# Rotterdam Lombardijen
 4	460115	529	# Rotterdam Blaak
 4	460118	529	# Rotterdam Blaak
 4	460141	614
-#4	460161		this one is inconsistent in the dumps
+4	460161	876	# Amsterdam Centraal Laudde 
+4	460182	876	# Amsterdam Centraal Laudde 
 4	460189	875	#- amsterdam centraal, or 876?
 4	460192	875	# Amsterdam Centraal, or 876?
 4	460199	778	# Delft
 4	460207	778	# Delft
+4	460274	600	# Tiel Passewaaij OVHero 
 4	460277	620	# Utrecht Overvecht
 4	460304	65	# Anna Paulowna
 4	460305	65	# Anna Paulowna
@@ -163,6 +212,8 @@ company	machineid	ovcid
 4	460465	179
 4	460522	270	# Haarlem Spaarnwoude
 4	460586	862	# - 's-hertogenbosch
+4	460706	871	# Tilburg Laudde 
+4	460718	653	# Vlissingen Souburg  
 4	460722	73	# Assen
 4	460733	880	# Groningen
 4	460734	880	# Groningen
@@ -179,6 +230,8 @@ company	machineid	ovcid
 4	460805	475	# Nijmegen Dukenburg
 4	460829	778	# Delft
 4	460830	778	# Delft
+4	460840	895	# Den Haag Centraal Laudde 
+4	460848	895	# Den Haag Centraal Laudde 
 4	460849	895	# Den Haag Centraal
 4	460856	895	# Den Haag Centraal
 4	460857	895	# Den Haag Centraal
@@ -195,6 +248,7 @@ company	machineid	ovcid
 4	461025	642	# Vlaardingen West
 4	461037	208	# Emmen
 4	461101	621	# Utrecht Centraal
+4	461102	621	# Utrecht Centraal Ton accepteert muntgeld
 4	461111	621	# Utrecht Centraal
 4	461112	621	# Utrecht Centraal
 4	480848	282	# Den Haag Centraal
@@ -203,6 +257,7 @@ company	machineid	ovcid
 4	1253954	470
 # RET incheckpaaltjes
 5	1310971	3189	# Rotterdam	Station Blaak
+5	66073	507	# Station Alexander Laudde 
 # Veolia klantenservice-machines
 7	327878	1	# Nijmegen (maybe re-used number?)
 # Veolia incheckpaaltjes
