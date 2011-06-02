@@ -230,17 +230,16 @@ class OvcMachineId(long):
 		s = stations.get_machine(self._obj.company, self)
 		if not s or not s.title:
 			s = ''
+			global _hdr
 			if config.print_new_station:
 			    if 'station' in self._obj.__dict__ and \
 				    not 'vehicle' in self._obj.__dict__:
-				global _hdr
 				if _hdr != "s":
 				    sys.stderr.write("# company\tmachineid\tovcid\n")
 				    _hdr = "s"
 				sys.stderr.write("%d\t%d\t%d\n" % (self._obj.company, int(self), self._obj.station))
 			if config.print_new_vehicle:
 			    if 'vehicle' in self._obj.__dict__:
-				global _hdr
 				if _hdr != "v":
 				    sys.stderr.write("# company\tmachineid\tvehicleid\n")
 				    _hdr = "v"
