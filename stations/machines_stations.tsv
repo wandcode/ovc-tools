@@ -13,14 +13,27 @@ company	machineid	ovcid
 0	0	892
 0	1966086	55
 # Connexxion
+1	263341	6634
 1	327846	90
 1	327890	90
+1	1255570	19543
+1	1255572	19543
+1	1255593	19543
+1	1255601	21523
+1	1255622	21499
+1	1255624	21499
+1	1255626	21499
+1	1255631	21502
+1	1255717	21488
+1	1255721	21488
+1	1255724	21488
 1	1966086	55
 # GVB
 # company mismatch: 1
 # 2	327890	90	# GVU klantenservice Centraal Station  
 2	66340	1204	# Weesperplein Laudde 
 2	66359	1201	# Centraal Station  
+2	66418	1228
 2	66424	1231	# Station Zuid/WTC  
 2	66426	1231	# Station Zuid/WTC  
 2	66430	1231	# Station Zuid/WTC  
@@ -34,6 +47,7 @@ company	machineid	ovcid
 2	1255717	21488	# Zuilenstein Ton 
 2	1255721	21488	# Zuilenstein Ton 
 2	1255724	21488	# Zuilenstein Ton 
+2	1311017	1236
 2	1311089	1206	# Amstelstation  
 2	1320476	1238
 2	1320968	1206
@@ -237,6 +251,8 @@ company	machineid	ovcid
 4	460229	764	# Gouda Ton 
 4	460274	600	# Tiel Passewaaij OVHero 
 4	460277	620	# Utrecht Overvecht
+4	460289	850
+4	460296	850
 4	460304	65	# Anna Paulowna
 4	460305	65	# Anna Paulowna
 4	460306	759	# Beverwijk
@@ -259,6 +275,7 @@ company	machineid	ovcid
 4	460733	880	# Groningen
 4	460734	263	# Groningen  # ovcid mismatch: 880
 4	460737	263	# Groningen  # ovcid mismatch: 880
+4	460739	880
 4	460740	263	# Groningen  # ovcid mismatch: 880
 4	460768	878
 4	460790	892	# Nijmegen
@@ -281,6 +298,7 @@ company	machineid	ovcid
 4	460865	882
 4	460881	279	# Den Haag Moerwijk
 4	460882	379	# Den Haag Ypenburg
+4	460887	888
 4	460897	888	# Leiden (Centraal)
 4	460957	212	# Enschede  # ovcid mismatch: 763
 4	460958	212	# Enschede  # ovcid mismatch: 763
@@ -291,12 +309,15 @@ company	machineid	ovcid
 4	461101	621	# Utrecht Centraal
 4	461102	621	# Utrecht Centraal Ton accepteert muntgeld
 4	461106	897	# Utrecht Centraal Ton 
+4	461107	897
 4	461111	621	# Utrecht Centraal
 4	461112	621	# Utrecht Centraal
 4	480848	282	# Den Haag Centraal
+# RET kaartautomaat
+5	262460	553
 # RET incheckpaaltjes
-5	1310971	3189	# Rotterdam	Station Blaak
 5	66073	507	# Station Alexander Laudde 
+5	1310971	3189	# Rotterdam	Station Blaak
 # Veolia klantenservice-machines
 7	327878	1	# Nijmegen (maybe re-used number?)
 # Veolia incheckpaaltjes
