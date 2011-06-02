@@ -244,7 +244,7 @@ company	machineid	ovcid
 4	460161	876	# Amsterdam Centraal Laudde 
 4	460182	876	# Amsterdam Centraal Laudde 
 4	460189	875	#- amsterdam centraal, or 876?
-4	460192	875	# Amsterdam Centraal, or 876?
+4	460192	876	# Amsterdam Centraal, 875 or 876?
 4	460199	778	# Delft
 4	460207	778	# Delft
 4	460228	764	# Gouda  
@@ -271,12 +271,12 @@ company	machineid	ovcid
 4	460624	313	# Helmond TomTestOV 
 4	460706	871	# Tilburg Laudde 
 4	460718	653	# Vlissingen Souburg  
-4	460722	73	# Assen
+4	460722	758	# Assen
 4	460733	880	# Groningen
-4	460734	263	# Groningen  # ovcid mismatch: 880
-4	460737	263	# Groningen  # ovcid mismatch: 880
+4	460734	880	# Groningen  # webdb claims 263, 880 seen on dumps
+4	460737	880	# Groningen  # webdb claims 263, 880 seen on dumps
 4	460739	880
-4	460740	263	# Groningen  # ovcid mismatch: 880
+4	460740	880	# Groningen  # webdb claims 263, 880 seen on dumps
 4	460768	878
 4	460790	892	# Nijmegen
 4	460792	892	# "
@@ -293,21 +293,21 @@ company	machineid	ovcid
 4	460849	895	# Den Haag Centraal
 4	460856	895	# Den Haag Centraal
 4	460857	895	# Den Haag Centraal
-4	460862	280	# Den Haag HS
-4	460863	280	# Den Haag HS
-4	460865	882
+4	460862	882	# Den Haag HS
+4	460863	882	# Den Haag HS # webdb claims 280, 882 seen on dumps
+4	460865	882	# Den Haag HS
 4	460881	279	# Den Haag Moerwijk
 4	460882	379	# Den Haag Ypenburg
 4	460887	888
 4	460897	888	# Leiden (Centraal)
 4	460957	212	# Enschede  # ovcid mismatch: 763
 4	460958	212	# Enschede  # ovcid mismatch: 763
-4	460970	316	# Hengelo  # ovcid mismatch: 857
+4	460970	857	# Hengelo  # webdb claims 316, 857 seen on dumps
 4	460995	90	# Barendrecht
 4	461025	642	# Vlaardingen West
 4	461037	208	# Emmen
-4	461101	621	# Utrecht Centraal
-4	461102	621	# Utrecht Centraal Ton accepteert muntgeld
+4	461101	897	# Utrecht Centraal, webdb claims 621, 897 seen on dumps
+4	461102	897	# Utrecht Centraal Ton accepteert muntgeld, webdb claims 621, 897 seen on dumps
 4	461106	897	# Utrecht Centraal Ton 
 4	461107	897
 4	461111	621	# Utrecht Centraal
@@ -317,7 +317,7 @@ company	machineid	ovcid
 5	262460	553
 # RET incheckpaaltjes
 5	66073	507	# Station Alexander Laudde 
-5	1310971	3189	# Rotterdam	Station Blaak
+5	1310971	529	# Rotterdam	Station Blaak (metro)
 # Veolia klantenservice-machines
 7	327878	1	# Nijmegen (maybe re-used number?)
 # Veolia incheckpaaltjes
