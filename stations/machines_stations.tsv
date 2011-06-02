@@ -201,24 +201,6 @@ company	machineid	ovcid
 4	68531	58	# Amsterdam Centraal  
 4	68561	390	# Leiden Centraal
 # NS Kaartautomaten:
-# ovcid mismatch: 862
-# 4	460586	319	# 's-Hertogenbosch  
-# ovcid mismatch: 763
-# 4	460957	212	# Enschede  
-# ovcid mismatch: 763
-# 4	460958	212	# Enschede  
-# ovcid mismatch: 880
-# 4	460734	263	# Groningen  
-# ovcid mismatch: 880
-# 4	460737	263	# Groningen  
-# ovcid mismatch: 880
-# 4	460740	263	# Groningen  
-# ovcid mismatch: 857
-# 4	460970	316	# Hengelo  
-# ovcid mismatch: 890
-# 4	460406	424	# Maastricht  
-# ovcid mismatch: 772
-# 4	460419	523	# Roermond  
 4	460088	893	# Rotterdam Centraal or 894?
 4	460108	542	# Rotterdam Lombardijen
 4	460115	529	# Rotterdam Blaak
@@ -239,8 +221,8 @@ company	machineid	ovcid
 4	460329	306	# Heerhugowaard
 4	460389	96	# Beek-Elsloo
 4	460390	96	# Beek-Elsloo
-4	460406	890	# Maastricht
-4	460419	772	# Roermond
+4	460406	424	# Maastricht  # ovcid mismatch: 890
+4	460419	523	# Roermond  # ovcid mismatch: 772
 4	460465	179
 4	460522	270	# Haarlem Spaarnwoude
 4	460586	862	# - 's-hertogenbosch
@@ -253,9 +235,9 @@ company	machineid	ovcid
 4	460718	653	# Vlissingen Souburg  
 4	460722	73	# Assen
 4	460733	880	# Groningen
-4	460734	880	# Groningen
-4	460737	880	# Groningen
-4	460740	880	# Groningen
+4	460734	263	# Groningen  # ovcid mismatch: 880
+4	460737	263	# Groningen  # ovcid mismatch: 880
+4	460740	263	# Groningen  # ovcid mismatch: 880
 4	460768	878
 4	460790	892	# Nijmegen
 4	460792	892	# "
@@ -278,9 +260,9 @@ company	machineid	ovcid
 4	460881	279	# Den Haag Moerwijk
 4	460882	379	# Den Haag Ypenburg
 4	460897	888	# Leiden (Centraal)
-4	460957	763	# - enschede
-4	460958	763	# - enschede
-4	460970	857	# Hengelo
+4	460957	212	# Enschede  # ovcid mismatch: 763
+4	460958	212	# Enschede  # ovcid mismatch: 763
+4	460970	316	# Hengelo  # ovcid mismatch: 857
 4	460995	90	# Barendrecht
 4	461025	642	# Vlaardingen West
 4	461037	208	# Emmen
