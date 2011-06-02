@@ -13,7 +13,7 @@
 # By using, editing and/or distributing this software you agree to
 # the terms and conditions of this license.
 #
-# (c)2011 by ....
+# (c)2011 by <ocsr@unl>
 #
 
 import re

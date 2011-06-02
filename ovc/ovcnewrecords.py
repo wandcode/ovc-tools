@@ -72,7 +72,7 @@ class OvcIndexFB0(OvcFixedRecord):
 	self.subscr_id_to_slot_nr = self.mkarray(FixedWidthDec, 'subscr_ptrs', 4)
 
     def __str__(self):
-        res = "[index_FB0_] "
+        res = "" # "[index_FB0_] "
         res += OvcFixedRecord.__str__(self)
         #res += "\n     History (most recent first): " + str(map(str, self.history))
 	res += "\n     next in logs               :           %x                                        %x                  %x" % (self.next_checkmyst, self.next_history, self.next_check)
@@ -135,7 +135,7 @@ class OvcIndexF50(OvcFixedRecord):
 	    sub.setIndexes(typeFB0)
 
     def __str__(self):
-        res = "[index_F50_] "
+        res = "" # "[index_F50_] "
         res += OvcFixedRecord.__str__(self)
 	res += "["
 	res += ",".join(map(str, self.subs))
@@ -167,7 +167,7 @@ class OvcIndexF70(OvcFixedRecord):
         OvcFixedRecord.__init__(self, data, ovc)
 
     def __str__(self):
-        res = "[index_F70_] "
+        res = "" # "[index_F70_] "
         res += OvcFixedRecord.__str__(self)
         return res
 
@@ -220,7 +220,7 @@ class OvcIndexF10(OvcFixedRecord):
 	    sub.setIndexes(typeFB0)
 
     def __str__(self):
-        res = "[index_F10_] "
+        res = "" # "[index_F10_] "
         res += OvcFixedRecord.__str__(self)
 	res += "["
 	res += ",".join(map(str, self.subs))
@@ -243,7 +243,7 @@ class OvcSaldo(OvcFixedRecord):
         OvcFixedRecord.__init__(self, data, ovc)
 
     def __str__(self):
-        res = "[saldo_____] "
+        res = ""
         res += OvcFixedRecord.__str__(self)
         return res
 
@@ -257,7 +257,7 @@ class OvcSubscriptionAux(OvcFixedRecord):
         OvcFixedRecord.__init__(self, data, ovc)
 
     def __str__(self):
-        res = "[subscr_aux] "
+        res = ""
         res += OvcFixedRecord.__str__(self)
         return res
 
@@ -313,7 +313,7 @@ class OvcVariableTransaction(OvcVariableRecord):
         self.parse()
 
     def __str__(self):
-        res = '[%02x_%02x_%02x_%x] '%(ord(self.data[0]),ord(self.data[1]),ord(self.data[2]),ord(self.data[3])>>4)
+        res = "" # '[%02x_%02x_%02x_%x] '%(ord(self.data[0]),ord(self.data[1]),ord(self.data[2]),ord(self.data[3])>>4)
         res += OvcVariableRecord.__str__(self)
         return res
 
@@ -391,7 +391,7 @@ class OvcVariableSubscription(OvcVariableRecord):
         self.parse()
 
     def __str__(self):
-        res = '[%02x_%02x_%02x_%x] '%(ord(self.data[0]),ord(self.data[1]),ord(self.data[2]),ord(self.data[3])>>4)
+        res = "" # '[%02x_%02x_%02x_%x] '%(ord(self.data[0]),ord(self.data[1]),ord(self.data[2]),ord(self.data[3])>>4)
         res += OvcVariableRecord.__str__(self)
         return res
 

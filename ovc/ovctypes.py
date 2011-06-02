@@ -309,12 +309,13 @@ class OvcAmountSigned(float):
 		return 'EUR%6.2f'%self
 
 class OvcVehicleId(long):
+	_fieldwidth = 4
 	def __new__(cls, x, width=0, **kwargs):
 		i = long.__new__(cls, x)
-		i._fieldwidth = ( 3 * width + 9) / 10
+		#i._fieldwidth = ( 3 * width + 9) / 10
 		return i
 	def __str__(self):
-		return "V:"+('%d'%long(self)).zfill(self._fieldwidth)
+		return "V:"+('%d'%long(self)).zfill(OvcVehicleId._fieldwidth)
 
 class FixedWidthDec(long):
 	def __new__(cls, x, width=0, **kwargs):
