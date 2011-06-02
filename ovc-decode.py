@@ -227,10 +227,12 @@ if __name__ == '__main__':
 		sys.exit(1)
 
 	args = sys.argv[1:]
-	optlist, args = getopt.getopt(args, '?', ['stations', 'vehicles'])
+	optlist, args = getopt.getopt(args, '?', ['mismatch', 'stations', 'vehicles'])
 
 	for o, v in optlist:
-	    if o == "--stations":
+	    if o == "--mismatch":
+		config.check_mismatch = True
+	    elif o == "--stations":
 		config.print_new_station = True
 	    elif o == "--vehicles":
 		config.print_new_vehicle = True

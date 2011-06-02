@@ -12,4 +12,5 @@
 
 print_new_station = False
 print_new_vehicle = False
+check_mismatch = False
 verbose = True

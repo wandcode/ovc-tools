@@ -100,6 +100,26 @@ def get_machine(company, number):
 	    m.title = "in vehicle %d" % m.vehicleid
 	return m
 
+def get_ovcids_by_machine(company, machid):
+	'''return ovcids for a numbered machine'''
+	global con
+	if not con: init()
+	if not con: return None
+	cur = con.cursor()
+	cur.execute('SELECT ovcid FROM machines_data WHERE company=? AND machineid=?', (company, machid))
+	#rows = cur.fetchall()
+	rows = [ x[0] for x in cur ]
+	return rows
+
+def get_vehicleids_by_machine(company, machid):
+	'''return ovcids for a numbered machine'''
+	global con
+	if not con: init()
+	if not con: return None
+	cur = con.cursor()
+	cur.execute('SELECT vehicleid FROM machines_data WHERE company=? AND machineid=?', (company, machid))
+	rows = [ x[0] for x in cur ]
+	return rows
 
 def get_max_len(table='stations', field='title', company=None):
 	'''return maximum length of station names'''

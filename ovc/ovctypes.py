@@ -212,7 +212,6 @@ class OvcStation(int):
 		return s + ' '*(_ostwidth-len(s))
 
 _omwidth = 0
-_hdr = None
 
 class OvcMachineId(long):
 	def __new__(cls, x, obj, width=0, **kwargs):
@@ -227,27 +226,59 @@ class OvcMachineId(long):
 		if not _omwidth: _omwidth = 10
 		if not _omwidth: _omwidth = stations.get_max_len(table='stations', field='title')
 		# get machine name
+		reason = databaseMismatch(int(self), self._obj)
+		if reason != None:
+		    printDatabaseRecord(int(self), self._obj, reason)
 		s = stations.get_machine(self._obj.company, self)
 		if not s or not s.title:
-			s = ''
-			global _hdr
-			if config.print_new_station:
-			    if 'station' in self._obj.__dict__ and \
-				    not 'vehicle' in self._obj.__dict__:
-				if _hdr != "s":
-				    sys.stderr.write("# company\tmachineid\tovcid\n")
-				    _hdr = "s"
-				sys.stderr.write("%d\t%d\t%d\n" % (self._obj.company, int(self), self._obj.station))
-			if config.print_new_vehicle:
-			    if 'vehicle' in self._obj.__dict__:
-				if _hdr != "v":
-				    sys.stderr.write("# company\tmachineid\tvehicleid\n")
-				    _hdr = "v"
-				sys.stderr.write("%d\t%d\t%d\n" % (self._obj.company, int(self), self._obj.vehicle))
+		    s = ''
+		    if reason == None:
+			printDatabaseRecord(int(self), self._obj, "station/vehicle unknown")
 		else:
-			s = "(" + s.title + ")"
+		    s = "(" + s.title + ")"
 		s = s + ' '*(_omwidth-len(s))
-		return "M:"+('%7d'%long(self))+s
+		return ('M:%7d'%long(self))+s
+
+def databaseMismatch(machid, transaction):
+    if not config.check_mismatch:
+	return None
+
+    company = transaction.company
+    if 'vehicle' in transaction.__dict__:
+	vehicle = transaction.vehicle
+	found = stations.get_vehicleids_by_machine(company, machid)
+	if not vehicle in found:
+	    return "db claims vehicle is " + str(found)
+	return None
+
+    if 'station' in transaction.__dict__:
+	station = transaction.station
+	found = stations.get_ovcids_by_machine(company, machid)
+	if not station in found:
+	    return "db claims ovcid is " + str(found)
+	return None
+
+    # Should never get here...
+    return False
+
+_hdr = None
+def printDatabaseRecord(machid, transaction, reason):
+    global _hdr
+
+    if config.print_new_vehicle:
+	if 'vehicle' in transaction.__dict__:
+	    if _hdr != "v":
+		sys.stderr.write("# company\tmachineid\tvehicleid\n")
+		_hdr = "v"
+	    sys.stderr.write("%d\t%d\t%d # %s\n" % (transaction.company, machid, transaction.vehicle, reason))
+
+    if config.print_new_station:
+	if 'station' in transaction.__dict__ and \
+		not 'vehicle' in transaction.__dict__:
+	    if _hdr != "s":
+		sys.stderr.write("# company\tmachineid\tovcid\n")
+		_hdr = "s"
+	    sys.stderr.write("%d\t%d\t%d # %s\n" % (transaction.company, machid, transaction.station, reason))
 
 #class OvcTransactionId(int):
 #	def __new__(cls, x,  **kwargs):
