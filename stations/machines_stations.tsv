@@ -16,70 +16,166 @@ company	machineid	ovcid
 1	263341	6634
 1	327846	90
 1	327890	90
-1	1255570	19543
-1	1255572	19543
-1	1255593	19543
-1	1255601	21523
+# These machine ID/ovcid combinations seem to overlap with GVB?
+# Are the same buses used for different bus companies?
+# 1	1255601	21523
 1	1255622	21499
-1	1255624	21499
-1	1255626	21499
+# 1	1255624	21499
+# 1	1255626	21499
 1	1255631	21502
-1	1255717	21488
-1	1255721	21488
-1	1255724	21488
+# 1	1255717	21488
+# 1	1255721	21488
+# 1	1255724	21488
 1	1966086	55
 # GVB
 # company mismatch: 1
 # 2	327890	90	# GVU klantenservice Centraal Station  
+2	66235	1203	# Waterlooplein  
 2	66340	1204	# Weesperplein Laudde 
+2	66343	1204	# Weesperplein  
+2	66354	1201	# Centraal Station  
+2	66357	1201	# Centraal Station  
 2	66359	1201	# Centraal Station  
+2	66366	1201	# Centraal Station  
+2	66381	1207	# Spaklerweg Highinthesky 
 2	66418	1228
 2	66424	1231	# Station Zuid/WTC  
 2	66426	1231	# Station Zuid/WTC  
+2	66429	1231	# Station Zuid/WTC Hayo 
 2	66430	1231	# Station Zuid/WTC  
+2	66457	1230	# Amstelveenseweg Hayo 
+2	66459	1230	# Amstelveenseweg Hayo 
+2	66463	1223	# Sloterdijk Hayo 
+2	66464	1223	# Sloterdijk Hayo 
+2	66465	1223	# Sloterdijk openneergaan 
+2	66467	1223	# Sloterdijk Hayo 
 2	66469	1223	# Sloterdijk  
+2	66472	1223	# Sloterdijk openneergaan 
+2	68410	1206	# Amstelstation De Rocker 
+2	262362	1230	# Amstelveenseweg  
 2	262370	1223
 2	262385	1219
-2	1255593	19543	# Centraal Station Ton 
+2	327780	90	# GVU klantenservice Centraal Station jordoff 
+2	1255527	21523	# Stadscentrum Ton 
+2	1255559	19545	# Westplein Ton 
+2	1255560	19545	# Westplein Ton 
+2	1255563	19543	# Centraal Station Ton 
+2	1255564	19543	# Centraal Station Ton 
+2	1255565	19543	# Centraal Station Ton 
+2	1255570	19543	# Centraal Station Ton # company mismatch: 1
+2	1255571	19543	# Centraal Station Ton 
+2	1255572	19543	# Centraal Station Ton # company mismatch: 1
+2	1255573	19543	# Centraal Station Ton 
+2	1255574	19543	# Centraal Station Ton 
+2	1255593	19543	# Centraal Station Ton # company mismatch: 1
+2	1255594	19543	# Centraal Station  
+2	1255596	21523	# Stadscentrum Ton 
+2	1255597	21523	# Stadscentrum Ton 
+2	1255599	21523	# Stadscentrum Ton 
+2	1255600	21523	# Stadscentrum Ton 
 2	1255601	21523	# Stadscentrum Ton 
+2	1255602	21523	# Stadscentrum  
+2	1255603	21523	# Stadscentrum Ton 
+2	1255604	21523	# Stadscentrum Ton 
+2	1255605	21523	# Stadscentrum Ton 
+2	1255621	21499	# Wiersdijk Ton 
+2	1255623	21499	# Wiersdijk Ton 
 2	1255624	21499	# Wiersdijk Ton 
+2	1255625	21499	# Wiersdijk Ton 
 2	1255626	21499	# Wiersdijk Ton 
+2	1255629	21502	# Nieuwegein-Zuid Ton 
+2	1255630	21502	# Nieuwegein-Zuid Ton 
 2	1255717	21488	# Zuilenstein Ton 
 2	1255721	21488	# Zuilenstein Ton 
+2	1255723	21488	# Zuilenstein Ton 
 2	1255724	21488	# Zuilenstein Ton 
 2	1311017	1236
+2	1311068	1219	# Station Bijlmer Arena  
 2	1311089	1206	# Amstelstation  
 2	1320476	1238
 2	1320968	1206
 2	1321273	1206
-# NS incheckpalen
+2	1321282	1221	# Duivendrecht Highinthesky 
+# NS incheckpalen: 1 24x xxx
 4	1245190	57	# Amsterdam Amstel  
 4	1245191	57	# Amsterdam Amstel  
+4	1245219	487	# Ommen De Rocker 
+4	1245221	428	# Marienberg De Rocker 
+4	1245222	428	# Marienberg De Rocker 
+4	1245237	705	# Wolvega yellow 
+4	1245238	705	# Wolvega yellow 
 4	1245243	210	# Enkhuizen
 4	1245256	179
 4	1245257	179
+4	1245261	270	# Haarlem Spaarnwoude Hayo 
 4	1245297	194	# Duivendrecht  
+4	1245317	74	# Amsterdam Bijlmer ArenA openneergaan 
+4	1245318	74	# Amsterdam Bijlmer ArenA openneergaan 
 4	1245327	303	# Den Helder Zuid
 4	1245332	614
 4	1245333	614
 4	1245338	59	# Amsterdam Sloterdijk  
 4	1245339	480	# Obdam
 4	1245340	480	# Obdam
+4	1245358	564	# Sittard De Rocker 
 4	1245365	96	# Beek-Elsloo
 4	1245366	96	# Beek-Elsloo
 4	1245367	615	# Uitgeest
 4	1245373	309	# Heiloo
 4	1245374	151	# Castricum
+4	1245404	329	# Hillegom WxD 
+4	1245405	329	# Hillegom WxD 
+4	1245406	655	# Voorhout WxD 
+4	1245407	655	# Voorhout WxD 
 4	1245408	613
 4	1245427	212	# - enschede
 4	1245430	221	# - enschede drienerlo
+4	1245431	124	# Borne  
+4	1245432	124	# Borne  
 4	1245435	691	# Wierden Zokker 
 4	1245455	600	# Tiel Passewaaij OVHero 
 4	1245460	614
+4	1245462	651	# Vleuten WxD 
 4	1245464	702	# Woerden  
+4	1245465	53	# Alphen aan den Rijn jordoff 
+4	1245468	125	# Boskoop WxD 
+4	1245469	125	# Boskoop WxD 
+4	1245470	674	# Waddinxveen Noord WxD 
+4	1245473	675	# Waddinxveen WxD 
+4	1245477	740	# Zoetermeer Oost WxD 
+4	1245478	740	# Zoetermeer Oost WxD 
 4	1245479	379	# Den Haag Ypenburg
+4	1245480	379	# Den Haag Ypenburg  
+4	1245481	658	# Voorburg WxD 
+4	1245482	658	# Voorburg WxD 
+4	1245483	384	# Leiden Lammenschans WxD 
+4	1245484	384	# Leiden Lammenschans WxD 
+4	1245485	244	# Geldermalsen WxD 
+4	1245487	659	# Voorschoten WxD 
+4	1245488	659	# Voorschoten WxD 
+4	1245489	278	# Den Haag Mariahoeve WxD 
+4	1245493	244	# Geldermalsen WxD 
+4	1245497	279	# Den Haag Moerwijk WxD 
+4	1245502	651	# Vleuten WxD 
+4	1245503	455	# Nieuwerkerk aan den Ijssel WxD 
+4	1245508	507	# Rotterdam Alexander WxD 
+4	1245523	752	# Zwijndrecht WxD 
+4	1245524	752	# Zwijndrecht WxD 
+4	1245526	181	# Dordrecht Zuid WxD 
+4	1245527	181	# Dordrecht Zuid WxD 
 4	1245555	653	# Vlissingen Souburg  Paaltje richting Middelburg
+4	1245558	652	# Vlissingen svdk79 
+4	1245559	263	# Groningen De Rocker 
+4	1245560	263	# Groningen De Rocker 
+4	1246361	263	# Groningen De Rocker 
+4	1246362	263	# Groningen De Rocker 
+4	1246363	263	# Groningen De Rocker 
+4	1246367	747	# Zwolle yellow 
+4	1246371	597	# Tilburg  
+4	1246372	597	# Tilburg  
 4	1246374	50	# Alkmaar
+4	1246376	113	# Beverwijk  
+4	1246378	499	# Purmerend Weidevenne Hayo 
 4	1246394	230	# Bovenkarspel Flora
 4	1246401	311	# Den Helder
 4	1246412	306	# Heerhugowaard
@@ -88,154 +184,513 @@ company	machineid	ovcid
 4	1246417	313	# Helmond
 4	1246431	475
 4	1246440	523	# Roermond
+4	1246467	684	# Weert jordoff 
 4	1246487	65	# Anna Paulowna
 4	1246488	65	# Anna Paulowna
+4	1246493	90	# Barendrecht WxD 
+4	1246495	147	# Capelle Schollevaar WxD 
+4	1246496	147	# Capelle Schollevaar WxD 
+4	1246497	188	# De Vink WxD 
+4	1246498	188	# De Vink WxD 
+4	1246499	280	# Den Haag HS Laudde 
+4	1246500	280	# Den Haag HS Laudde 
+4	1246501	180	# Dordrecht WxD 
 4	1246504	180	# Dordrecht TomTestOV 
+4	1246505	206	# Eindhoven De Rocker 
+4	1246516	455	# Nieuwerkerk aan den Ijssel WxD 
+4	1246520	542	# Rotterdam Lombardijen WxD 
+4	1246521	542	# Rotterdam Lombardijen WxD 
+4	1246522	533	# Rotterdam Zuid WxD 
+4	1246523	533	# Rotterdam Zuid WxD 
+4	1246524	533	# Rotterdam Zuid WxD 
 4	1246526	620	# Utrecht Overvecht  
+4	1246529	732	# Zaltbommel Highinthesky 
+4	1246532	327	# Hollandsche Rading  
 4	1246538	424	# Maastricht
+4	1246546	147	# Capelle Schollevaar WxD 
+4	1246547	180	# Dordrecht WxD 
 4	1246551	206	# Eindhoven
+4	1246557	257	# Gouda Goverwelle WxD 
+4	1246558	257	# Gouda Goverwelle WxD 
+4	1246560	507	# Rotterdam Alexander WxD 
 4	1249020	505	# Rijswijk
+4	1249021	505	# Rijswijk  
+4	1249022	505	# Rijswijk  
 4	1249023	505	# Rijswijk
+4	1249027	342	# Hoek van Holland Strand WxD 
+4	1249028	342	# Hoek van Holland Strand WxD 
 4	1249031	170	# Delft Laudde 
+4	1249032	170	# Delft Laudde 
 4	1249034	280	# Den Haag HS
+4	1249035	166	# Delft Zuid WxD 
+4	1249045	66	# Apeldoorn De Rocker 
+4	1249048	258	# Gouda jordoff 
+4	1249053	325	# Hoek van Holland Haven WxD 
+4	1249054	325	# Hoek van Holland Haven WxD 
+4	1249055	325	# Hoek van Holland Haven WxD 
+4	1249056	325	# Hoek van Holland Haven WxD 
+4	1249057	325	# Hoek van Holland Haven WxD 
+4	1249058	325	# Hoek van Holland Haven WxD 
+4	1249059	421	# Maassluis West WxD 
+4	1249061	421	# Maassluis West WxD 
 4	1249063	470	# Nijmegen
+4	1249068	553	# Schiedam Centrum  
+4	1249071	553	# Schiedam Centrum  
+4	1249073	553	# Schiedam Centrum  
+4	1249074	553	# Schiedam Centrum  
 4	1249076	553	# Schiedam Centrum
 4	1249079	642	# Vlaardingen West
 4	1249080	642	# Vlaardingen West
 4	1249081	642	# Vlaardingen West
 4	1249083	642	# Vlaardingen West Laudde 
+4	1249084	642	# Vlaardingen West WxD 
+4	1249085	166	# Delft Zuid WxD 
+4	1249088	531	# Rotterdam Noord WxD 
+4	1249089	531	# Rotterdam Noord WxD 
+4	1249091	58	# Amsterdam Centraal De Rocker 
+4	1249092	58	# Amsterdam Centraal De Rocker 
+4	1249094	58	# Amsterdam Centraal  
+4	1249113	530	# Rotterdam Centraal WxD 
 4	1249229	280	# Den Haag HS
 4	1253465	530	# Rotterdam Centraal  
+4	1253466	530	# Rotterdam Centraal Laudde 
 4	1253467	530	# Rotterdam Centraal Laudde 
 4	1253475	621	# Utrecht Centraal: 1253475 (spoor 1/2)
+4	1253476	621	# Utrecht Centraal  
+4	1253477	621	# Utrecht Centraal  
+4	1253479	621	# Utrecht Centraal  
+4	1253480	530	# Rotterdam Centraal Laudde 
+4	1253481	51	# Almelo  
+4	1253484	121	# Bodegraven WxD 
+4	1253485	121	# Bodegraven WxD 
 4	1253497	561	# Schiphol
+4	1253511	561	# Schiphol jordoff 
+4	1253512	561	# Schiphol Laudde 
+4	1253521	561	# Schiphol Laudde 
 4	1253522	282	# Den Haag Centraal Zokker 
+4	1253524	282	# Den Haag Centraal WxD 
+4	1253526	282	# Den Haag Centraal  
 4	1253527	282	# Den Haag Centraal
 4	1253528	282	# Den Haag Centraal
 4	1253537	282	# Den Haag Centraal
 4	1253543	282	# Den Haag Centraal
+4	1253562	71	# Arnhem De Rocker 
 4	1253570	71
+4	1253575	131	# Breda  
 4	1253586	316	# Hengelo
 4	1253589	316	# Hengelo
 4	1253590	316	# Hengelo
+4	1253598	368	# Krommenie-Assendelft  
+4	1253599	368	# Krommenie-Assendelft Hayo 
+4	1253601	368	# Krommenie-Assendelft  
+4	1253604	621	# Utrecht Centraal  
 4	1253605	621	# Utrecht Centraal
 4	1253607	621	# Utrecht Centraal  
+4	1253608	621	# Utrecht Centraal  
 4	1253609	621	# Utrecht Centraal  
+4	1253611	621	# Utrecht Centraal  
+4	1253612	621	# Utrecht Centraal  
+4	1253613	621	# Utrecht Centraal  
+4	1253616	621	# Utrecht Centraal  
 4	1253648	235	# Amsterdam Science Park
+4	1253656	73	# Assen  
+4	1253720	526	# Roosendaal yellow 
 4	1253731	50	# Alkmaar
 4	1253759	380	# Den Haag Laan van NOI
 4	1253769	258	# Gouda  
 4	1253770	258	# Gouda  
+4	1253772	258	# Gouda WxD 
+4	1253773	258	# Gouda WxD 
+4	1253774	258	# Gouda jordoff 
 4	1253786	337	# Hoorn
+4	1253791	507	# Rotterdam Alexander WxD 
+4	1253792	507	# Rotterdam Alexander WxD 
+4	1253793	507	# Rotterdam Alexander WxD 
+4	1253794	507	# Rotterdam Alexander WxD 
+4	1253795	507	# Rotterdam Alexander WxD 
 4	1253796	507	# Rotterdam Alexander
 4	1253798	52	# Alkmaar Noord
 4	1253800	52	# Alkmaar Noord
+4	1253815	564	# Sittard De Rocker 
+4	1253816	564	# Sittard De Rocker 
+4	1253817	564	# Sittard De Rocker 
 4	1253819	564	# Sittard
+4	1253820	564	# Sittard De Rocker 
+4	1253822	564	# Sittard De Rocker 
 4	1253826	59	# Amsterdam Sloterdijk  
+4	1253827	59	# Amsterdam Sloterdijk  
 4	1253829	59	# Amsterdam Sloterdijk
+4	1253842	731	# Zaandam  
+4	1253845	731	# Zaandam Hayo 
 4	1253849	621	# Utrecht Centraal  
+4	1253851	621	# Utrecht Centraal  
 4	1253853	621	# Utrecht Centraal  
+4	1253854	621	# Utrecht Centraal  
+4	1253855	621	# Utrecht Centraal  
 4	1253856	731	# Zaandam
 4	1253865	379	# Den Haag Ypenburg
+4	1253866	379	# Den Haag Ypenburg  
+4	1253873	658	# Voorburg WxD 
+4	1253874	658	# Voorburg WxD 
+4	1253875	658	# Voorburg WxD 
+4	1253876	658	# Voorburg WxD 
+4	1253877	658	# Voorburg Laudde 
+4	1253881	597	# Tilburg Laudde 
+4	1253883	597	# Tilburg  
+4	1253885	597	# Tilburg intimidate 
+4	1253898	66	# Apeldoorn De Rocker 
+4	1253900	66	# Apeldoorn De Rocker 
+4	1253902	66	# Apeldoorn De Rocker 
+4	1253915	66	# Apeldoorn De Rocker 
+4	1253917	66	# Apeldoorn  
+4	1253918	66	# Apeldoorn De Rocker 
+4	1253930	66	# Apeldoorn De Rocker 
 4	1253932	127	# Bovenkarspel-Grootebroek
 4	1253940	470
 4	1253945	470	# Nijmegen
+4	1253946	212	# Enschede  
 4	1253947	212	# - enschede
 4	1253950	212	# - enschede
+4	1253951	212	# Enschede  
 4	1253954	470
 4	1253957	470	# Nijmegen
 4	1253962	212	# - enschede
+4	1253964	65	# Anna Paulowna Hayo 
 4	1253965	65	# Anna Paulowna
+4	1253981	206	# Eindhoven  
+4	1253982	206	# Eindhoven  
+4	1253987	108	# Bergen op Zoom yellow 
 4	1253991	145	# Bussum Zuid  
 4	1253993	145	# Bussum Zuid  
 4	1253994	206	# Eindhoven
 4	1254000	145	# Bussum Zuid  
+4	1254002	147	# Capelle Schollevaar WxD 
+4	1254003	147	# Capelle Schollevaar WxD 
+4	1254005	147	# Capelle Schollevaar WxD 
+4	1254006	147	# Capelle Schollevaar WxD 
+4	1254008	319	# 's-Hertogenbosch  
+4	1254019	319	# 's-Hertogenbosch  
+4	1254027	206	# Eindhoven De Rocker 
+4	1254028	206	# Eindhoven De Rocker 
 4	1254031	206	# Eindhoven
+4	1254032	279	# Den Haag Moerwijk WxD 
+4	1254033	279	# Den Haag Moerwijk WxD 
 4	1254036	311	# Den Helder
+4	1254039	181	# Dordrecht Zuid WxD 
+4	1254040	181	# Dordrecht Zuid WxD 
+4	1254041	206	# Eindhoven De Rocker 
 4	1254051	452	# Naarden-Bussum  
+4	1256167	455	# Nieuwerkerk aan den Ijssel WxD 
+4	1256168	455	# Nieuwerkerk aan den Ijssel WxD 
+4	1256170	455	# Nieuwerkerk aan den Ijssel WxD 
+4	1256172	455	# Nieuwerkerk aan den Ijssel WxD 
+4	1256174	455	# Nieuwerkerk aan den Ijssel WxD 
+4	1256175	455	# Nieuwerkerk aan den Ijssel WxD 
+4	1256178	531	# Rotterdam Noord WxD 
+4	1256180	531	# Rotterdam Noord WxD 
 4	1256183	549	# Schagen
 4	1256184	549	# Schagen
 4	1256186	549	# Schagen
 4	1256189	596	# Tiel OVHero 
 4	1256196	596	# Tiel OVHero 
+4	1256206	121	# Bodegraven WxD 
+4	1256207	121	# Bodegraven WxD 
+4	1256209	121	# Bodegraven WxD 
+4	1256210	121	# Bodegraven WxD 
+4	1256213	244	# Geldermalsen WxD 
+4	1256214	244	# Geldermalsen  
 4	1256217	614
 4	1256218	614
+4	1256219	655	# Voorhout WxD 
+4	1256220	655	# Voorhout WxD 
+4	1256221	655	# Voorhout WxD 
+4	1256222	655	# Voorhout WxD 
+4	1256223	655	# Voorhout WxD 
+4	1256224	655	# Voorhout WxD 
 4	1256259	306	# Heerhugowaard
+4	1256266	329	# Hillegom WxD 
+4	1256278	282	# Den Haag Centraal Laudde 
+4	1256284	53	# Alphen aan den Rijn jordoff 
+4	1256285	53	# Alphen aan den Rijn jordoff 
+4	1256286	53	# Alphen aan den Rijn jordoff 
+4	1256287	53	# Alphen aan den Rijn jordoff 
+4	1256295	51	# Almelo  
+4	1256296	51	# Almelo  
 4	1256299	55	# Amersfoort Zokker 
 4	1256306	55	# Amersfoort Zokker 
 4	1256307	55	# Amersfoort
 4	1256308	55	# Amersfoort Zokker 
+4	1256327	90	# Barendrecht WxD 
+4	1256328	90	# Barendrecht  
 4	1256329	90	# Barendrecht
+4	1256331	90	# Barendrecht WxD 
+4	1256334	90	# Barendrecht  
+4	1256347	188	# De Vink WxD 
+4	1256351	188	# De Vink WxD 
 4	1256356	170	# Delft
 4	1257804	170	# Delft
 4	1257805	170	# Delft
+4	1257807	180	# Dordrecht WxD 
+4	1257808	180	# Dordrecht WxD 
+4	1257809	180	# Dordrecht WxD 
+4	1257813	180	# Dordrecht WxD 
+4	1257819	257	# Gouda Goverwelle WxD 
+4	1257820	257	# Gouda Goverwelle WxD 
+4	1257821	263	# Groningen yellow 
+4	1257823	263	# Groningen De Rocker 
+4	1257825	263	# Groningen  
+4	1257826	263	# Groningen De Rocker 
+4	1257827	263	# Groningen De Rocker 
+4	1257830	263	# Groningen De Rocker 
+4	1257831	263	# Groningen yellow 
+4	1257832	263	# Groningen De Rocker 
 4	1257833	263	# Groningen muttley 
+4	1257834	263	# Groningen De Rocker 
+4	1257835	263	# Groningen De Rocker 
+4	1257836	263	# Groningen De Rocker 
+4	1257837	263	# Groningen  
+4	1257838	263	# Groningen De Rocker 
+4	1257839	263	# Groningen De Rocker 
+4	1257841	263	# Groningen De Rocker 
+4	1257844	263	# Groningen De Rocker 
 4	1257845	313	# Helmond TomTestOV 
 4	1257848	313	# Helmond TomTestOV 
 4	1257849	313	# Helmond TomTestOV 
 4	1257850	313	# Helmond TomTestOV 
+4	1257865	530	# Rotterdam Centraal WxD 
 4	1257866	530	# Rotterdam Centraal TomTestOV 
+4	1257868	530	# Rotterdam Centraal Laudde 
 4	1257876	530	# Rotterdam Centraal
 4	1257880	530	# Rotterdam Centraal  
+4	1257884	530	# Rotterdam Centraal WxD 
+4	1257886	530	# Rotterdam Centraal Laudde 
+4	1257887	530	# Rotterdam Centraal Laudde 
+4	1257895	621	# Utrecht Centraal  
+4	1257896	621	# Utrecht Centraal  
+4	1257897	621	# Utrecht Centraal  
+4	1257898	621	# Utrecht Centraal  
+4	1257899	621	# Utrecht Centraal De Rocker 
+4	1257900	621	# Utrecht Centraal  
+4	1257901	621	# Utrecht Centraal  
 4	1257902	621	# Utrecht Centraal  
 4	1257903	621	# Utrecht Centraal  
+4	1257904	621	# Utrecht Centraal De Rocker 
+4	1257905	621	# Utrecht Centraal  
 4	1257906	621	# Utrecht Centraal: 1257906 (spoor 1/2)
+4	1257907	620	# Utrecht Overvecht  
 4	1257908	620	# Utrecht Overvecht  
 4	1257911	620	# Utrecht Overvecht  
 4	1257915	620	# Utrecht Overvecht  
+4	1257917	651	# Vleuten WxD 
+4	1257918	651	# Vleuten WxD 
+4	1257921	702	# Woerden jordoff 
 4	1257922	702	# Woerden  
+4	1257924	733	# Zandvoort aan Zee openneergaan 
+4	1257934	740	# Zoetermeer Oost WxD 
+4	1257935	740	# Zoetermeer Oost WxD 
 4	1257936	752	# Zwijndrecht
+4	1257937	752	# Zwijndrecht WxD 
 4	1257952	316	# Hengelo
 4	1257960	316	# Hengelo
+4	1257970	327	# Hollandsche Rading  
 4	1258004	221	# - enschede drienerlo
 4	1258005	221	# Enschede Drienerlo
+4	1258010	294	# Harderwijk  
 4	1258021	475
+4	1258030	508	# Purmerend Hayo 
+4	1258036	506	# Purmerend Overwhere Hayo 
 4	1258038	529	# Rotterdam Blaak
+4	1258042	529	# Rotterdam Blaak WxD 
+4	1258045	529	# Rotterdam Blaak WxD 
+4	1258050	529	# Rotterdam Blaak WxD 
+4	1258051	529	# Rotterdam Blaak WxD 
+4	1258053	529	# Rotterdam Blaak WxD 
+4	1258054	533	# Rotterdam Zuid WxD 
 4	1258069	741	# Zoetermeer  
 4	1258070	741	# Zoetermeer  
+4	1258081	747	# Zwolle yellow 
+4	1258083	747	# Zwolle yellow 
+4	1258085	747	# Zwolle yellow 
+4	1258113	684	# Weert jordoff 
+4	1258117	542	# Rotterdam Lombardijen WxD 
+4	1258118	542	# Rotterdam Lombardijen WxD 
+4	1258120	542	# Rotterdam Lombardijen WxD 
+4	1258121	542	# Rotterdam Lombardijen WxD 
+4	1258125	166	# Delft Zuid Laudde 
+4	1258126	166	# Delft Zuid WxD 
+4	1258127	166	# Delft Zuid WxD 
+4	1258134	278	# Den Haag Mariahoeve WxD 
+4	1258140	113	# Beverwijk  
 4	1258141	113	# Beverwijk  
 4	1258144	309	# Heiloo
+4	1258151	368	# Krommenie-Assendelft  
+4	1258163	530	# Rotterdam Centraal WxD 
+4	1258165	530	# Rotterdam Centraal WxD 
 4	1258174	336	# Hoorn Kersenboogerd
 4	1258175	336	# Hoorn Kersenboogerd
 4	1258176	336	# Hoorn Kersenboogerd
 4	1258177	336	# Hoorn Kersenboogerd
 4	1258182	302	# Heemstede-Aerdenhout
+4	1258187	302	# Heemstede-Aerdenhout De Rocker 
 4	1258223	280	# Den Haag HS
 4	1258227	280	# Den Haag HS
 4	1258228	280	# Den Haag HS Laudde 
 4	1258229	280	# Den Haag HS Laudde 
+4	1258230	280	# Den Haag HS  
+4	1258234	280	# Den Haag HS WxD 
 4	1258239	280	# Den Haag HS
+4	1258240	280	# Den Haag HS Laudde 
 4	1258242	280	# Den Haag HS Laudde 
 4	1258243	280	# Den Haag HS
+4	1258244	280	# Den Haag HS Laudde 
 4	1258245	280	# Den Haag HS
 4	1258246	280	# Den Haag HS Laudde 
+4	1258247	280	# Den Haag HS Laudde 
+4	1258248	280	# Den Haag HS WxD 
 4	1258249	280	# Den Haag HS
 4	1258251	285	# Haarlem
+4	1258254	285	# Haarlem De Rocker 
 4	1258260	285	# Haarlem
 4	1258318	282	# Den Haag Centraal
+4	1258322	282	# Den Haag Centraal  
 4	1258326	282	# Den Haag Centraal
+4	1258327	282	# Den Haag Centraal WxD 
+4	1258366	621	# Utrecht Centraal  
+4	1258367	621	# Utrecht Centraal  
+4	1258368	621	# Utrecht Centraal  
+4	1258369	621	# Utrecht Centraal  
+4	1258373	58	# Amsterdam Centraal  
 4	1966083	180
 4	1966084	55
+4	1966088	180	# Dordrecht intimidate 
 4	1966089	55
 #
-# NS Check in/uit poortjes:
+# NS Check in/uit poortjes: 6x xxx
 4	66490	685	# Weesp  
 4	66492	685	# Weesp bsm 
+4	66513	61	# Amsterdam Zuid/WTC Hayo 
+4	66559	56	# Amsterdam RAI Highinthesky 
+4	66567	57	# Amsterdam Amstel Highinthesky 
+4	66568	57	# Amsterdam Amstel Highinthesky 
+4	66571	57	# Amsterdam Amstel De Rocker 
+4	66602	80	# Almere Centrum  
 4	66623	82	# Almere Muziekwijk  incheck kant
 4	66624	82	# Almere Muziekwijk  
 4	66627	60	# Amsterdam Muiderpoort  
 4	66628	60	# Amsterdam Muiderpoort  
+4	66631	60	# Amsterdam Muiderpoort Zerfox 
 4	66634	60	# Amsterdam Muiderpoort  
 4	66670	332	# Hoofddorp
+4	66683	460	# Nieuw Vennep WxD 
+4	66685	460	# Nieuw Vennep WxD 
+4	66687	460	# Nieuw Vennep WxD 
+4	66692	460	# Nieuw Vennep WxD 
+4	66693	460	# Nieuw Vennep WxD 
+4	66694	460	# Nieuw Vennep WxD 
+4	66698	460	# Nieuw Vennep WxD 
+4	66699	460	# Nieuw Vennep WxD 
+4	66708	390	# Leiden Centraal WxD 
+4	66709	390	# Leiden Centraal Hayo 
+4	66710	390	# Leiden Centraal Highinthesky 
+4	66711	390	# Leiden Centraal Highinthesky 
+4	66712	390	# Leiden Centraal Highinthesky 
+4	66778	58	# Amsterdam Centraal  
 4	66780	58	# Amsterdam Centraal
+4	66782	58	# Amsterdam Centraal  
+4	66784	58	# Amsterdam Centraal  
+4	68471	422	# Maassluis WxD 
+4	68473	422	# Maassluis WxD 
+4	68476	650	# Vlaardingen Centrum Laudde 
+4	68478	650	# Vlaardingen Centrum Laudde 
 4	68479	649	# Vlaardingen Oost
 4	68480	649	# Vlaardingen Oost
+4	68483	649	# Vlaardingen Oost Laudde 
+4	68485	649	# Vlaardingen Oost WxD 
+4	68486	563	# Schiedam Nieuwland WxD 
+4	68505	553	# Schiedam Centrum  
+4	68506	553	# Schiedam Centrum WxD 
+4	68511	553	# Schiedam Centrum  
 4	68512	553	# Schiedam Centrum  
+4	68513	553	# Schiedam Centrum  
 4	68520	58	# Amsterdam Centraal  
 4	68522	58	# Amsterdam Centraal  
+4	68523	58	# Amsterdam Centraal jordoff 
 4	68531	58	# Amsterdam Centraal  
+4	68538	58	# Amsterdam Centraal Zerfox 
+4	68554	58	# Amsterdam Centraal  
+4	68559	58	# Amsterdam Centraal  
 4	68561	390	# Leiden Centraal
-# NS Kaartautomaten:
+4	68562	390	# Leiden Centraal WxD 
+4	68575	563	# Schiedam Nieuwland WxD 
+4	68582	74	# Amsterdam Bijlmer ArenA De Rocker 
+# NS Kaartautomaten: 46x xxx
+4	459968	74	# Amsterdam Bijlmer ArenA  
+4	459969	74	# Amsterdam Bijlmer ArenA openneergaan 
+4	459990	876	# Amsterdam Centraal  
+4	460081	893	# Rotterdam Centraal Ton 
+4	460083	893	# Rotterdam Centraal Ton 
+4	460084	893	# Rotterdam Centraal Ton 
+4	460085	893	# Rotterdam Centraal Ton 
+4	460087	893	# Rotterdam Centraal Ton 
+4	460109	542	# Rotterdam Lombardijen Ton 
+4	460126	553	# Schiedam Centrum Ton 
+4	460151	53	# Alphen aan den Rijn jordoff 
+4	460162	876	# Amsterdam Centraal  
+4	460164	59	# Amsterdam Sloterdijk  
+4	460165	59	# Amsterdam Sloterdijk  
+4	460181	765	# Heerlen  
+4	460187	876	# Amsterdam Centraal  
+4	460213	553	# Schiedam Centrum Ton 
+4	460222	764	# Gouda  
+4	460224	764	# Gouda  
+4	460276	620	# Utrecht Overvecht  
+4	460303	65	# Anna Paulowna Hayo 
+4	460401	765	# Heerlen  
+4	460437	853	# Amersfoort  
+4	460447	853	# Amersfoort Ton 
+4	460469	294	# Harderwijk  
+4	460472	294	# Harderwijk  
+4	460488	327	# Hollandsche Rading  
+4	460489	327	# Hollandsche Rading Ton 
+4	460529	332	# Hoofddorp RickElgersma17 
+4	460621	313	# Helmond intimidate 
+4	460656	854	# Breda  
+4	460660	854	# Breda  
+4	460701	871	# Tilburg  
+4	460709	871	# Tilburg  
+4	460716	652	# Vlissingen svdk79 
+4	460726	758	# Assen  
+4	460735	880	# Groningen yellow 
+4	460736	880	# Groningen De Rocker 
+4	460738	880	# Groningen yellow 
+4	460741	880	# Groningen De Rocker 
+4	460742	880	# Groningen De Rocker 
+4	460861	895	# Den Haag Centraal Zerfox 
+4	460869	882	# Den Haag HS Ton 
+4	460909	505	# Rijswijk Ton 
+4	460910	505	# Rijswijk Ton 
+4	460915	655	# Voorhout WxD 
+4	460928	755	# Almelo  
+4	460938	888	# Leiden Centraal WxD 
+4	460942	124	# Borne  
+4	460944	124	# Borne  
+4	460965	221	# Enschede Drienerlo  
+4	461000	761	# Dordrecht  
+4	461010	325	# Hoek van Holland Haven  
+4	461011	325	# Hoek van Holland Haven  
+4	461012	325	# Hoek van Holland Haven Ton 
+4	461013	342	# Hoek van Holland Strand Ton 
+4	461017	421	# Maassluis West Ton 
+4	461083	897	# Utrecht Centraal  
+4	461087	897	# Utrecht Centraal  
+4	461098	897	# Utrecht Centraal  
+4	461099	897	# Utrecht Centraal  
+4	461100	897	# Utrecht Centraal Ton 
+4	461104	897	# Utrecht Centraal Ton 
+4	461105	897	# Utrecht Centraal  
+4	461108	897	# Utrecht Centraal Ton 
+4	461109	897	# Utrecht Centraal Ton 
+4	461132	421	# Maassluis West  
 4	460088	893	# Rotterdam Centraal or 894?
 4	460108	542	# Rotterdam Lombardijen
 4	460115	529	# Rotterdam Blaak
@@ -294,7 +749,7 @@ company	machineid	ovcid
 4	460849	895	# Den Haag Centraal
 4	460856	895	# Den Haag Centraal
 4	460857	895	# Den Haag Centraal
-4	460862	882	# Den Haag HS
+4	460862	882	# Den Haag HS # webdb claims 280, 882 seen on dumps
 4	460863	882	# Den Haag HS # webdb claims 280, 882 seen on dumps
 4	460865	882	# Den Haag HS
 4	460881	279	# Den Haag Moerwijk
@@ -317,13 +772,21 @@ company	machineid	ovcid
 # RET kaartautomaat
 5	262460	553
 # RET incheckpaaltjes
+5	65903	507	# Station Alexander  
+5	65993	507	# Station Alexander  
+5	65995	507	# Station Alexander  
+5	65996	507	# Station Alexander  
+5	65999	507	# Station Alexander  
+5	66072	507	# Station Alexander  
 5	66073	507	# Station Alexander Laudde 
+5	66074	507	# Station Alexander  
 5	1310971	529	# Rotterdam	Station Blaak (metro)
 # Veolia klantenservice-machines
 7	327878	1	# Nijmegen (maybe re-used number?)
 # Veolia incheckpaaltjes
-7	1259767	11659	# Nijmegen CS (Veolia)
 7	1259765	11659
+7	1259767	11659	# Nijmegen CS (Veolia)
+7	1259790	11678	# Centraal Station (waar?)
 7	1259795	11665
 # Arriva incheckpaaltjes
 8	1247087	238	# Groningen Europapark
