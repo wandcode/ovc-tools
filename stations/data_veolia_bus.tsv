@@ -1,4 +1,5 @@
 # Veolia Bus
 company	ovcid	haltenr 	zone	lon      	lat      	city             	name
-7	10860	0        	0	0.0        	0.0        	Venlo                 	Station
-7	12935	0        	0	0.0        	0.0        	Velden                	Velden Zuid
+7	10825	0        	6119	 5.8602740     	51.8642071    	Nijmegen              	Station NS
+7	10860	0        	6900	 6.1716774     	51.3653088     	Venlo                 	Station NS
+7	12935	0        	6910	 6.1666299   	51.4086158     	Velden                	Velden Zuid
