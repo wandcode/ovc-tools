@@ -9,7 +9,8 @@ dbname = 'stations.sqlite'
 # sql file to create tables
 createsql = 'create_tables.sql'
 # default table for importing data files
-dfltable = 'stations_data'
+dfl_table = 'stations_data'
+machine_table = 'machines_data'
 
 prefix = os.path.dirname(__file__)
 db = os.path.join(prefix, dbname)
@@ -26,6 +27,7 @@ def tsv_each(filename):
 	f = open(filename, 'r')
 	fields = None
 	for line in f:
+		if line == "": continue
 		if line.startswith('#'): continue
 		try: line = line[:line.index('#')]
 		except ValueError: pass
@@ -57,10 +59,11 @@ if __name__ == '__main__':
 	cur.executescript('''
 		PRAGMA journal_mode = OFF;
 		PRAGMA locking_mode = EXCLUSIVE;
+		PRAGMA foreign_keys = ON;
 	''')
 
-	# create table first
-	print 'Creating table'
+	# create tables first
+	print 'Creating tables'
 	cur.executescript(readfile(os.path.join(prefix, createsql)))
 
 	# then import all other sql files
@@ -70,24 +73,39 @@ if __name__ == '__main__':
 		print 'Importing SQL: %s'%filename
 		cur.executescript(readfile(os.path.join(prefix, filename)))
 
+	# Defer foreign key constraints first.
+#	cur.executescript('BEGIN;')
+
 	# and import tab-separated files; first line are fields,
 	# hash '#' at start of a line is a comment
 	for filename in os.listdir(prefix):
 		if not filename.endswith('.tsv'): continue
 		print 'Importing tab-separated data: %s'%filename
+		if filename[0:7] == "machine":
+		    table = machine_table
+		else:
+		    table = dfl_table
 		for fields in tsv_each(os.path.join(prefix, filename)):
 			query = 'INSERT INTO %s (%s) VALUES (%s);'%(
-					dfltable,
+					table,
 					','.join(fields.keys()),
 					','.join(['?'] * len(fields.values())),
 				)
-			cur.execute(query, fields.values())
+			try:
+			    cur.execute(query, fields.values())
+			except sqlite3.IntegrityError as ex:
+			    print ex
+			    print fields
 		
+	# Only now we have all data, the foreign key constraints can be checked
+#	cur.executescript('COMMIT;')
+
 	# compact database
 	print 'Compacting database'
 	cur.executescript('''
 		VACUUM;
 	''')
 
+	con.close()
 	print 'Done!'
 

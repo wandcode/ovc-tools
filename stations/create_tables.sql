@@ -3,16 +3,16 @@
 --
 
 CREATE TABLE stations_data (
-                company INT NOT NULL,			-- transport company number
-                ovcid INT NOT NULL,			-- OV-chipkaart station number
-                name VARCHAR(50),			-- name as used by transport company
+		company INT NOT NULL,			-- transport company number
+		ovcid INT NOT NULL,			-- OV-chipkaart station number
+		name VARCHAR(50),			-- name as used by transport company
 		city VARCHAR(50),			-- city/municipality
 		longname VARCHAR(120),			-- long name, should be fully clear
 		haltenr INT,				-- dutch general halte nummer
-                zone INT,				-- dutch public transport zone
-                lon FLOAT,				-- longitude
-                lat FLOAT,				-- lattitude
-                PRIMARY KEY (company, ovcid)
+		zone INT,				-- dutch public transport zone
+		lon FLOAT,				-- longitude
+		lat FLOAT,				-- lattitude
+		PRIMARY KEY (company, ovcid)
         );
 
 -- stations view with title based on available fields in stations_data
@@ -23,4 +23,13 @@ CREATE VIEW stations AS
 			ELSE COALESCE(longname, city||', '||name, name)
 		END) AS title
 	 FROM stations_data;
+
+CREATE TABLE machines_data (
+		company INT NOT NULL,			-- transport company number
+		machineid INT NOT NULL,			-- machine id
+		ovcid INT,				-- corresponding station
+		vehicleid INT,				-- or corresponding vehicle
+		PRIMARY KEY (company, machineid) --,
+		-- FOREIGN KEY (company, ovcid) REFERENCES stations_data(company, ovcid) DEFERRABLE INITIALLY DEFERRED
+        );
 

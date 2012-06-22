@@ -19,7 +19,8 @@
 import datetime
 import stations
 from util import bcd2int
-
+import config
+import sys
 
 def _rfill(s, l):
 	'''Fill string right with spaces to make as long as longest value in list/dict'''
@@ -33,18 +34,48 @@ def _maxlength(l):
 
 
 class OvcDate(datetime.date):
-	'''date with ovc-integer constructor'''
+	'''date with ovc-integer constructor (days)'''
 	# TODO subclassing this built-in type doesn't work fully :(
 	def __new__(cls, x, **kwargs):
+		days = x
 		d = datetime.date.__new__(cls, 1997, 1, 1)
-		d += datetime.timedelta(x)
+		d += datetime.timedelta(days)
 		return d
 	def __str__(self):
 		return self.strftime('%d-%m-%Y')
 
 
+#class OvcTime(datetime.time):
+#	'''time with ovc-integer constructor (minutes)'''
+#	# TODO subclassing this built-in type doesn't work fully :(
+#	def __new__(cls, x, **kwargs):
+#		minutes = x
+#		d = datetime.time.__new__(cls, 0)
+#		d = d + datetime.timedelta(0, minutes * 60)
+#		return d
+#	def __str__(self):
+#		return self.strftime('%H:%m')
+
+class OvcTime(object):
+	'''time with ovc-integer constructor (minutes)'''
+	# TODO subclassing the built-in type datetime.time doesn't work fully :(
+	def __init__(self, x, **kwargs):
+		minutes = x
+		if minutes < 0:
+		    self.present = False
+		    self.hours = self.minutes = 0
+		else:
+		    self.present = True
+		    self.hours = minutes / 60
+		    self.minutes = minutes % 60
+	def __str__(self):
+		if self.present:
+		    return "%02d:%02d" % (self.hours, self.minutes)
+		else:
+		    return "--:--"
+
 class OvcDatetime(datetime.datetime):
-	'''datetime with ovc-integer constructor'''
+	'''datetime with ovc-integer constructor (combined days and minutes)'''
 	# TODO subclassing this built-in type doesn't work fully :(
 	def __new__(cls, x, **kwargs):
 		d = datetime.datetime.__new__(cls, 1997, 1, 1)
@@ -56,11 +87,17 @@ class OvcDatetime(datetime.datetime):
 class OvcBcdDate(datetime.date):
 	'''date with ovc-BCD constructor'''
 	def __new__(cls, x, **kwargs):
-		day   = bcd2int((x>> 0)&0xff)
-		month = bcd2int((x>> 8)&0xff)
-		year  = bcd2int((x>>16)&0xffff)
-		if not year: return None
-		return datetime.date.__new__(cls, year, month, day)
+		day   = (x>> 0)&0xff
+		month = (x>> 8)&0xff
+		year  = (x>>16)&0xffff
+		try:
+		    dday   = bcd2int(day)
+		    dmonth = bcd2int(month)
+		    dyear  = bcd2int(year)
+		    if not year: return None
+		    return datetime.date.__new__(cls, dyear, dmonth, dday)
+		except:
+		    return "%04x-%02x-%02x" % (year, month, day)
 
 class OvcCardType(int):
 	_strs = { 0: 'anonymous', 2: 'personal'}
@@ -70,13 +107,17 @@ class OvcCardType(int):
 		try: return self._strs[self]
 		except KeyError: return 'cardtype %d'%self
 
-class OvcTransfer(int):
-	_strs = { 0: 'purchase', 1: 'check-in', 2: 'check-out', 6: 'transfer' }
+class OvcAction(int):
+	_strs = {
+		  0: 'purchase',  1: 'check-in', 2: 'check-out',
+		  4: 'opla/con', 12: 'controle',
+		  6: 'transfer',
+		}
 	def __new__(cls, x, **kwargs):
 		return int.__new__(cls, x)
 	def __str__(self):
 		try: return _rfill(self._strs[self], self._strs)
-		except KeyError: return _rfill('trnsfr %d'%self, self._strs)
+		except KeyError: return _rfill('Action %d'%self, self._strs)
 
 class OvcCompany(int):
 	# most companies can be figured out using
@@ -87,7 +128,10 @@ class OvcCompany(int):
 	_strs = {
 		 0: 'TLS',         1: 'Connexxion',  2: 'GVB',        3: 'HTM',
 		 4: 'NS',          5: 'RET',                          7: 'Veolia',
-		 8: 'Arriva',      9: 'Syntus',
+		 8: 'Arriva',      9: 'Syntus',     10: 'QBuzz',
+		12: 'DUO',
+		25: 'AH/Primera',
+	     15001: 'AH/PrimerA',	# include extra bits on the left of the field
 	}
 	def __new__(cls, x, **kwargs):
 		return int.__new__(cls, x)
@@ -97,19 +141,40 @@ class OvcCompany(int):
 
 class OvcSubscription(int):
 	_strs = {
-		 2: {
+		 1: {	# Connexxion
+		        0x0692: 'Daluren Oost-Nederland (1682)',
+		        0x069c: 'Daluren Oost-Nederland (1692)',	# both have been seen
+		},
+		 2: {	# GVB (Amsterdam)
  			0x0bbd: 'Supplement fiets',
 		}, 
-		 4: {
-			0x0019: 'Voordeelurenabonnement (2 jarig)',
-			0x00af: 'vrijweek09', #could also be kortweek09
-			0x00b1: 'kortweek09', #could also be vrijweek09
+		 4: {	# NS
+			0x0005: 'OV-jaarkaart',
+			0x0007: 'OV-bijkaart 1e klas',
+			0x0011: 'NS business card',
+			0x0019: '2-jaar Voordeelurenabonnement',
+			0x00af: 'Studenten week vrij 2009',
+			0x00b0: 'Studenten weekend vrij 2009',
+			0x00b1: 'Studenten korting week 2009',
+			0x00b2: 'Studenten korting weekend 2009',
+			0x00c9: 'Reizen op saldo (1e klas)',
 			0x00ca: 'Reizen op saldo (2e klas)',
 			0x00ce: 'Voordeelurenabonnement',
+			0x00e5: '1e klas (1 dag)',
+			0x00e6: '2e klas (1 dag)',
+			0x00e7: '1e klas (1 dag) (korting)',
+		},
+		 7: {   # Veolia
+		        0x0626: 'DALU Dalkorting',
+	        },
+		 8: {	# Arriva
+			0x059a:	'Voordeeluren',	# uit 035BD45C.dump
 		},
 		12: {
-			0x09c9: 'studwkvrij', #could also be studwkkort
-			0x09ca: 'studwkkort', #could also be studwkvrij
+			0x09c6: "Student, weekend-vrij",
+			0x09c7: "Student, week-discount",
+			0x09c9: "Student, week-vrij",
+			0x09ca: "Student, weekend-discount",
 		}
 	}
 	def __new__(cls, x, obj, **kwargs):
@@ -117,8 +182,16 @@ class OvcSubscription(int):
 		i._obj = obj
 		return i
 	def __str__(self):
-		try: return _rfill(self._strs[self._obj.company][self], self._strs)
-		except KeyError: return _rfill('subscription %d'%self, self._strs)
+		try:
+		    return _rfill(self._strs[self._obj.company][self], self._strs)
+		except KeyError:
+		    # The field got changed with 8 more bits at the right. This caused all
+		    # numbers to change. Try to chop off some bits to compensate.
+		    # This is a temporary hack.
+		    try:
+			return _rfill(self._strs[self._obj.company][self >> 8], self._strs)
+		    except KeyError:
+			return _rfill('subscription %d'%self, self._strs)
 
 _ostwidth = 0
 class OvcStation(int):
@@ -129,34 +202,134 @@ class OvcStation(int):
 	def __str__(self):
 		# compute maximum length of station name and cache it
 		global _ostwidth
-		if not _ostwidth: _ostwidth = stations.get_max_len('title')
+		if not _ostwidth: _ostwidth = stations.get_max_len('stations', 'title')
 		# get station name and pad string
-		s = stations.get(self._obj.company, self)
+		s = stations.get_station(self._obj.company, self)
 		if not s or not s.title:
 			s = '(station %5d)'%self
 		else:
 			s = s.title
 		return s + ' '*(_ostwidth-len(s))
 
+_omwidth = 0
+
+class OvcMachineId(long):
+	def __new__(cls, x, obj, width=0, **kwargs):
+		i = long.__new__(cls, x)
+		i._fieldwidth = width
+		i._obj = obj
+		return i
+	def __str__(self):
+		# return "M:"+('%d'%long(self)).zfill(self._fieldwidth)
+		# compute maximum length of machine name and cache it
+		global _omwidth
+		if not _omwidth: _omwidth = 10
+		if not _omwidth: _omwidth = stations.get_max_len(table='stations', field='title')
+		# get machine name
+		reason = databaseMismatch(int(self), self._obj)
+		if reason != None:
+		    printDatabaseRecord(int(self), self._obj, reason)
+		s = stations.get_machine(self._obj.company, self)
+		if not s or not s.title:
+		    s = ''
+		    if reason == None:
+			printDatabaseRecord(int(self), self._obj, "station/vehicle unknown")
+		else:
+		    s = "(" + s.title + ")"
+		s = s + ' '*(_omwidth-len(s))
+		return ('M:%7d'%long(self))+s
+
+def databaseMismatch(machid, transaction):
+    if not config.check_mismatch:
+	return None
+
+    company = transaction.company
+    if 'vehicle' in transaction.__dict__:
+	vehicle = transaction.vehicle
+	found = stations.get_vehicleids_by_machine(company, machid)
+	if not vehicle in found:
+	    return "db claims vehicle is " + str(found)
+	return None
+
+    if 'station' in transaction.__dict__:
+	station = transaction.station
+	found = stations.get_ovcids_by_machine(company, machid)
+	if not station in found:
+	    return "db claims ovcid is " + str(found)
+	return None
+
+    # Should never get here...
+    return False
+
+_hdr = None
+def printDatabaseRecord(machid, transaction, reason):
+    global _hdr
+
+    if config.print_new_vehicle:
+	if 'vehicle' in transaction.__dict__:
+	    if _hdr != "v":
+		sys.stderr.write("# company\tmachineid\tvehicleid\n")
+		_hdr = "v"
+	    sys.stderr.write("%d\t%d\t%d # %s\n" % (transaction.company, machid, transaction.vehicle, reason))
+
+    if config.print_new_station:
+	if 'station' in transaction.__dict__ and \
+		not 'vehicle' in transaction.__dict__:
+	    if _hdr != "s":
+		sys.stderr.write("# company\tmachineid\tovcid\n")
+		_hdr = "s"
+	    sys.stderr.write("%d\t%d\t%d # %s\n" % (transaction.company, machid, transaction.station, reason))
+
+#class OvcTransactionId(int):
+#	def __new__(cls, x,  **kwargs):
+#		return int.__new__(cls, x)
+#	def __str__(self):
+#		return '#%03d'%self
+#
+#class OvcSaldoTransactionId(int):
+#	def __new__(cls, x,  **kwargs):
+#		return int.__new__(cls, x)
+#	def __str__(self):
+#		return '$%03d'%self
+
+# The Transaction ID can also be a Credit Transacion ID, if it is in a
+# Credit Transaction. We want to distinguish them because it counts
+# independently of normal Transaction IDs.
+# I use a horrible hack here to convert one to the other.
 class OvcTransactionId(int):
-	def __new__(cls, x,  **kwargs):
+	def __new__(cls, x, obj, **kwargs):
+#		try:
+#		    # For identifiers 08_10_55_0 and not for 28_00_55_6
+#		    # or 29_00_55_4.  Basically this tests for the
+#		    # absence of 'idsubs' but at the time this code
+#		    # runs it has not been parsed yet.
+#		    if not (ord(obj.data[0]) & 0x20):
+#			return OvcSaldoTransactionId(x)
+#		except AttributeError:
+#		    pass
 		return int.__new__(cls, x)
 	def __str__(self):
 		return '#%03d'%self
 
-class OvcSaldoTransactionId(int):
+class OvcSaldoTransactionId(OvcTransactionId):
 	def __new__(cls, x,  **kwargs):
 		return int.__new__(cls, x)
 	def __str__(self):
 		return '$%03d'%self
+
+class OvcSubscriptionId(int):
+	def __new__(cls, x,  **kwargs):
+		return int.__new__(cls, x)
+	def __str__(self):
+		return 'S:%02d'%self
 
 class OvcAmount(float):
 	'''amount in euro; prints '-' when zero'''
 	def __new__(cls, x, **kwargs):
 		return float.__new__(cls, x/100.0)
 	def __str__(self):
-		if self < 1e-6: return '    -  '
-		return '\xe2\x82\xac%6.2f'%self
+		if self < 1e-6: return '      -  '
+		return 'EUR%6.2f'%self
 
 class OvcAmountSigned(float):
 	'''amount in euro; 16 bit signed number'''
@@ -164,12 +337,21 @@ class OvcAmountSigned(float):
  		x = x - (1<<15)
 		return float.__new__(cls, x/100.0)
 	def __str__(self):
-		return '\xe2\x82\xac%6.2f'%self
+		return 'EUR%6.2f'%self
+
+class OvcVehicleId(long):
+	_fieldwidth = 4
+	def __new__(cls, x, width=0, **kwargs):
+		i = long.__new__(cls, x)
+		#i._fieldwidth = ( 3 * width + 9) / 10
+		return i
+	def __str__(self):
+		return "V:"+('%d'%long(self)).zfill(OvcVehicleId._fieldwidth)
 
 class FixedWidthDec(long):
 	def __new__(cls, x, width=0, **kwargs):
 		i = long.__new__(cls, x)
-		i._fieldwidth = width
+		i._fieldwidth = ( 3 * width + 9) / 10
 		return i
 	def __str__(self):
 		return ('%d'%long(self)).zfill(self._fieldwidth)
@@ -177,9 +359,126 @@ class FixedWidthDec(long):
 class FixedWidthHex(long):
 	def __new__(cls, x, width=0, **kwargs):
 		i = long.__new__(cls, x)
-		i._fieldwidth = width
+		i._fieldwidth = (width + 3) / 4
 		return i
 	def __str__(self):
 		return '0x'+('%x'%self).zfill(self._fieldwidth)
 
+class FixedWidthBin(long):
+	def __new__(cls, x, width=0, **kwargs):
+		i = long.__new__(cls, x)
+		i._fieldwidth = width
+		return i
+	def __str__(self):
+		s = ""
+		for b in xrange(self._fieldwidth - 1, -1, -1):
+		    if self & (1L << b):
+			s += "1"
+		    else:
+			s += "0"
+		return s
+
+def tobin(string):
+    s = ""
+    for ch in string:
+	bits = ord(ch)
+	s0 = ""
+	for b in xrange(7, -1, -1):
+	    if bits & (1 << b):
+		s0 += "1"
+	    else:
+		s0 += "0"
+	s += s0 + " "
+    return s
+
+class HistoryTransactionAddr(int):
+	def __new__(cls, x, width=0, **kwargs):
+		i = int.__new__(cls, x)
+		i._fieldwidth = width
+	        #addr = i < 7 ? (0xB00 + i * 0x20) : (0xC00 + (i - 7) * 0x20)
+		if x < 7: addr = 0xB00 + x * 0x20
+		else:     addr = 0xC00 + (x - 7) * 0x20
+		i._addr = addr
+		return i
+	def __str__(self):
+		return ('#%x=0x%x'%(self,self._addr)).zfill(self._fieldwidth)
+
+#class HistoryTransactionAddr(object):
+#	def __init__(self, x, width=0, **kwargs):
+#		self.i = x
+#		self._fieldwidth = width
+#	        #addr = i < 7 ? (0xB00 + i * 0x20) : (0xC00 + (i - 7) * 0x20)
+#		if x < 7: addr = 0xB00 + x * 0x20
+#		else:     addr = 0xC00 + (x - 7) * 0x20
+#		self._addr = addr
+#		#return self
+#	def __str__(self):
+#		return ('#%x=0x%x'%(self.i,self._addr)).zfill(self._fieldwidth)
+
+class CheckInOutTransactionAddr(int):
+	def __new__(cls, x, width=0, **kwargs):
+		i = int.__new__(cls, x)
+		i._fieldwidth = width
+		if   x <  3: addr = 0xC80 +  x       * 0x20
+		elif x < 10: addr = 0xD00 + (x -  3) * 0x20
+		else:        addr = 0xE00 + (x - 10) * 0x20
+		i._addr = addr
+		return i
+	def __str__(self):
+		return ('#%x=0x%x'%(self,self._addr)).zfill(self._fieldwidth)
+
+# Look up through the index of check in/out transactions in
+# FB0/FD0.
+class CheckInOutTransactionAddrIndex(int):
+	def __new__(cls, x, ovc, obj, width=0, **kwargs):
+		i = int.__new__(cls, x)
+		i._fieldwidth = width
+		i._ovc = ovc
+		i._base_obj = obj.base_obj
+		i._checks = []
+		i._derefd = None
+		return i
+
+	def setIndexes(self, typeFB0):
+		self._checks = typeFB0.checks
+
+	def __str__(self):
+		if self._derefd == None:
+		    checks = self._checks
+		    if self >= 0 and self < len(checks):
+			self._derefd = checks[self-1]
+		    else:
+			self._derefd = "?"
+		return ('%x->'%self) + str(self._derefd)
+
+class OvcMostRecentCreditIndex(int):
+	# For some reasons, the entries in this 3-long list are numbered 1, 6 and 8.
+	map = [ 1, 6, 8 ]
+	rev = { 1: 0, 6: 1, 8: 2 }
+	def __new__(cls, x, width=0, **kwargs):
+		i = int.__new__(cls, x)
+		i._fieldwidth = width
+		try:
+		    addr = 0xe80 + OvcMostRecentCreditIndex.rev[x] * 0x20
+		except KeyError:
+		    addr = 0
+		i._addr = addr
+		return i
+	def __str__(self):
+	    return ('Credit_Tr:#%x=0x%x'%(self,self._addr)).zfill(self._fieldwidth)
+
+class OvcSubscriptionLogIndex(int):
+	def __new__(cls, x, width=0, **kwargs):
+		i = int.__new__(cls, x)
+		i._fieldwidth = width
+		if x > 0:
+		    addr = (x - 1) * 0x30
+		    if x >  5: addr += 0x10	# skip sector trailer
+		    if x > 10: addr += 0x10	# skip sector trailer
+		    i._addr = 0x800 + addr
+		else:
+		    i._addr = 0
+		return i
+	def __str__(self):
+	    return ('Subscr:#%x=0x%x'%(self,self._addr)).zfill(self._fieldwidth)
 
