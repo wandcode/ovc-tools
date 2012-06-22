@@ -35,8 +35,7 @@ def tsv_each(filename):
 		if not fields:
 			fields = data
 		else:
-			# remove empty fields
-			yield dict(filter(lambda x:x[1]!='', zip(fields, data)))
+			yield dict(zip(fields, data))
 	f.close()
 
 def readfile(filename):
@@ -70,6 +69,12 @@ if __name__ == '__main__':
 	for filename in os.listdir(prefix):
 		if not filename.endswith('.sql'): continue
 		if filename == createsql: continue
+		if (len(sys.argv) > 1):
+                	if( sys.argv[1] == 'android' ):
+				if filename[0:22] == "create_tables_machines": continue
+		else:
+			if filename[0:21] == "create_tables_android": continue
+
 		print 'Importing SQL: %s'%filename
 		cur.executescript(readfile(os.path.join(prefix, filename)))
 
@@ -80,6 +85,9 @@ if __name__ == '__main__':
 	# hash '#' at start of a line is a comment
 	for filename in os.listdir(prefix):
 		if not filename.endswith('.tsv'): continue
+		if (len(sys.argv) > 1):
+                        if( sys.argv[1] == 'android' ):
+                        	if filename[0:7] == "machine": continue
 		print 'Importing tab-separated data: %s'%filename
 		if filename[0:7] == "machine":
 		    table = machine_table
@@ -108,4 +116,3 @@ if __name__ == '__main__':
 
 	con.close()
 	print 'Done!'
-
