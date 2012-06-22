@@ -791,9 +791,9 @@ company	machineid	ovcid
 # Arriva incheckpaaltjes
 8	1247087	238	# Groningen Europapark
 8	1247772	547	# Sauwerd
-8	1247773 369	# Kropswolde
-8	1247806 551	# Scheemda
-8	1247812 551	# Scheemda
+8	1247773	369	# Kropswolde
+8	1247806	551	# Scheemda
+8	1247812	551	# Scheemda
 8	1247820	263	# Groningen
 8	1247849	171	# Delfzijl
 8	1247874	264	# Groningen Noord?
@@ -802,8 +802,8 @@ company	machineid	ovcid
 8	1254343	547	# Sauwerd
 8	1254346	264	# Groningen Noord?
 8	1254526	263	# Groningen
-8	1254528 263	# Groningen
-8	1254529 263	# Groningen
+8	1254528	263	# Groningen
+8	1254529	263	# Groningen
 # Arriva oplaadpunten
 8	262516	263	# Groningen
 8	262547	547	# Sauwerd
