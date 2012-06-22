@@ -4,458 +4,503 @@
 #  http://home.planet.nl/~schif026/keuzenl.html
 #  http://www.numdex.nl/NSstationnummers.html
 #  http://wiki.ovinnederland.nl/
+#  http://www.ns.nl/api
 # and many direct observations
 #
-# Still missing:
-#  Eygelshoven Markt (DB), Groningen Europapark (Arriva),
-#  Heerlen de Kissel (DB, Veolia), Voorst-Empe (NS)
+# Last update:
+#  14-06-2012
 #
-company	ovcid	name
+# Confirmation needed:
+#  250	Gouda Goverwelle, it is 257 (I can confirm that). NS API says 250 though...
+#  250  Gendringen, can't find any info on this station besides the first url...
+#
+# Temporary station (*NOT* included):
+#  472    Nijverdal West        	6.449275        52.367085
+#
+# Closed stations (included):
+#  204    Emmen Bargeres
+#  250    Gendringen
+#  393    Leidschendam-Voorburg
+#  488    Nijmegen Heyendaal
+#  510    Pijnacker
+#  522    Berkel en Rodenrijs
+#  528    Rotterdam Bergweg
+#  532    Rotterdam Hofplein
+#  535    Rotterdam Kleiweg
+#  536    Rotterdam Wilgenplas
+#  660    Voorburg 't Loo
+#  730    Zoetermeer Stadslijn
+#  739    Zoetermeer Centrum West  
+#
+company	ovcid	name                    	lon     	lat
 # station/Fe codes
-4	  45	Aalten
-4	  47	Abcoude
-4	  49	Akkrum
-4	  50	Alkmaar
-4	  51	Almelo
-4	  52	Alkmaar Noord
-4	  53	Alphen aan den Rijn
-4	  54	Amersfoort Schothorst
-4	  55	Amersfoort
-4	  56	Amsterdam RAI
-4	  57	Amsterdam Amstel
-4	  58	Amsterdam Centraal
-4	  59	Amsterdam Sloterdijk
-4	  60	Amsterdam Muiderpoort
-4	  61	Amsterdam Zuid/WTC
-4	  65	Anna Paulowna
-4	  66	Apeldoorn
-4	  67	Appingedam
-4	  68	Arkel
-4	  69	Arnemuiden
-4	  71	Arnhem
-4	  72	Arnhem Velperpoort
-4	  73	Assen
-4	  74	Amsterdam Bijlmer ArenA
-4	  75	Arnhem Presikhaaf
-4	  79	Amsterdam Lelylaan
-4	  80	Almere Centrum
-4	  81	Almere Buiten
-4	  82	Almere Muziekwijk
-4	  86	Baarn
-4	  89	Baflo
-4	  90	Barendrecht
-4	  91	Barneveld Centrum
-4	  92	Barneveld Noord
-4	  94	Bedum
-4	  96	Beek-Elsloo
-4	  97	Beesd
-4	 100	Beilen
-4	 104	Almere Parkwijk
-4	 108	Bergen op Zoom
-4	 112	Best
-4	 113	Beverwijk
-4	 114	Bilthoven
-4	 117	Blerick
-4	 118	Bloemendaal
-4	 121	Bodegraven
-4	 124	Borne
-4	 125	Boskoop
-4	 127	Bovenkarspel-Grootebroek
-4	 128	Boxmeer
-4	 129	Boxtel
-4	 131	Breda
-4	 132	Breda Prinsenbeek
-4	 133	Breukelen
-4	 136	Brummen
-4	 139	Buitenpost
-4	 140	Bunde
-4	 141	Bunnik
-4	 145	Bussum Zuid
-4	 147	Capelle Schollevaar
-4	 151	Castricum
-4	 152	Chevremont
-4	 153	Coevorden
-4	 154	Culemborg
-4	 155	Cuijk
-4	 161	Dalen
-4	 163	Diemen Zuid
-4	 164	Daarlerveen
-4	 165	Diemen
-4	 166	Delft Zuid
-4	 167	Dalfsen
-4	 168	Deinum
-4	 169	Delden
-4	 170	Delft
-4	 171	Delfzijl
-4	 172	Deurne
-4	 173	Deventer
-4	 174	Didam
-4	 175	Delfzijl West
-4	 176	Dieren
-4	 177	Doetinchem
-4	 179	Den Dolder
-4	 180	Dordrecht
-4	 181	Dordrecht Zuid
-4	 182	Driebergen-Zeist
-4	 183	Driehuis
-4	 184	Doetinchem de Huet
-4	 185	Deventer Colmschate
-4	 186	Dordrecht Stadspolders
-4	 188	De Vink
-4	 192	Dronrijp
-4	 193	Duiven
-4	 194	Duivendrecht
-4	 195	Echt
-4	 196	Eindhoven Beukenlaan
-4	 200	Ede-Wageningen
-4	 201	Ede Centrum
-4	 204	Emmen Bargeres
-4	 206	Eindhoven
-4	 207	Elst
-4	 208	Emmen
-4	 210	Enkhuizen
-4	 212	Enschede
-4	 216	Ermelo
-4	 217	Enschede de Eschmarke
-4	 218	Etten-Leur
-4	 219	Eijsden
-4	 221	Enschede Drienerlo
-4	 223	Apeldoorn de Maten
-4	 226	Almere Oostvaarders
-4	 227	Arnhem Zuid
-4	 228	Amersfoort Vathorst
-4	 229	Apeldoorn Osseveld
-4	 230	Bovenkarspel Flora
-4	 231	Amsterdam Holendrecht
-4	 232	Franeker
-4	 235	Amsterdam Science Park
-4	 239	Geerdijk
-4	 241	Gaanderen
-4	 242	Helmond Brandevoort
-4	 244	Geldermalsen
-4	 245	Geldrop
-4	 246	Geleen Oost
-4	 248	Geleen-Lutterade
-4	 250	Gendringen
-4	 251	Gilze-Rijen
-4	 253	Goes
-4	 254	Goor
-4	 256	Gorinchem
-4	 257	Gouda Goverwelle
-4	 258	Gouda
-4	 259	Gramsbergen
-4	 262	Glanerbrug
-4	 263	Groningen
-4	 264	Groningen Noord
-4	 266	Grou-Jirnsum
-4	 267	Grijpskerk
-4	 270	Haarlem Spaarnwoude
-4	 278	Den Haag Mariahoeve
-4	 279	Den Haag Moerwijk
-4	 280	Den Haag HS
-4	 282	Den Haag Centraal
-4	 285	Haarlem
-4	 292	Hurdegaryp
-4	 293	Hardenberg
-4	 294	Harderwijk
-4	 295	Hardinxveld-Giessendam
-4	 296	Harlingen
-4	 297	Haren
-4	 298	Harlingen Haven
-4	 299	Helmond Brouwhuis
-4	 300	Helmond 't Hout
-4	 301	Heerenveen Ijsstadion
-4	 302	Heemstede-Aerdenhout
-4	 303	Den Helder Zuid
-4	 305	Heerenveen
-4	 306	Heerhugowaard
-4	 307	Heerlen
-4	 308	Heeze
-4	 309	Heiloo
-4	 310	Heino
-4	 311	Den Helder
-4	 312	Hengelo Oost
-4	 313	Helmond
-4	 315	Hemmen-Dodewaard
-4	 316	Hengelo
-4	 317	Heemskerk
-4	 319	's-Hertogenbosch
-4	 320	's-Hertogenbosch Oost
-4	 322	Hilversum
-4	 323	Hindeloopen
-4	 324	Hilversum Noord
-4	 325	Hoek van Holland Haven
-4	 326	Hoensbroek
-4	 327	Hollandsche Rading
-4	 328	Holten
-4	 329	Hillegom
-4	 330	Hoogeveen
-4	 331	Hoogezand-Sappemeer
-4	 332	Hoofddorp
-4	 334	Hoogkarspel
-4	 335	Houten Castellum
-4	 336	Hoorn Kersenboogerd
-4	 337	Hoorn
-4	 338	Eygelshoven
-4	 339	Horst-Sevenum
-4	 340	Houten
-4	 341	Houthem-St. Gerlach
-4	 342	Hoek van Holland Strand
-4	 353	Kampen
-4	 354	Kapelle-Biezelinge
-4	 355	Kerkrade Centrum # (Veolia)
-4	 359	Kesteren
-4	 361	Klarenbeek
-4	 362	Klimmen-Ransdaal
-4	 363	Koog Bloemwijk
-4	 364	Koog-Zaandijk
-4	 366	Koudum-Molkwerum
-4	 367	Krabbendijke
-4	 368	Krommenie-Assendelft
-4	 369	Kropswolde
-4	 370	Kruiningen-Yerseke
-4	 379	Den Haag Ypenburg
-4	 380	Den Haag Laan van NOI
-4	 382	Lage Zwaluwe
-4	 384	Leiden Lammenschans
-4	 386	Leerdam
-4	 387	Leeuwarden
-4	 388	't Harde
-4	 389	Leeuwarden Camminghaburen
-4	 390	Leiden Centraal
-4	 393	Leidschendam-Voorburg
-4	 394	Lelystad Centrum
-4	 395	Lichtenvoorde-Groenlo
-4	 399	Lochem
-4	 403	Loppersum
-4	 405	Lunteren
-4	 417	Maarn
-4	 419	Maarssen
-4	 421	Maassluis West
-4	 422	Maassluis
-4	 424	Maastricht
-4	 426	Maastricht Randwijck
-4	 427	Mantgum
-4	 428	Marienberg
-4	 430	Martenshoek
-4	 434	Meerssen
-4	 435	Meppel
-4	 436	Middelburg
-4	 446	Mook-Molenhoek # (Veolia)
-4	 451	Nijmegen Lent
-4	 452	Naarden-Bussum
-4	 454	Nieuw Amsterdam
-4	 455	Nieuwerkerk aan den Ijssel
-4	 457	Nieuweschans
-4	 460	Nieuw Vennep
-4	 466	Nunspeet
-4	 467	Nuth
-4	 468	Nijmegen Heyendaal
-4	 469	Nijkerk
-4	 470	Nijmegen
-4	 472	Nijverdal
-4	 475	Nijmegen Dukenburg
-4	 480	Obdam
-4	 482	Oisterwijk
-4	 483	Oldenzaal
-4	 486	Olst
-4	 487	Ommen
-4	 488	Nijmegen Heyendaal
-4	 489	Oosterbeek
-4	 494	Opheusden
-4	 495	Oss
-4	 496	Oss West
-4	 498	Oudenbosch
-4	 499	Purmerend Weidevenne
-4	 501	Overveen
-4	 505	Rijswijk
-4	 506	Purmerend Overwhere
-4	 507	Rotterdam Alexander
-4	 508	Purmerend
-4	 509	Putten
-4	 510	Pijnacker
-4	 513	Raalte
-4	 515	Ravenstein
-4	 517	Rhenen
-4	 518	Reuver
-4	 519	Rheden
-4	 520	Almelo de Riet
-4	 521	Rilland-Bath
-4	 522	Berkel en Rodenrijs
-4	 523	Roermond
-4	 524	Rosmalen
-4	 525	Roodeschool
-4	 526	Roosendaal
-4	 528	Rotterdam Bergweg
-4	 529	Rotterdam Blaak
-4	 530	Rotterdam Centraal
-4	 531	Rotterdam Noord
-4	 532	Rotterdam Hofplein
-4	 533	Rotterdam Zuid
-4	 534	Rotterdam Stadion
-4	 535	Rotterdam Kleiweg
-4	 536	Rotterdam Wilgenplas
-4	 537	Ruurlo
-4	 538	Rijssen
-4	 542	Rotterdam Lombardijen
-4	 543	Santpoort Noord
-4	 544	Santpoort Zuid
-4	 545	Sappemeer Oost
-4	 547	Sauwerd
-4	 548	Landgraaf
-4	 549	Schagen
-4	 551	Scheemda
-4	 553	Schiedam Centrum
-4	 554	Schinnen
-4	 555	Schin op Geul
-4	 561	Schiphol
-4	 563	Schiedam Nieuwland
-4	 564	Sittard
-4	 565	Sliedrecht
-4	 566	Sneek
-4	 567	Soest
-4	 569	Soestdijk
-4	 570	Hilversum Sportpark
-4	 571	Soest Zuid
-4	 572	Spaubeek
-4	 574	Sneek Noord
-4	 575	Stavoren
-4	 576	Stedum
-4	 578	Steenwijk
-4	 582	Susteren
-4	 583	Swalmen
-4	 591	Tegelen
-4	 592	Terborg
-4	 594	Tilburg West
-4	 596	Tiel
-4	 597	Tilburg
-4	 598	Tilburg Reeshof
-4	 599	Twello
-4	 600	Tiel Passewaaij
-4	 613	Utrecht Zuilen
-4	 614	Utrecht Terwijde
-4	 615	Uitgeest
-4	 617	Uithuizen
-4	 618	Uithuizermeeden
-4	 619	Usquert
-4	 620	Utrecht Overvecht
-4	 621	Utrecht Centraal
-4	 623	Utrecht Lunetten
-4	 627	Veenendaal Centrum
-4	 628	Veenendaal West
-4	 632	Valkenburg
-4	 635	Varsseveld
-4	 637	Veenendaal de Klomp
-4	 638	Veenwouden
-4	 640	Velp
-4	 642	Vlaardingen West
-4	 644	Venlo
-4	 646	Venray # (Veolia)
-4	 647	Vierlingsbeek
-4	 649	Vlaardingen Oost
-4	 650	Vlaardingen Centrum
-4	 651	Vleuten
-4	 652	Vlissingen
-4	 653	Vlissingen Souburg
-4	 655	Voorhout
-4	 656	Voerendaal
-4	 658	Voorburg
-4	 659	Voorschoten
-4	 660	Voorburg 't Loo
-4	 661	Vorden
-4	 664	Vriezenveen
-4	 665	Voorhout
-4	 666	Vroomshoop
-4	 667	Vught
-4	 674	Waddinxveen Noord
-4	 675	Waddinxveen
-4	 679	Warffum
-4	 684	Weert
-4	 685	Weesp
-4	 686	Wehl
-4	 690	Wezep
-4	 691	Wierden
-4	 696	Winschoten
-4	 697	Winsum
-4	 698	Winterswijk
-4	 700	Winterswijk West
-4	 702	Woerden
-4	 704	Wolfheze
-4	 705	Wolvega
-4	 706	Workum
-4	 707	Wormerveer
-4	 710	Wijchen
-4	 711	Wijhe
-4	 722	IJlst
-4	 728	Zaandam Kogerveld
-4	 730	Zoetermeer Stadslijn
-4	 731	Zaandam
-4	 732	Zaltbommel
-4	 733	Zandvoort aan Zee
-4	 734	Zetten-Andelst
-4	 735	Zevenaar
-4	 737	Zevenbergen
-4	 739	Zoetermeer Stadslijn
-4	 740	Zoetermeer Oost
-4	 741	Zoetermeer
-4	 742	Zuidbroek
-4	 743	Zuidhorn
-4	 744	Zutphen
-4	 745	Zwaagwesteinde
-4	 747	Zwolle
-4	 752	Zwijndrecht
+4	  45	Aalten                  	6.578627	51.921326
+4	  47	Abcoude                 	4.977   	52.2785
+4	  49	Akkrum                  	5.8436112	53.04639
+4	  50	Alkmaar                 	4.7397223	52.63778
+4	  51	Almelo                  	6.6538887	52.358055
+4	  52	Alkmaar Noord           	4.764167	52.64389
+4	  53	Alphen aan den Rijn     	4.657778	52.124443
+4	  54	Amersfoort Schothorst   	5.4038887	52.174824
+4	  55	Amersfoort              	5.3705554	52.15389
+4	  56	Amsterdam RAI           	4.890278	52.337223
+4	  57	Amsterdam Amstel        	4.917778	52.34667
+4	  58	Amsterdam Centraal      	4.9002776	52.378887
+4	  59	Amsterdam Sloterdijk    	4.8377776	52.38889
+4	  60	Amsterdam Muiderpoort   	4.9311113	52.360554
+4	  61	Amsterdam Zuid/WTC      	4.8716664	52.33889
+4	  65	Anna Paulowna           	4.811111	52.86722
+4	  66	Apeldoorn               	5.970278	52.209167
+4	  67	Appingedam              	6.8619576	53.325813
+4	  68	Arkel                   	4.992778	51.871944
+4	  69	Arnemuiden              	3.6691666	51.501667
+4	  71	Arnhem                  	5.8991666	51.985
+4	  72	Arnhem Velperpoort      	5.9194446	51.98528
+4	  73	Assen                   	6.570833	52.991665
+4	  74	Amsterdam Bijlmer ArenA 	4.946944	52.31222
+4	  75	Arnhem Presikhaaf       	5.9438887	51.988056
+4	  79	Amsterdam Lelylaan      	4.833889	52.357777
+4	  80	Almere Centrum          	5.21764 	52.37503
+4	  81	Almere Buiten           	5.2780557	52.394165
+4	  82	Almere Muziekwijk       	5.1902776	52.3675
+4	  83	Almere Strand           	5.1483335	52.33278
+4	  86	Baarn                   	5.2808332	52.208332
+4	  89	Baflo                   	6.518558	53.360897
+4	  90	Barendrecht             	4.5533333	51.85472
+4	  91	Barneveld Centrum       	5.5902777	52.14
+4	  92	Barneveld Noord         	5.5980554	52.16139
+4	  94	Bedum                   	6.593054	53.306885
+4	  96	Beek-Elsloo             	5.786667	50.9475
+4	  97	Beesd                   	5.1944447	51.899445
+4	 100	Beilen                  	6.521111	52.85472
+4	 104	Almere Parkwijk         	5.2447224	52.376667
+4	 108	Bergen op Zoom          	4.296111	51.49389
+4	 112	Best                    	5.389167	51.51
+4	 113	Beverwijk               	4.6566668	52.478333
+4	 114	Bilthoven               	5.203889	52.13
+4	 117	Blerick                 	6.155   	51.3725
+4	 118	Bloemendaal              	4.6275  	52.404167
+4	 121	Bodegraven              	4.746111	52.08139
+4	 124	Borne                   	6.7480555	52.29889
+4	 125	Boskoop                 	4.6469445	52.077778
+4	 127	Bovenkarspel-Grootebroek	5.2377777	52.695
+4	 128	Boxmeer                  	5.939033	51.644524
+4	 129	Boxtel                  	5.3177776	51.585
+4	 131	Breda                   	4.78    	51.595554
+4	 132	Breda Prinsenbeek       	4.7208333	51.606388
+4	 133	Breukelen               	4.9908333	52.169724
+4	 136	Brummen                 	6.1469445	52.09111
+4	 139	Buitenpost              	6.1446495	53.256454
+4	 140	Bunde                   	5.7366667	50.896946
+4	 141	Bunnik                    	5.1944447	52.063057
+4	 145	Bussum Zuid             	5.1630554	52.265835
+4	 147	Capelle Schollevaar     	4.5841665	51.954166
+4	 151	Castricum               	4.6586113	52.545834
+4	 152	Chevremont              	6.0597224	50.87611
+4	 153	Coevorden               	6.7355556	52.663612
+4	 154	Culemborg                	5.2269444	51.946667
+4	 155	Cuijk                   	5.874295	51.72668
+4	 161	Dalen                   	6.7580557	52.694168
+4	 163	Diemen Zuid             	4.9558334	52.330276
+4	 164	Daarlerveen             	6.5759945	52.44077
+4	 165	Diemen                  	4.9655557	52.345833
+4	 166	Delft Zuid               	4.3647223	51.990833
+4	 167	Dalfsen                  	6.258611	52.498333
+4	 168	Deinum                   	5.728157	53.188812
+4	 169	Delden                  	6.716111	52.26
+4	 170	Delft                   	4.356389	52.006668
+4	 171	Delfzijl                	6.92408 	53.333664
+4	 172	Deurne                  	5.788889	51.455833
+4	 173	Deventer                  	6.1605554	52.2575
+4	 174	Didam                   	6.1324105	51.933502
+4	 175	Delfzijl West            	6.906909	53.332085
+4	 176	Dieren                  	6.1030555	52.045
+4	 177	Doetinchem              	6.2962146	51.958595
+4	 179	Den Dolder              	5.242778	52.140278
+4	 180	Dordrecht               	4.6683335	51.80722
+4	 181	Dordrecht Zuid          	4.671389	51.79
+4	 182	Driebergen-Zeist        	5.258611	52.065277
+4	 183	Driehuis                	4.6380553	52.4425
+4	 184	Doetinchem de Huet      	6.259852	51.95914
+4	 185	Deventer Colmschate     	6.2144446	52.25028
+4	 186	Dordrecht Stadspolders  	4.7166667	51.801945
+4	 188	De Vink                 	4.456389	52.14722
+4	 192	Dronrijp                	5.6347413	53.177807
+4	 193	Duiven                  	6.0147223	51.943333
+4	 194	Duivendrecht            	4.936389	52.323334
+4	 195	Echt                    	5.878889	51.100555
+4	 196	Eindhoven Beukenlaan    	5.4558334	51.45111
+4	 200	Ede-Wageningen          	5.6730556	52.02778
+4	 201	Ede Centrum             	5.6683335	52.04361
+4	 204	Emmen Bargeres          	6.889722	52.758056
+4	 206	Eindhoven               	5.481389	51.443333
+4	 207	Elst                    	5.855   	51.916943
+4	 208	Emmen                   	6.8994446	52.79
+4	 210	Enkhuizen               	5.286389	52.699165
+4	 212	Enschede                	6.89    	52.2225
+4	 216	Ermelo                  	5.6147223	52.301666
+4	 217	Enschede de Eschmarke   	6.9511113	52.22139
+4	 218	Etten-Leur              	4.6358333	51.575
+4	 219	Eijsden                 	5.71    	50.771946
+4	 221	Enschede Drienerlo      	6.838889	52.2375
+4	 226	Almere Oostvaarders     	5.3005557	52.40333
+4	 227	Arnhem Zuid             	5.8519444	51.955
+4	 228	Amersfoort Vathorst     	5.433889	52.19278
+4	 229	Apeldoorn Osseveld      	6.0044446	52.21528
+4	 230	Bovenkarspel Flora      	5.2527776	52.69611
+4	 231	Amsterdam Holendrecht   	4.9601  	52.2981
+4	 232	Franeker                	5.5483093	53.18245
+4	 233	Apeldoorn de Maten      	6.0005555	52.205276
+4	 234	Eygelshoven Markt       	6.0602474	50.89605
+4	 235	Amsterdam Science Park  	4.9485683	52.35296
+4	 236	Boven-Hardinxveld       	4.878056	51.832222
+4	 238	Groningen Europapark    	6.5828276	53.20603
+4	 239	Geerdijk                	6.5670605	52.475285
+4	 241	Gaanderen               	6.347581	51.931236
+4	 242	Helmond Brandevoort     	5.607222	51.462223
+4	 244	Geldermalsen            	5.271111	51.88278
+4	 245	Geldrop                 	5.5505557	51.419724
+4	 246	Geleen Oost             	5.8430557	50.966946
+4	 248	Geleen-Lutterade        	5.8247223	50.975555
+4	 250	Gendringen              	6.377442	51.872783
+4	 251	Gilze-Rijen             	4.926111	51.58361
+4	 253	Goes                    	3.8905556	51.498055
+4	 254	Goor                    	6.5844445	52.230278
+4	 256	Gorinchem               	4.9683332	51.83389
+4	 257	Gouda Goverwelle        	4.7408333	52.015
+4	 258	Gouda                   	4.7044444	52.0175
+4	 259	Gramsbergen             	6.675833	52.609165
+4	 262	Glanerbrug              	6.9744444	52.218613
+4	 263	Groningen               	6.564722	53.210556
+4	 264	Groningen Noord         	6.5563173	53.23015
+4	 266	Grou-Jirnsum            	5.8225  	53.08889
+4	 267	Grijpskerk              	6.3097787	53.25574
+4	 270	Haarlem Spaarnwoude     	4.6730556	52.38278
+4	 278	Den Haag Mariahoeve     	4.3694444	52.090557
+4	 279	Den Haag Moerwijk       	4.308611	52.05389
+4	 280	Den Haag HS             	4.3225  	52.06972
+4	 282	Den Haag Centraal       	4.325   	52.080276
+4	 285	Haarlem                 	4.6383333	52.38778
+4	 292	Hurdegaryp              	5.934543	53.218777
+4	 293	Hardenberg              	6.628611	52.572777
+4	 294	Harderwijk              	5.6197224	52.3375
+4	 295	Hardinxveld-Giessendam  	4.8358335	51.830555
+4	 296	Harlingen               	5.4251933	53.17042
+4	 297	Haren                   	6.6172223	53.17611
+4	 298	Harlingen Haven         	5.4112887	53.174915
+4	 299	Helmond Brouwhuis       	5.7033334	51.470276
+4	 300	Helmond 't Hout         	5.6313887	51.468056
+4	 301	Heerenveen Ijsstadion   	5.9438887	52.935276
+4	 302	Heemstede-Aerdenhout    	4.6066666	52.359165
+4	 303	Den Helder Zuid         	4.764167	52.9325
+4	 305	Heerenveen              	5.9141665	52.961388
+4	 306	Heerhugowaard           	4.8227777	52.669724
+4	 307	Heerlen                 	5.975   	50.890835
+4	 308	Heeze                   	5.5694447	51.385
+4	 309	Heiloo                  	4.7005553	52.599445
+4	 310	Heino                   	6.2211113	52.427223
+4	 311	Den Helder              	4.7611113	52.955276
+4	 312	Hengelo Oost            	6.8194447	52.26889
+4	 313	Helmond                 	5.6619444	51.475555
+4	 314	Hengelo FBK stadion     	6.7927723	52.257412
+4	 315	Hemmen-Dodewaard        	5.6737256	51.922215
+4	 316	Hengelo                 	6.793889	52.261665
+4	 317	Heemskerk               	4.6869445	52.495277
+4	 319	's-Hertogenbosch        	5.293611	51.690556
+4	 320	's-Hertogenbosch Oost   	5.318333	51.700554
+4	 322	Hilversum               	5.1819444	52.225834
+4	 323	Hindeloopen             	5.423063	52.94649
+4	 324	Hilversum Noord         	5.1738887	52.238056
+4	 325	Hoek van Holland Haven  	4.128889	51.975277
+4	 326	Hoensbroek              	5.9305553	50.905556
+4	 327	Hollandsche Rading      	5.179167	52.177776
+4	 328	Holten                  	6.4202776	52.28389
+4	 329	Hillegom                	4.5655556	52.3025
+4	 330	Hoogeveen               	6.473611	52.73389
+4	 331	Hoogezand-Sappemeer     	6.770754	53.159817
+4	 332	Hoofddorp               	4.7005553	52.293335
+4	 334	Hoogkarspel             	5.183889	52.690556
+4	 335	Houten Castellum        	5.179281	52.01724
+4	 336	Hoorn Kersenboogerd     	5.0855556	52.65361
+4	 337	Hoorn                   	5.0555553	52.644722
+4	 338	Eygelshoven             	6.045   	50.890556
+4	 339	Horst-Sevenum           	6.042222	51.426388
+4	 340	Houten                  	5.1675  	52.035
+4	 341	Houthem-St. Gerlach     	5.797222	50.873333
+4	 342	Hoek van Holland Strand 	4.1197224	51.981667
+4	 353	Kampen                  	5.9216666	52.559723
+4	 354	Kapelle-Biezelinge      	3.9561112	51.480835
+4	 355	Kerkrade Centrum        	6.0575  	50.861668
+4	 359	Kesteren                	5.5833464	51.931385
+4	 361	Klarenbeek              	6.083611	52.178055
+4	 362	Klimmen-Ransdaal        	5.8905554	50.86639
+4	 363	Koog Bloemwijk          	4.8055553	52.45861
+4	 364	Koog-Zaandijk           	4.805   	52.469166
+4	 366	Koudum-Molkwerum        	5.4106913	52.90282
+4	 367	Krabbendijke            	4.1169443	51.433334
+4	 368	Krommenie-Assendelft    	4.761243	52.49454
+4	 369	Kropswolde              	6.7220883	53.161736
+4	 370	Kruiningen-Yerseke      	4.0372224	51.465
+4	 379	Den Haag Ypenburg       	4.3922224	52.05528
+4	 380	Den Haag Laan van NOI   	4.3427777	52.07861
+4	 382	Lage Zwaluwe            	4.6630554	51.691113
+4	 384	Leiden Lammenschans     	4.4925  	52.146946
+4	 386	Leerdam                 	5.0913887	51.894722
+4	 387	Leeuwarden              	5.792222	53.195835
+4	 388	't Harde                	5.893611	52.40917
+4	 389	Leeuwarden Camminghaburen	5.8422966	53.20218
+4	 390	Leiden Centraal         	4.4816666	52.16611
+4	 393	Leidschendam-Voorburg   	4.382778	52.076944
+4	 394	Lelystad Centrum        	5.472778	52.50778
+4	 395	Lichtenvoorde-Groenlo   	6.5946245	52.012543
+4	 398	Lisse                   	4.5301867	52.269524
+4	 399	Lochem                  	6.4263887	52.166668
+4	 403	Loppersum               	6.7472625	53.334713
+4	 404	Heerlen Woonboulevard   	5.9524655	50.89605
+4	 405	Lunteren                	5.6244445	52.085278
+4	 407	Emmen Zuid              	6.8747807	52.748867
+4	 409	Heerlen De Kissel       	5.9933424	50.890167
+4	 417	Maarn                   	5.37    	52.064167
+4	 419	Maarssen                	5.0336113	52.135277
+4	 421	Maassluis West          	4.236111	51.925835
+4	 422	Maassluis               	4.254722	51.91611
+4	 424	Maastricht              	5.7055554	50.850277
+4	 426	Maastricht Randwijck    	5.717222	50.83861
+4	 427	Mantgum                 	5.7131996	53.12964
+4	 428	Marienberg              	6.575278	52.509445
+4	 430	Martenshoek             	6.7402987	53.160725
+4	 432	Maarheeze               	5.630343	51.30376
+4	 434	Meerssen                	5.7509995	50.88288
+4	 435	Meppel                  	6.1975  	52.690834
+4	 436	Middelburg              	3.6172223	51.49472
+4	 438	Hardinxveld Blauwe Zoom 	4.81556 	51.82944
+4	 446	Mook-Molenhoek          	5.8778143	51.76408
+4	 451	Nijmegen Lent           	5.8594446	51.865276
+4	 452	Naarden-Bussum          	5.1569443	52.280277
+4	 454	Nieuw Amsterdam         	6.848611	52.718613
+4	 455	Nieuwerkerk aan den Ijssel	4.6169443	51.96528
+4	 457	Nieuweschans            	7.200238	53.185207
+4	 460	Nieuw Vennep            	4.6455555	52.25889
+4	 466	Nunspeet                	5.785278	52.370834
+4	 467	Nuth                    	5.892778	50.919445
+4	 468	Nijmegen Heyendaal      	5.8675  	51.826946
+4	 469	Nijkerk                 	5.493889	52.22222
+4	 470	Nijmegen                	5.8522224	51.843613
+4	 472	Nijverdal               	6.4711113	52.365555
+4	 475	Nijmegen Dukenburg      	5.7955556	51.824165
+4	 480	Obdam                   	4.9072223	52.678055
+4	 482	Oisterwijk              	5.1941667	51.582222
+4	 483	Oldenzaal               	6.9347224	52.30639
+4	 486	Olst                    	6.1130557	52.33472
+4	 487	Ommen                   	6.4158335	52.509445
+4	 488	Nijmegen Heyendaal      	5.868333	51.826667
+4	 489	Oosterbeek              	5.84    	51.995
+4	 494	Opheusden               	5.6371145	51.926163
+4	 495	Oss                     	5.5322223	51.765556
+4	 496	Oss West                	5.5055556	51.758057
+4	 497	Sliedrecht Baanhoek     	4.743333	51.829723
+4	 498	Oudenbosch              	4.5333333	51.587776
+4	 499	Purmerend Weidevenne    	4.9356294	52.49659
+4	 501	Overveen                	4.606111	52.39111
+4	 505	Rijswijk                	4.3191667	52.039722
+4	 506	Purmerend Overwhere     	4.9683332	52.51139
+4	 507	Rotterdam Alexander     	4.5536113	51.951946
+4	 508	Purmerend               	4.953611	52.503056
+4	 509	Putten                  	5.575278	52.265
+4	 510	Pijnacker               	4.437778	52.019167
+4	 513	Raalte                  	6.2775  	52.391666
+4	 515	Ravenstein              	5.6358333	51.794167
+4	 517	Rhenen                  	5.5783334	51.95861
+4	 518	Reuver                  	6.0789585	51.28322
+4	 519	Rheden                  	6.0305557	52.01
+4	 520	Almelo de Riet          	6.6666665	52.341946
+4	 521	Rilland-Bath            	4.161111	51.42278
+4	 522	Berkel en Rodenrijs     	4.460833	51.976111
+4	 523	Roermond                	5.994167	51.193054
+4	 524	Rosmalen                	5.3680553	51.71472
+4	 525	Roodeschool             	6.760617	53.419212
+4	 526	Roosendaal              	4.4583335	51.54028
+4	 528	Rotterdam Bergweg       	4.470833	51.932222
+4	 529	Rotterdam Blaak         	4.4888887	51.920277
+4	 530	Rotterdam Centraal      	4.4688888	51.925
+4	 531	Rotterdam Noord         	4.4816666	51.942223
+4	 532	Rotterdam Hofplein      	4.479167	51.926944
+4	 533	Rotterdam Zuid          	4.5102777	51.904446
+4	 534	Rotterdam Stadion       	4.519722	51.89389
+4	 535	Rotterdam Kleiweg       	4.466389	51.945556
+4	 536	Rotterdam Wilgenplas    	4.462222	51.960833
+4	 537	Ruurlo                  	6.4492655	52.08109
+4	 538	Rijssen                 	6.520278	52.31222
+4	 542	Rotterdam Lombardijen   	4.5313888	51.88
+4	 543	Santpoort Noord         	4.6325  	52.433887
+4	 544	Santpoort Zuid          	4.6313887	52.419724
+4	 545	Sappemeer Oost          	6.7955647	53.158916
+4	 547	Sauwerd                 	6.540288	53.292076
+4	 548	Landgraaf               	6.0191665	50.89639
+4	 549	Schagen                 	4.805278	52.784443
+4	 551	Scheemda                	6.9777775	53.165535
+4	 553	Schiedam Centrum        	4.4089937	51.921246
+4	 554	Schinnen                	5.8744445	50.939167
+4	 555	Schin op Geul           	5.8722224	50.856388
+4	 559	Simpelveld              	5.979738	50.831474
+4	 561	Schiphol                	4.7619443	52.309444
+4	 563	Schiedam Nieuwland      	4.382222	51.922222
+4	 564	Sittard                 	5.858611	51.001667
+4	 565	Sliedrecht              	4.778333	51.829723
+4	 566	Sneek                   	5.6523967	53.032867
+4	 567	Soest                   	5.31    	52.173332
+4	 569	Soestdijk               	5.3     	52.183613
+4	 570	Hilversum Sportpark     	5.187222	52.21611
+4	 571	Soest Zuid              	5.303056	52.16528
+4	 572	Spaubeek                	5.8516665	50.943054
+4	 573	Kerkrade West           	6.0206795	50.851852
+4	 574	Sneek Noord             	5.663181	53.04093
+4	 575	Stavoren                	5.360021	52.886555
+4	 576	Stedum                  	6.6875553	53.32621
+4	 578	Steenwijk               	6.114556	52.79151
+4	 582	Susteren                	5.8630557	51.06139
+4	 583	Swalmen                 	6.0308075	51.234917
+4	 591	Tegelen                 	6.1384177	51.336365
+4	 592	Terborg                 	6.3642464	51.922455
+4	 594	Tilburg Universiteit    	5.051111	51.565
+4	 596	Tiel                    	5.422222	51.889446
+4	 597	Tilburg                 	5.083611	51.560555
+4	 598	Tilburg Reeshof         	4.9944444	51.573612
+4	 599	Twello                  	6.098611	52.237778
+4	 600	Tiel Passewaaij         	5.3922224	51.87389
+4	 603	Sassenheim              	4.51615 	52.2154
+4	 605	Rotterdam Zuidplein     	4.488044	51.8864
+4	 613	Utrecht Zuilen          	5.083611	52.106667
+4	 614	Utrecht Terwijde        	5.0416665	52.100555
+4	 615	Uitgeest                	4.701667	52.521667
+4	 617	Uithuizen               	6.6748867	53.409958
+4	 618	Uithuizermeeden         	6.7202973	53.414585
+4	 619	Usquert                 	6.6093774	53.401474
+4	 620	Utrecht Overvecht       	5.124722	52.11
+4	 621	Utrecht Centraal        	5.1102777	52.08889
+4	 622	Utrecht Westraven       	5.10681 	52.05668
+4	 623	Utrecht Lunetten        	5.1441665	52.065556
+4	 627	Veenendaal Centrum      	5.548611	52.02
+4	 628	Veenendaal West         	5.5313888	52.028057
+4	 632	Valkenburg              	5.832222	50.86972
+4	 635	Varsseveld              	6.458839	51.937256
+4	 636	Veendam                 	6.8870115	53.105118
+4	 637	Veenendaal-De Klomp     	5.573889	52.045834
+4	 638	Veenwouden              	5.9886613	53.235184
+4	 640	Velp                    	5.980278	51.99472
+4	 642	Vlaardingen West        	4.3130555	51.904167
+4	 644	Venlo                   	6.1727777	51.36361
+4	 646	Venray                  	6.014178	51.52657
+4	 647	Vierlingsbeek           	5.9960246	51.593422
+4	 649	Vlaardingen Oost        	4.3616667	51.91028
+4	 650	Vlaardingen Centrum     	4.3441668	51.903057
+4	 651	Vleuten                 	5.0108333	52.103054
+4	 652	Vlissingen              	3.5952778	51.445835
+4	 653	Vlissingen Souburg      	3.5952778	51.46472
+4	 655	Voorhout                	4.4844446	52.224445
+4	 656	Voerendaal              	5.930278	50.887222
+4	 658	Voorburg                	4.3594446	52.066666
+4	 659	Voorschoten             	4.4325  	52.12528
+4	 660	Voorburg 't Loo         	4.366389	52.082222
+4	 661	Vorden                  	6.3170457	52.107193
+4	 664	Vriezenveen             	6.6015267	52.40105
+4	 666	Vroomshoop              	6.569668	52.45719
+4	 667	Vught                   	5.2919445	51.655556
+4	 668	Voorst-Empe             	6.143611	52.1575
+4	 674	Waddinxveen Noord       	4.6483335	52.055
+4	 675	Waddinxveen             	4.649722	52.044167
+4	 679	Warffum                 	6.5671363	53.390842
+4	 684	Weert                   	5.703611	51.24861
+4	 685	Weesp                   	5.0430555	52.31278
+4	 686	Wehl                    	6.213844	51.957806
+4	 688	Westervoort             	5.96568 	51.965
+4	 690	Wezep                   	6.0025  	52.454166
+4	 691	Wierden                 	6.5916667	52.36139
+4	 696	Winschoten              	7.035101	53.139236
+4	 697	Winsum                  	6.5202904	53.3301
+4	 698	Winterswijk             	6.715518	51.96773
+4	 700	Winterswijk West        	6.7029266	51.975464
+4	 702	Woerden                 	4.893611	52.085
+4	 704	Wolfheze                	5.793611	52.005554
+4	 705	Wolvega                 	6.003611	52.880833
+4	 706	Workum                  	5.4564285	52.972485
+4	 707	Wormerveer              	4.792222	52.489166
+4	 710	Wijchen                 	5.7308335	51.81167
+4	 711	Wijhe                   	6.1405554	52.390278
+4	 722	IJlst                   	5.6160803	53.01466
+4	 728	Zaandam Kogerveld       	4.8202777	52.456665
+4	 730	Zoetermeer Stadslijn    	4.477222	52.048333
+4	 731	Zaandam                 	4.813611	52.43889
+4	 732	Zaltbommel              	5.2633333	51.808887
+4	 733	Zandvoort aan Zee       	4.532778	52.37528
+4	 734	Zetten-Andelst          	5.722841	51.920055
+4	 735	Zevenaar                	6.071944	51.923054
+4	 737	Zevenbergen             	4.609722	51.64111
+4	 739	Zoetermeer Centrum West 	4.483889	52.060556
+4	 740	Zoetermeer Oost         	4.492778	52.04639
+4	 741	Zoetermeer              	4.4772224	52.0475
+4	 742	Zuidbroek               	6.867914	53.15961
+4	 743	Zuidhorn                	6.406236	53.24863
+4	 744	Zutphen                 	6.1941667	52.14528
+4	 745	Zwaagwesteinde          	6.0353  	53.24923
+4	 747	Zwolle                  	6.091944	52.504723
+4	 752	Zwijndrecht             	4.641667	51.815
+4	 996	Utrecht Maliebaan       	5.1313887	52.087776
+4	 997	Onze Lieve Vrouwe ter Nood	4.686667	52.583332
+4	 998	Eindhoven Stadion       	5.4688888	51.44278
+4	 999	Amsterdam Arena         	4.9416666	52.318054
 # ticket machine codes
-4	 850	*Alkmaar
-4	 755	*Almelo
-4	 853	*Amersfoort
-4	 756	*Amsterdam Amstel
-4	 875	*Amsterdam Centraal
-4	 876	*Amsterdam Centraal
-4	 757	*Apeldoorn
-4	 878	*Arnhem
-4	 758	*Assen
-4	 775	*Almere Centrum
-4	 759	*Beverwijk
-4	 854	*Breda
-4	 778	*Delft
-4	 760	*Deventer
-4	 761	*Dordrecht
-4	 762	*Ede-Wageningen
-4	 883	*Eindhoven
-4	 763	*Enschede
-4	7310	*Apeldoorn de Maten
-4	1340	*Almere Oostvaarders
-4	6840	*Arnhem Zuid
-4	7320	*Apeldoorn Osseveld
-4	7020	*Gaanderen
-4	5730	*Helmond Brandevoort
-4	 764	*Gouda
-4	 880	*Groningen
-4	 882	*Den Haag HS
-4	 895	*Den Haag Centraal
-4	 885	*Haarlem
-4	 768	*Heerenveen
-4	 765	*Heerlen
-4	 766	*Den Helder
-4	 857	*Hengelo
-4	 862	*'s-Hertogenbosch
-4	 867	*Hilversum
-4	 767	*Hoorn
-4	 770	*Leeuwarden
-4	 888	*Leiden Centraal
-4	 890	*Maastricht
-4	 771	*Middelburg
-4	 869	*Naarden-Bussum
-4	 892	*Nijmegen
-4	 772	*Roermond
-4	 870	*Roosendaal
-4	 893	*Rotterdam Centraal
-4	 894	*Rotterdam Centraal
-4	 881	*Schiphol
-4	 773	*Sittard
-4	 871	*Tilburg
-4	 897	*Utrecht Centraal
-4	 872	*Venlo
-4	 779	*Zaandam
-4	 774	*Zutphen
-4	 873	*Zwolle
+4	 850	Alkmaar                 	4.7397223	52.63778
+4	 755	Almelo                  	6.6538887	52.358055
+4	 853	Amersfoort              	5.3705554	52.15389
+4	 756	Amsterdam Amstel        	4.917778	52.34667
+4	 875	Amsterdam Centraal      	4.9002776	52.378887
+4	 876	Amsterdam Centraal      	4.9002776	52.378887
+4	 757	Apeldoorn               	5.970278	52.209167
+4	 878	Arnhem                  	5.8991666	51.985
+4	 758	Assen                   	6.570833	52.991665
+4	 775	Almere Centrum          	5.21764 	52.37503
+4	 759	Beverwijk               	4.6566668	52.478333
+4	 854	Breda                   	4.78    	51.595554
+4	 778	Delft                   	4.356389	52.006668
+4	 760	Deventer                	6.1605554	52.2575
+4	 761	Dordrecht               	4.6683335	51.80722
+4	 762	Ede-Wageningen          	5.6730556	52.02778
+4	 883	Eindhoven               	5.481389	51.443333
+4	 763	Enschede                	6.89    	52.2225
+4	7310	Apeldoorn de Maten      	6.0005555	52.205276
+4	1340	Almere Oostvaarders     	5.3005557	52.40333
+4	6840	Arnhem Zuid             	5.8519444	51.955
+4	7320	Apeldoorn Osseveld      	6.0044446	52.21528
+4	7020	Gaanderen               	6.347581	51.931236
+4	5730	Helmond Brandevoort     	5.607222	51.462223
+4	 764	Gouda                   	4.7044444	52.0175
+4	 880	Groningen               	6.564722	53.210556
+4	 882	Den Haag HS             	4.3225  	52.06972
+4	 895	Den Haag Centraal       	4.325   	52.080276
+4	 885	Haarlem                 	4.6383333	52.38778
+4	 768	Heerenveen              	5.9141665	52.961388
+4	 765	Heerlen                 	5.975   	50.890835
+4	 766	Den Helder              	4.7611113	52.955276
+4	 857	Hengelo                 	6.793889	52.261665
+4	 862	's-Hertogenbosch        	5.293611	51.690556
+4	 867	Hilversum               	5.1819444	52.225834
+4	 767	Hoorn                   	5.0555553	52.644722
+4	 770	Leeuwarden              	5.792222	53.195835
+4	 888	Leiden Centraal         	4.4816666	52.16611
+4	 890	Maastricht              	5.7055554	50.850277
+4	 771	Middelburg              	3.6172223	51.49472
+4	 869	Naarden-Bussum          	5.1569443	52.280277
+4	 892	Nijmegen                	5.8522224	51.843613
+4	 772	Roermond                	5.994167	51.193054
+4	 870	Roosendaal              	4.4583335	51.54028
+4	 893	Rotterdam Centraal      	4.4688888	51.925
+4	 894	Rotterdam Centraal      	4.4688888	51.925
+4	 881	Schiphol                	4.7619443	52.309444
+4	 773	Sittard                 	5.858611	51.001667
+4	 871	Tilburg                 	5.083611	51.560555
+4	 897	Utrecht Centraal        	5.1102777	52.08889
+4	 872	Venlo                   	6.1727777	51.36361
+4	 779	Zaandam                 	4.813611	52.43889
+4	 774	Zutphen                 	6.1941667	52.14528
+4	 873	Zwolle                  	6.091944	52.504723

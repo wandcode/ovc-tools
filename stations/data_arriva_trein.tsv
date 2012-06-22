@@ -1,49 +1,66 @@
 # Arriva, treinstations
 # It seems they use the same numbers as the NS.
-company	ovcid	name
-8	  67	Appingedam?
-8	  89	Baflo?
-8	  94	Bedum?
-8	 139	Buitenpost?
-8	 168	Deinum?
-8	 171	Delfzijl
-8	 175	Delfzijl West?
-8	 192	Dronrijp?
-8	 232	Franeker?
-8	 263	Groningen
-8	 238	Groningen Europapark
-8	 264	Groningen Noord?
-8	 267	Grijpskerk?
-8	 292	Hurdegaryp?
-8	 296	Harlingen?
-8	 298	Harlingen Haven?
-8	 323	Hindeloopen?
-8	 331	Hoogezand-Sappemeer?
-8	 366	Koudum-Molkwerum?
-8	 369	Kropswolde?
-8	 387	Leeuwarden?
-8	 389	Leeuwarden Camminghaburen?
-8	 403	Loppersum
-8	 427	Mantgum?
-8	 430	Martenshoek?
-8	 457	Nieuweschans?
-8	 525	Roodeschool
-8	 545	Sappemeer Oost?
-8	 547	Sauwerd
-8	 551	Scheemda?
-8	 566	Sneek?
-8	 574	Sneek Noord?
-8	 575	Stavoren?
-8	 576	Stedum?
-8	 617	Uithuizen?
-8	 618	Uithuizermeeden?
-8	 619	Usquert?
-8	 638	Veenwouden?
-8	 679	Warffum?
-8	 696	Winschoten?
-8	 697	Winsum?
-8	 706	Workum?
-8	 722	IJlst?
-8	 742	Zuidbroek?
-8	 743	Zuidhorn?
-8	 745	Zwaagwesteinde?
+#
+# Last update:
+#  14-06-2012
+#
+company	ovcid	name                    	lon     	lat
+8	  67	Appingedam              	6.8619576	53.325813
+8	  68	Arkel                   	4.992778	51.871944
+8	  89	Baflo                   	6.518558	53.360897
+8	  94	Bedum                   	6.593054	53.306885
+8	  97	Beesd                   	5.1944447	51.899445
+8	 139	Buitenpost              	6.1446495	53.256454
+8	 168	Deinum                  	5.728157	53.188812
+8	 171	Delfzijl                	6.92408 	53.333664
+8	 175	Delfzijl West           	6.906909	53.332085
+8	 180	Dordrecht               	4.6683335	51.80722
+8	 186	Dordrecht Stadspolders  	4.7166667	51.801945
+8	 192	Dronrijp                	5.6347413	53.177807
+8	 232	Franeker                	5.5483093	53.18245
+8	 236	Boven-Hardinxveld       	4.878056	51.832222
+8	 238	Groningen Europapark    	6.5828276	53.20603
+8	 244	Geldermalsen            	5.271111	51.88278
+8	 256	Gorinchem               	4.9683332	51.83389
+8	 263	Groningen               	6.564722	53.210556
+8	 264	Groningen Noord         	6.5563173	53.23015
+8	 267	Grijpskerk              	6.3097787	53.25574
+8	 292	Hurdegaryp              	5.934543	53.218777
+8	 295	Hardinxveld-Giessendam  	4.8358335	51.830555
+8	 296	Harlingen               	5.4251933	53.17042
+8	 298	Harlingen Haven         	5.4112887	53.174915
+8	 323	Hindeloopen             	5.423063	52.94649
+8	 331	Hoogezand-Sappemeer     	6.770754	53.159817
+8	 366	Koudum-Molkwerum        	5.4106913	52.90282
+8	 369	Kropswolde              	6.7220883	53.161736
+8	 386	Leerdam                 	5.0913887	51.894722
+8	 387	Leeuwarden              	5.792222	53.195835
+8	 389	Leeuwarden Camminghaburen	5.8422966	53.20218
+8	 403	Loppersum               	6.7472625	53.334713
+8	 427	Mantgum                 	5.7131996	53.12964
+8	 430	Martenshoek             	6.7402987	53.160725
+8	 438	Hardinxveld Blauwe Zoom 	4.81556 	51.82944
+8	 457	Nieuweschans            	7.200238	53.185207
+8	 497	Sliedrecht Baanhoek     	4.743333	51.829723
+8	 525	Roodeschool             	6.760617	53.419212
+8	 545	Sappemeer Oost          	6.7955647	53.158916
+8	 547	Sauwerd                 	6.540288	53.292076
+8	 551	Scheemda                	6.9777775	53.165535
+8	 565	Sliedrecht              	4.778333	51.829723
+8	 566	Sneek                   	5.6523967	53.032867
+8	 574	Sneek Noord             	5.663181	53.04093
+8	 575	Stavoren                	5.360021	52.886555
+8	 576	Stedum                  	6.6875553	53.32621
+8	 617	Uithuizen               	6.6748867	53.409958
+8	 618	Uithuizermeeden         	6.7202973	53.414585
+8	 619	Usquert                 	6.6093774	53.401474
+8	 636	Veendam                 	6.8870115	53.105118
+8	 638	Veenwouden              	5.9886613	53.235184
+8	 679	Warffum                 	6.5671363	53.390842
+8	 696	Winschoten              	7.035101	53.139236
+8	 697	Winsum                  	6.5202904	53.3301
+8	 706	Workum                  	5.4564285	52.972485
+8	 722	IJlst                   	5.6160803	53.01466
+8	 742	Zuidbroek               	6.867914	53.15961
+8	 743	Zuidhorn                	6.406236	53.24863
+8	 745	Zwaagwesteinde          	6.0353  	53.24923

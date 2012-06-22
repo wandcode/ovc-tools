@@ -1,0 +1,19 @@
+# Arriva
+#
+# Still missing:
+#  Alblasserdam 	Kade                    	4.650189	51.862283
+#  Dordrecht    	Hooikade                	4.658244	51.814928
+#  Dordrecht    	Veer Hollandse Biesbosch	4.766509	51.814732
+#  H.I. Ambacht 	Veerweg                 	4.653909	51.854981
+#  Krimpen aan den IJssel	Stormpolder     	4.574586	51.904553
+#  Papendrecht  	Oosteind                	4.720644	51.824071
+#  Papendrecht  	Veerdam                 	4.682251	51.82204
+#  Papendrecht  	Westeind                	4.673097	51.83403
+#  Ridderkerk   	De Schans               	4.619588	51.886814
+#  Sliedrecht   	Middeldiep              	4.77745 	51.817468
+#  Zwijndrecht  	Veerplein               	4.657698	51.817649
+#
+company	ovcid	city    	name    	lon     	lat
+# aquabus
+8	4652	Dordrecht	Merwekade	4.675708	51.819358
+8	4659	Rotterdam	Erasmusbrug	4.482284	51.908696

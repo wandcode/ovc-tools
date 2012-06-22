@@ -1,13 +1,10 @@
 # Arriva
 company	ovcid	city    	name
-# train
-8	 263	        	Groningen
-8	 745	        	Zwaagwesteinde
 # bus
 8	1062	Purmerend	Cornelis Edelmanstraat 
 8	1155	Amsterdam	Prins Hendrikkade
 8	1596	Amsterdam	Centraal Station
 8	2368	Amsterdam	Centraal Station IJsei
 8	4776	Doetinchem	Station
-8	4946	Terborg	Station
-8	4951	Ulft	Berghseweg
+8	4946	Terborg 	Station
+8	4951	Ulft    	Berghseweg
