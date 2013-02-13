@@ -8,13 +8,14 @@
 # and many direct observations
 #
 # Last update:
-#  14-06-2012
+#  13-02-2013
 #
 # Confirmation needed:
 #  250	Gouda Goverwelle, it is 257 (I can confirm that). NS API says 250 though...
 #  250  Gendringen, can't find any info on this station besides the first url...
 #
-# Temporary station (*NOT* included):
+# Temporary stations (*NOT* included):
+#  000    Deventer De Scheg     	6.213606	52.249176
 #  472    Nijverdal West        	6.449275        52.367085
 #
 # Closed stations (included):
@@ -130,6 +131,7 @@ company	ovcid	name                    	lon     	lat
 4	 194	Duivendrecht            	4.936389	52.323334
 4	 195	Echt                    	5.878889	51.100555
 4	 196	Eindhoven Beukenlaan    	5.4558334	51.45111
+4	 198	Dronten                 	5.72089 	52.5344	
 4	 200	Ede-Wageningen          	5.6730556	52.02778
 4	 201	Ede Centrum             	5.6683335	52.04361
 4	 204	Emmen Bargeres          	6.889722	52.758056
@@ -232,6 +234,7 @@ company	ovcid	name                    	lon     	lat
 4	 354	Kapelle-Biezelinge      	3.9561112	51.480835
 4	 355	Kerkrade Centrum        	6.0575  	50.861668
 4	 359	Kesteren                	5.5833464	51.931385
+4	 360	Kampen Zuid             	5.91341 	52.53293
 4	 361	Klarenbeek              	6.083611	52.178055
 4	 362	Klimmen-Ransdaal        	5.8905554	50.86639
 4	 363	Koog Bloemwijk          	4.8055553	52.45861
@@ -255,6 +258,7 @@ company	ovcid	name                    	lon     	lat
 4	 395	Lichtenvoorde-Groenlo   	6.5946245	52.012543
 4	 398	Lisse                   	4.5301867	52.269524
 4	 399	Lochem                  	6.4263887	52.166668
+4	 400	Halfweg-Zwanenburg      	4.74135 	52.38686
 4	 403	Loppersum               	6.7472625	53.334713
 4	 404	Heerlen Woonboulevard   	5.9524655	50.89605
 4	 405	Lunteren                	5.6244445	52.085278
@@ -270,11 +274,13 @@ company	ovcid	name                    	lon     	lat
 4	 428	Marienberg              	6.575278	52.509445
 4	 430	Martenshoek             	6.7402987	53.160725
 4	 432	Maarheeze               	5.630343	51.30376
+4	 433	Hengelo Gezondheidspark 	6.767235	52.261593
 4	 434	Meerssen                	5.7509995	50.88288
 4	 435	Meppel                  	6.1975  	52.690834
 4	 436	Middelburg              	3.6172223	51.49472
 4	 438	Hardinxveld Blauwe Zoom 	4.81556 	51.82944
 4	 446	Mook-Molenhoek          	5.8778143	51.76408
+4	 450	Almere Poort            	5.15512 	52.348095
 4	 451	Nijmegen Lent           	5.8594446	51.865276
 4	 452	Naarden-Bussum          	5.1569443	52.280277
 4	 454	Nieuw Amsterdam         	6.848611	52.718613
@@ -295,6 +301,7 @@ company	ovcid	name                    	lon     	lat
 4	 487	Ommen                   	6.4158335	52.509445
 4	 488	Nijmegen Heyendaal      	5.868333	51.826667
 4	 489	Oosterbeek              	5.84    	51.995
+4	 490	Hoevelaken              	5.460205	52.16635
 4	 494	Opheusden               	5.6371145	51.926163
 4	 495	Oss                     	5.5322223	51.765556
 4	 496	Oss West                	5.5055556	51.758057
@@ -370,6 +377,7 @@ company	ovcid	name                    	lon     	lat
 4	 600	Tiel Passewaaij         	5.3922224	51.87389
 4	 603	Sassenheim              	4.51615 	52.2154
 4	 605	Rotterdam Zuidplein     	4.488044	51.8864
+4	 608	Eys-Wittem              	5.92479 	50.82317
 4	 613	Utrecht Zuilen          	5.083611	52.106667
 4	 614	Utrecht Terwijde        	5.0416665	52.100555
 4	 615	Uitgeest                	4.701667	52.521667
@@ -380,6 +388,7 @@ company	ovcid	name                    	lon     	lat
 4	 621	Utrecht Centraal        	5.1102777	52.08889
 4	 622	Utrecht Westraven       	5.10681 	52.05668
 4	 623	Utrecht Lunetten        	5.1441665	52.065556
+4	 624	Utrecht Maliebaan       	5.1313887	52.087776
 4	 627	Veenendaal Centrum      	5.548611	52.02
 4	 628	Veenendaal West         	5.5313888	52.028057
 4	 632	Valkenburg              	5.832222	50.86972
@@ -407,6 +416,7 @@ company	ovcid	name                    	lon     	lat
 4	 666	Vroomshoop              	6.569668	52.45719
 4	 667	Vught                   	5.2919445	51.655556
 4	 668	Voorst-Empe             	6.143611	52.1575
+4	 670	Spekholzerheide         	6.02578 	50.85355
 4	 674	Waddinxveen Noord       	4.6483335	52.055
 4	 675	Waddinxveen             	4.649722	52.044167
 4	 679	Warffum                 	6.5671363	53.390842
@@ -427,6 +437,7 @@ company	ovcid	name                    	lon     	lat
 4	 707	Wormerveer              	4.792222	52.489166
 4	 710	Wijchen                 	5.7308335	51.81167
 4	 711	Wijhe                   	6.1405554	52.390278
+4	 712	Wijlre                  	5.898056	50.833057
 4	 722	IJlst                   	5.6160803	53.01466
 4	 728	Zaandam Kogerveld       	4.8202777	52.456665
 4	 730	Zoetermeer Stadslijn    	4.477222	52.048333
