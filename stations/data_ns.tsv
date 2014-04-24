@@ -8,21 +8,25 @@
 # and many direct observations
 #
 # Last update:
-#  12-08-2013
+#  24-04-2014
 #
 # Confirmation needed:
 #  250  Gendringen, can't find any info on this station besides the first url...
 #
 # Temporary stations (*NOT* included):
 #  000    Deventer De Scheg     	6.213606	52.249176
+#  078    Amsterdam Van der Madeweg	5.898056	50.833057
 #  406    Leeuwarden Achter de Hoven	5.81639 	53.19889
 #  472    Nijverdal West        	6.449275        52.367085
 #  608    Eijs-Wittem           	5.92479 	50.82317
 #  712    Gulpen-Wijlre         	5.898056	50.833057
+#  998    Eindhoven Stadion     	5.4688888	51.44278
+#  999    Amsterdam Stadion     	4.9416666	52.318054
 #
 # Closed stations (included):
 #  204    Emmen Bargeres
 #  250    Gendringen
+#  314    Hengelo FBK stadion
 #  393    Leidschendam-Voorburg
 #  488    Nijmegen Heyendaal
 #  510    Pijnacker
@@ -31,6 +35,7 @@
 #  532    Rotterdam Hofplein
 #  535    Rotterdam Kleiweg
 #  536    Rotterdam Wilgenplas
+#  622    Utrecht Westraven
 #  660    Voorburg 't Loo
 #  730    Zoetermeer Stadslijn
 #  739    Zoetermeer Centrum West  
@@ -152,13 +157,13 @@ company	ovcid	name                    	lon     	lat
 4	 228	Amersfoort Vathorst     	5.433889	52.19278
 4	 229	Apeldoorn Osseveld      	6.0044446	52.21528
 4	 230	Bovenkarspel Flora      	5.2527776	52.69611
-4	 231	Amsterdam Holendrecht   	4.9601  	52.2981
+4	 231	Amsterdam Holendrecht   	4.95972  	52.29844
 4	 232	Franeker                	5.5483093	53.18245
 4	 233	Apeldoorn de Maten      	6.0005555	52.205276
 4	 234	Eygelshoven Markt       	6.0602474	50.89605
-4	 235	Amsterdam Science Park  	4.9485683	52.35296
+4	 235	Amsterdam Science Park  	4.94651 	52.35526
 4	 236	Boven-Hardinxveld       	4.878056	51.832222
-4	 238	Groningen Europapark    	6.58519 	53.20489
+4	 238	Groningen Europapark    	6.58254 	53.20624
 4	 239	Geerdijk                	6.56674 	52.47625
 4	 241	Gaanderen               	6.3486  	51.93074
 4	 242	Helmond Brandevoort     	5.607222	51.462223
@@ -192,8 +197,8 @@ company	ovcid	name                    	lon     	lat
 4	 296	Harlingen               	5.4251933	53.17042
 4	 297	Haren                   	6.6172223	53.17611
 4	 298	Harlingen Haven         	5.4112887	53.174915
-4	 299	Helmond Brouwhuis       	5.7033334	51.470276
-4	 300	Helmond 't Hout         	5.6313887	51.468056
+4	 299	Helmond Brouwhuis       	5.70177 	51.47068
+4	 300	Helmond 't Hout         	5.63085 	51.46794
 4	 301	Heerenveen Ijsstadion   	5.9438887	52.935276
 4	 302	Heemstede-Aerdenhout    	4.6066666	52.359165
 4	 303	Den Helder Zuid         	4.764167	52.9325
@@ -224,12 +229,12 @@ company	ovcid	name                    	lon     	lat
 4	 331	Hoogezand-Sappemeer     	6.770754	53.159817
 4	 332	Hoofddorp               	4.7005553	52.293335
 4	 334	Hoogkarspel             	5.183889	52.690556
-4	 335	Houten Castellum        	5.179281	52.01724
+4	 335	Houten Castellum        	5.17949 	52.01701
 4	 336	Hoorn Kersenboogerd     	5.0855556	52.65361
 4	 337	Hoorn                   	5.0555553	52.644722
 4	 338	Eygelshoven             	6.045   	50.890556
 4	 339	Horst-Sevenum           	6.042222	51.426388
-4	 340	Houten                  	5.1675  	52.035
+4	 340	Houten                  	5.16821  	52.03402
 4	 341	Houthem-St. Gerlach     	5.797222	50.873333
 4	 342	Hoek van Holland Strand 	4.1197224	51.981667
 4	 353	Kampen                  	5.9216666	52.559723
@@ -243,7 +248,7 @@ company	ovcid	name                    	lon     	lat
 4	 364	Koog-Zaandijk           	4.805   	52.469166
 4	 366	Koudum-Molkwerum        	5.4106913	52.90282
 4	 367	Krabbendijke            	4.1169443	51.433334
-4	 368	Krommenie-Assendelft    	4.761243	52.49454
+4	 368	Krommenie-Assendelft    	4.75417 	52.49511
 4	 369	Kropswolde              	6.7220883	53.161736
 4	 370	Kruiningen-Yerseke      	4.0372224	51.465
 4	 379	Den Haag Ypenburg       	4.3922224	52.05528
@@ -260,9 +265,9 @@ company	ovcid	name                    	lon     	lat
 4	 395	Lichtenvoorde-Groenlo   	6.59641 	52.01188
 4	 398	Lisse                   	4.5301867	52.269524
 4	 399	Lochem                  	6.4263887	52.166668
-4	 400	Halfweg-Zwanenburg      	4.74579 	52.38616
+4	 400	Halfweg-Zwanenburg      	4.747165 	52.385937
 4	 403	Loppersum               	6.7472625	53.334713
-4	 404	Heerlen Woonboulevard   	5.9524655	50.89605
+4	 404	Heerlen Woonboulevard   	5.952222	50.896667
 4	 405	Lunteren                	5.6244445	52.085278
 4	 407	Emmen Zuid              	6.8747807	52.748867
 4	 409	Heerlen De Kissel       	5.9933424	50.890167
@@ -276,25 +281,25 @@ company	ovcid	name                    	lon     	lat
 4	 428	Marienberg              	6.575278	52.509445
 4	 430	Martenshoek             	6.7402987	53.160725
 4	 432	Maarheeze               	5.630343	51.30376
-4	 433	Hengelo Gezondheidspark 	6.767235	52.261593
+4	 433	Hengelo Gezondheidspark 	6.773611	52.261665
 4	 434	Meerssen                	5.7509995	50.88288
 4	 435	Meppel                  	6.1975  	52.690834
 4	 436	Middelburg              	3.6172223	51.49472
 4	 438	Hardinxveld Blauwe Zoom 	4.81556 	51.82944
-4	 446	Mook-Molenhoek          	5.8778143	51.76408
-4	 450	Almere Poort            	5.1535  	52.34574
-4	 451	Nijmegen Lent           	5.8594446	51.865276
+4	 446	Mook-Molenhoek          	5.88145 	51.77158
+4	 449	Maastricht Noord        	5.71774 	50.87087
+4	 450	Almere Poort            	5.151944	52.342777
+4	 451	Nijmegen Lent           	5.8595  	51.8642
 4	 452	Naarden-Bussum          	5.1569443	52.280277
 4	 454	Nieuw Amsterdam         	6.848611	52.718613
 4	 455	Nieuwerkerk aan den Ijssel	4.6169443	51.96528
-4	 457	Nieuweschans            	7.19937 	53.1844
+4	 457	Bad Nieuweschans            	7.19937 	53.1844
 4	 460	Nieuw Vennep            	4.6455555	52.25889
 4	 466	Nunspeet                	5.785278	52.370834
 4	 467	Nuth                    	5.892778	50.919445
 4	 468	Nijmegen Heyendaal      	5.8675  	51.826946
 4	 469	Nijkerk                 	5.493889	52.22222
 4	 470	Nijmegen                	5.8522224	51.843613
-4	 472	Nijverdal               	6.4711113	52.365555
 4	 475	Nijmegen Dukenburg      	5.7955556	51.824165
 4	 480	Obdam                   	4.9072223	52.678055
 4	 482	Oisterwijk              	5.1941667	51.582222
@@ -380,8 +385,7 @@ company	ovcid	name                    	lon     	lat
 4	 603	Sassenheim              	4.51615 	52.2154
 4	 605	Rotterdam Zuidplein     	4.488044	51.8864
 4	 607	Utrecht Leidsche Rijn   	5.06523 	52.09896
-4	 608	Eys-Wittem              	5.92479 	50.82317
-4	 613	Utrecht Zuilen          	5.083611	52.106667
+4	 613	Utrecht Zuilen          	5.09    	52.103054
 4	 614	Utrecht Terwijde        	5.0416665	52.100555
 4	 615	Uitgeest                	4.701667	52.521667
 4	 617	Uithuizen               	6.6748867	53.409958
@@ -440,7 +444,6 @@ company	ovcid	name                    	lon     	lat
 4	 707	Wormerveer              	4.792222	52.489166
 4	 710	Wijchen                 	5.7308335	51.81167
 4	 711	Wijhe                   	6.1405554	52.390278
-4	 712	Wijlre                  	5.898056	50.833057
 4	 722	IJlst                   	5.6160803	53.01466
 4	 728	Zaandam Kogerveld       	4.8202777	52.456665
 4	 730	Zoetermeer Stadslijn    	4.477222	52.048333
@@ -461,8 +464,6 @@ company	ovcid	name                    	lon     	lat
 4	 752	Zwijndrecht             	4.641667	51.815
 4	 996	Utrecht Maliebaan       	5.1313887	52.087776
 4	 997	Onze Lieve Vrouwe ter Nood	4.686667	52.583332
-4	 998	Eindhoven Stadion       	5.4688888	51.44278
-4	 999	Amsterdam Arena         	4.9416666	52.318054
 # ticket machine codes
 4	 850	Alkmaar                 	4.7397223	52.63778
 4	 755	Almelo                  	6.6538887	52.358055

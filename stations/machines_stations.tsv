@@ -399,7 +399,7 @@ company	machineid	ovcid
 4	1253822	564	# Sittard De Rocker 
 4	1253826	59	# Amsterdam Sloterdijk  
 4	1253827	59	# Amsterdam Sloterdijk  
-4	1253828 59	# Amsterdam Sloterdijk jansloter
+4	1253828	59	# Amsterdam Sloterdijk jansloter
 4	1253829	59	# Amsterdam Sloterdijk
 4	1253833	59	# Amsterdam Sloterdijk DanielJvdBerg
 4	1253842	731	# Zaandam  
@@ -515,7 +515,6 @@ company	machineid	ovcid
 4	1256306	55	# Amersfoort Zokker 
 4	1256307	55	# Amersfoort
 4	1256308	55	# Amersfoort Zokker 
-4	1256303	55	# Amersfoort Anonymous
 4	1256327	90	# Barendrecht WxD 
 4	1256328	90	# Barendrecht  
 4	1256329	90	# Barendrecht
@@ -865,11 +864,11 @@ company	machineid	ovcid
 4	460756	770	# Leeuwarden jollyroger
 4	460768	878
 4	460790	892	# Nijmegen
-4	460792	892	# "
-4	460793	892	# "
-4	460795	892	# "
-4	460798	892	# "
-4	460799	892	# "
+4	460792	892	# Nijmegen
+4	460793	892	# Nijmegen
+4	460795	892	# Nijmegen
+4	460798	892	# Nijmegen
+4	460799	892	# Nijmegen
 4	460800	892	# Nijmegen
 4	460802	892	# Nijmegen
 4	460805	475	# Nijmegen Dukenburg
