@@ -11,8 +11,9 @@ createsql = 'create_tables.sql'
 # default table for importing data files
 dfl_table = 'stations_data'
 machine_table = 'machines_data'
+subscription_table = 'subscriptions_data'
 
-prefix = os.path.dirname(__file__)
+prefix = os.path.dirname(os.path.realpath(__file__))
 db = os.path.join(prefix, dbname)
 
 def dbconnect(_db = None):
@@ -72,6 +73,7 @@ if __name__ == '__main__':
 		if (len(sys.argv) > 1):
                 	if( sys.argv[1] == 'android' ):
 				if filename[0:22] == "create_tables_machines": continue
+				if filename[0:27] == "create_tables_subscriptions": continue
 		else:
 			if filename[0:21] == "create_tables_android": continue
 
@@ -88,9 +90,12 @@ if __name__ == '__main__':
 		if (len(sys.argv) > 1):
                         if( sys.argv[1] == 'android' ):
                         	if filename[0:7] == "machine": continue
+				if filename[0:12] == "subscription": continue
 		print 'Importing tab-separated data: %s'%filename
 		if filename[0:7] == "machine":
 		    table = machine_table
+		elif filename[0:12] == "subscription":
+		    table = subscription_table
 		else:
 		    table = dfl_table
 		for fields in tsv_each(os.path.join(prefix, filename)):

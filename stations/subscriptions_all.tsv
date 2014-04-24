@@ -1,0 +1,112 @@
+# Subscription names
+#
+# The company id's are not needed as the values are all unique, but are
+# included anyway to allow a search based on the company id.
+#
+company	id	name
+# NS
+4	1	NS-Jaarabonnement
+4	3	NS-Jaarabonnement gezinslid
+4	5	OV-jaarkaart
+4	7	OV-Bijkaart
+4	9	NS-Vervoer-legitimatiebewijs
+4	11	NS-Vervoerbewijs
+4	14	NS-Vervoerbewijs Ex.
+4	17	NS Businesscard
+4	20	Jaartrajectabonnement
+4	22	Stad Streek-Jaarabonnement
+4	25	Voordeelurenabonnement (twee jaar)
+4	26	Voordeelurenabonnement
+4	27	Voordeelurenabonnement 60+ doorlopend
+4	28	Voordeelurenabonnement 60+
+4	29	Voordeelurenabonnement
+4	30	Kids Vrij
+4	40	OV-chip Plus
+4	50	Maandabon. Altijd Vrij
+4	51	Maandabon. Altijd Voordeel
+4	52	Maandabon. Altijd Voordeel
+4	84	Railrunner
+4	85	Dagkaart
+4	87	VanAnaarBeter enkele reis
+4	90	Keuzedag
+4	91	Keuzedag VDU
+4	94	Toeslag 2-1 Weekenddag
+4	95	Toeslag 2-1 Dag
+4	96	Toeslag 2-1 Daluren
+4	97	Toeslag 2-1 Keuzedag
+4	120	Dagkaart fiets
+4	121	Dagkaart hond
+4	122	ICE Toeslag enkele reis
+4	162	Stationsmedewerker pas lokaal
+4	163	Stationsmedewerker pas landelijk
+4	175	Studenten OV-chipkaart week (2009)
+4	176	Studenten OV-chipkaart weekend (2009)
+4	177	Studentenkaart korting week (2009)
+4	178	Studentenkaart korting weekend (2009)
+4	180	NS-Privilegepas/legitimatie
+4	181	NS-Privilegepas
+4	182	NS-Privilegepas Junior
+4	183	NS-Legitimatiebewijs
+4	185	NS-reisrecht RET personeel
+4	186	NS-reisrecht GVB personeel
+4	201	Reizen op saldo bij NS
+4	202	Reizen op saldo bij NS
+4	205	Voordeelurenabonnement reizen op saldo
+4	206	Voordeelurenabonnement reizen op saldo
+4	207	NS-Business Card Check in/out
+4	208	NS-Business Card Check in/out
+4	209	Dal Voordeel
+4	210	Dal Voordeel
+4	211	Weekend vrij
+4	212	Weekend vrij
+4	213	Dal Vrij
+4	214	Dal Vrij
+4	215	Altijd Voordeel
+4	216	Altijd Voordeel
+4	219	Altijd Vrij
+4	220	Altijd Vrij
+4	229	Reizen op saldo (tijdelijk eerste klas)
+4	230	Reizen op saldo (tijdelijk tweede klas)
+4	231	Reizen op saldo (tijdelijk eerste klas korting)
+4	232	Tijdelijke klassewissel korting
+4	233	BC vandaag 1e klasse
+4	234	BC vandaag 2e klasse
+4	241	rosmobility (Radiuz)
+4	242	rosmobility (Radiuz)
+4	243	rosmobility (Mobility Mixx)
+4	244	rosmobility (Mobility Mixx)
+4	245	Radiuz vandaag
+4	247	Mobility Mixx vandaag
+4	259	Klassewissel
+4	260	Klassewissel
+4	261	Klassewissel
+4	262	Klassewissel
+4	263	Klassewissel
+4	264	Klassewissel
+4	271	Samenreiskorting
+4	299	Activeren Kaartservicecode
+4	301	Fyra toeslag enkele reis
+4	302	Fyra Toeslag retour
+4	303	Fyra Maandtoeslag
+4	304	Fyra Altijd Toeslagvrij
+4	305	Fyra Altijd Toeslagvrij
+4	311	Fyra Toeslag enkele reis
+# Arriva
+8	1434	Dalkorting
+# Veolia
+7	1574	DALU Dalkorting
+# Connexxion
+1	1682	Daluren Oost-Nederland
+1	1692	Daluren Oost-Nederland
+# DUO
+12	2502	Student weekend-vrij
+12	2503	Student week-korting
+12	2505	Student week-vrij
+12	2506	Student weekend-korting
+# DUO (alternative)
+25	2502	Student weekend-vrij
+25	2503	Student week-korting
+25	2505	Student week-vrij
+25	2506	Student weekend-korting
+# GVB
+2	3005	Fietssupplement
